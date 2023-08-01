@@ -1,4 +1,5 @@
-﻿using HealthHarmony.WebApi.Interfaces;
+﻿using HealthHarmony.WebApi.DTOs.User;
+using HealthHarmony.WebApi.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -21,6 +22,16 @@ namespace HealthHarmony.WebApi.Services
                 );
             var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
             return tokenString;
+        }
+
+        public string Login(UserLoginDto user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ValidateUser(UserLoginDto user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -7,5 +7,10 @@ namespace HealthHarmony.WebApi.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        [HttpPost("login")]
+        public Task<> Login([FromBody])
+        {
+
+        }
     }
 }
