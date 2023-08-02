@@ -1,4 +1,4 @@
-﻿namespace HealthHarmony.WebApi.Interfaces
+﻿namespace HealthHarmony.Auth.Interfaces
 {
     public interface IAuthService
     {

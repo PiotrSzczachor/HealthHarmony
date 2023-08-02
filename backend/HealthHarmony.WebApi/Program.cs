@@ -1,4 +1,4 @@
-using HealthHarmony.WebApi;
+using HealthHarmony.SQL;
 using HealthHarmony.WebApi.Entities;
 using HealthHarmony.WebApi.Interfaces;
 using HealthHarmony.WebApi.Services;
@@ -9,6 +9,13 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var configurationBuilder = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .AddEnvironmentVariables();
+
+IConfiguration configuration = configurationBuilder.Build();
 
 // Add services to the container.
 
@@ -41,11 +48,11 @@ builder.Services.AddSwaggerGen(options =>
                 }
             });
     });
-IServiceCollection serviceCollection = builder.Services.AddEntityFrameworkNpgsql().AddDbContext<HealthHarmonyContext>(opt =>
+
+builder.Services.AddEntityFrameworkNpgsql().AddDbContext<HealthHarmonyContext>(opt =>
         opt.UseNpgsql(builder.Configuration.GetConnectionString("Local")));
 
 builder.Services.AddScoped<IAuthService, AuthService>();
-
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddAuthentication(opt => {
     opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -59,9 +66,9 @@ builder.Services.AddAuthentication(opt => {
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = HealthHarmony.WebApi.ConfigurationManager.AppSetting["JWT:ValidIssuer"],
-            ValidAudience = HealthHarmony.WebApi.ConfigurationManager.AppSetting["JWT:ValidAudience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(HealthHarmony.WebApi.ConfigurationManager.AppSetting["JWT:Secret"]))
+            ValidIssuer = configuration.GetSection("JWT:ValidIssuer").Value,
+            ValidAudience = configuration.GetSection("JWT:ValidAudience").Value,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("JWT:Secret").Value))
         };
     });
 

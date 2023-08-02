@@ -1,4 +1,4 @@
-﻿namespace HealthHarmony.WebApi.DTOs.User
+﻿namespace HealthHarmony.Auth.DTOs.User
 {
     public class UserLoginDto
     {

@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using HealthHarmony.SQL.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-
-namespace HealthHarmony.WebApi.Entities
+namespace HealthHarmony.SQL
 {
     public class HealthHarmonyContext : IdentityDbContext<User>
     {
@@ -9,6 +9,5 @@ namespace HealthHarmony.WebApi.Entities
         {
 
         }
-
     }
 }
