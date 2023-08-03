@@ -1,8 +1,9 @@
+using HealthHarmony.Auth.Interfaces;
+using HealthHarmony.Auth.Services;
 using HealthHarmony.SQL;
-using HealthHarmony.WebApi.Entities;
-using HealthHarmony.WebApi.Interfaces;
-using HealthHarmony.WebApi.Services;
+using HealthHarmony.SQL.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -51,6 +52,9 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<HealthHarmonyContext>(opt =>
         opt.UseNpgsql(builder.Configuration.GetConnectionString("Local")));
+builder.Services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<HealthHarmonyContext>()
+                .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -89,6 +93,8 @@ app.UseCors(x => x
 
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
