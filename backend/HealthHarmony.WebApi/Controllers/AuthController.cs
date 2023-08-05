@@ -17,15 +17,16 @@ namespace HealthHarmony.WebApi.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<string?> Register([FromBody] UserRegisterDto dto)
+        public async Task<IActionResult> Register([FromBody] UserRegisterDto dto)
         {
-            return await _authService.Register(dto);
+            return Ok(await _authService.Register(dto));
         }
 
         [HttpPost("login")]
-        public async Task<string?> Login([FromBody] UserLoginDto dto)
+        public async Task<IActionResult> Login([FromBody] UserLoginDto dto)
         {
-            return await _authService.Login(dto);
+            var token = await _authService.Login(dto);
+            return token == null ? Unauthorized() : Ok(token);
         }
     }
 }

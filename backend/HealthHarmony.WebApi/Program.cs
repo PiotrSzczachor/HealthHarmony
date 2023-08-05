@@ -2,6 +2,7 @@ using HealthHarmony.Auth.Interfaces;
 using HealthHarmony.Auth.Services;
 using HealthHarmony.SQL;
 using HealthHarmony.SQL.Entities;
+using HealthHarmony.WebApi.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -97,6 +98,8 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 app.MapControllers();
 
