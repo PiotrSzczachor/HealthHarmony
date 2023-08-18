@@ -1,0 +1,39 @@
+<div class="main-page-container">
+    <app-header></app-header>
+    <swiper-container class="swiper" loop="true" speed="500" autoplay="true">
+        <swiper-slide class="slide" *ngFor="let slide of slides">
+            <img [src]="slide.src" alt="">
+        </swiper-slide>
+    </swiper-container>
+    <div class="tiles-wrapper">
+        <div class="tiles-container">
+            <div class="tile">
+                <div class="icon-container">
+                    <img src="../../../../../assets/icons/support.png" alt="">
+                </div>
+                <div class="content-container">
+                    <p class="title">24/7 SUPPORT</p>
+                    <p class="content">In our clinic you can keep with us in touch 24h a day, 7 days a week</p>
+                </div>
+            </div>
+            <div class="tile">
+                <div class="icon-container">
+                    <img src="../../../../../assets/icons/doctor.png" alt="">
+                </div>
+                <div class="content-container">
+                    <p class="title">PROFFESIONAL HEALTHCARE</p>
+                    <p class="content">The best specialists in the country will take care of your health</p>
+                </div>
+            </div>
+            <div class="tile">
+                <div class="icon-container">
+                    <img src="../../../../../assets/icons/document.png" alt="">
+                </div>
+                <div class="content-container">
+                    <p class="title">MEDICAL DOCUMENTATION</p>
+                    <p class="content">You don't have to keep your medical documents - everything is here!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

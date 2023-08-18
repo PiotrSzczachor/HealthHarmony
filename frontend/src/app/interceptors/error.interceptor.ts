@@ -7,7 +7,7 @@ import {
     HttpErrorResponse
 } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
-import { ErrorDetails } from '../shared/models/error-details.model';
+import { ErrorDetails } from '../models/shared/error-details.model';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         return next.handle(request)
             .pipe(
                 catchError((error: HttpErrorResponse) => {
-                    console.log(error)
+                    console.error(error)
                     var errorDetails = error.error instanceof ErrorDetails ? error.error : undefined;
                     if (errorDetails) {
                         this.handleServerSideError(errorDetails.statusCode, errorDetails.message);

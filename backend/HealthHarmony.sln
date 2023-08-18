@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthHarmony.WebApi", "HealthHarmony.WebApi\HealthHarmony.WebApi.csproj", "{25099F7E-B076-46E3-A3A8-20642C9ECDD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthHarmony.Auth", "HealthHarmony.Auth\HealthHarmony.Auth.csproj", "{5380CA84-6C51-47D9-A946-D6D92C00B3E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthHarmony.Auth", "HealthHarmony.Auth\HealthHarmony.Auth.csproj", "{5380CA84-6C51-47D9-A946-D6D92C00B3E2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthHarmony.SQL", "HealthHarmony.SQL\HealthHarmony.SQL.csproj", "{20F1C498-5DE3-4953-9A7F-5093A155CF16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthHarmony.SQL", "HealthHarmony.SQL\HealthHarmony.SQL.csproj", "{20F1C498-5DE3-4953-9A7F-5093A155CF16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{25099F7E-B076-46E3-A3A8-20642C9ECDD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{25099F7E-B076-46E3-A3A8-20642C9ECDD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{25099F7E-B076-46E3-A3A8-20642C9ECDD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{25099F7E-B076-46E3-A3A8-20642C9ECDD6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5380CA84-6C51-47D9-A946-D6D92C00B3E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5380CA84-6C51-47D9-A946-D6D92C00B3E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5380CA84-6C51-47D9-A946-D6D92C00B3E2}.Release|Any CPU.ActiveCfg = Release|Any CPU

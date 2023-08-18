@@ -1,0 +1,20 @@
+<nav class="menu-container">
+    <ul>
+        <li class="logotype">
+            <div class="logo-container">
+                <img src="../../../../../assets/logo.png" alt="logo" class="logo">
+            </div>
+            <p class="logo-name">HealthHarmony</p>
+        </li>
+        <li class="burger" (click)="toggleMenu()">
+            <i class="material-icons">{{ isMenuOpen ? "close" : "menu" }}</i>
+        </li>
+        <li class="menu" [class.is-open]="isMenuOpen">
+            <a href="#" class="menu-item">Home</a>
+            <a href="#" class="menu-item">Contact</a>
+            <a href="#" class="menu-item">FAQ</a>
+            <button class="register-button">Login</button>
+            <button class="register-button">Register</button>
+        </li>
+    </ul>
+</nav>
