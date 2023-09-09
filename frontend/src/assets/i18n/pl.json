@@ -1,0 +1,26 @@
+{
+    "header": {
+        "home": "Home",
+        "contact": "Kontakt",
+        "faq": "FAQ",
+        "login": "Login",
+        "register": "Rejestracja"
+    },
+    "mainPage": {
+        "tiles": {
+            "support": {
+                "title": "Wsparcie 24/7",
+                "content": "W naszej klinice jesteśmy do twojej dyspozycji 24h na dobę przez 7 dni w tygodniu"
+            },
+            "healthCare": {
+                "title": "Profesjonalna opieka",
+                "content": "Najlepsi specjaliści w kraju zadbają o twoje zdrowie"
+            },
+            "documentation": {
+                "title": "Dokumentacja medyczna",
+                "content": "Nie musisz martwić się o swoją dokumentację medyczną - wszystko znajdziesz tutaj!"
+            }
+        }
+        
+    }
+}

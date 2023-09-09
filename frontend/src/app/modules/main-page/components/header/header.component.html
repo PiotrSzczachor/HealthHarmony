@@ -10,11 +10,11 @@
             <i class="material-icons">{{ isMenuOpen ? "close" : "menu" }}</i>
         </li>
         <li class="menu" [class.is-open]="isMenuOpen">
-            <a href="#" class="menu-item">Home</a>
-            <a href="#" class="menu-item">Contact</a>
-            <a href="#" class="menu-item">FAQ</a>
-            <button class="register-button">Login</button>
-            <button class="register-button">Register</button>
+            <a href="#" class="menu-item">{{'header.home' | translate}}</a>
+            <a href="#" class="menu-item">{{'header.contact' | translate}}</a>
+            <a href="#" class="menu-item">{{'header.faq' | translate}}</a>
+            <button class="register-button">{{'header.login' | translate}}</button>
+            <button class="register-button">{{'header.register' | translate}}</button>
         </li>
     </ul>
 </nav>

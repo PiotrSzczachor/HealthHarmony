@@ -20,19 +20,19 @@ export class MainPageComponent implements OnInit{
             name: "2",
             src: "../../../../../assets/slider-images/2.jpg",
             title: "Modern medical offices",
-            content: ""
+            content: "Our clinic has modern specialist equipment"
         },
         {
             name: "3",
             src: "../../../../../assets/slider-images/3.jpg",
             title: "Modern medical offices",
-            content: ""
+            content: "Our clinic has modern specialist equipment"
         },
         {
             name: "4",
             src: "../../../../../assets/slider-images/4.jpg",
             title: "Modern medical offices",
-            content: ""
+            content: "Our clinic has modern specialist equipment"
         },
     ]
 

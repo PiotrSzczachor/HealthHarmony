@@ -1,0 +1,53 @@
+@use '../../../../../variables';
+
+.main-container {
+    height: 70vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .map-container {
+        height: 90%;
+        width: 100%;
+        max-width: 1300px;
+        display: flex;
+        border-radius: 10px;
+        overflow: hidden;
+        @media (max-width: 1300px){
+            overflow: visible;
+        }
+        @media (max-width: 1110px){
+            flex-direction: column-reverse;
+        }
+
+        .locations-container {
+            flex: 1;
+            background-image: linear-gradient(to right, variables.$gradient-left-color 0%,  variables.$gradient-right-color 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+
+            .location-tile {
+                width: 100%;
+                border-radius: 10px;
+                border: 2px solid variables.$white-color;
+                color: white;
+                padding: 10px;
+
+                .heading {
+                    font-size: 24pt;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .map-wrapper {
+            flex: 2;
+        }
+    }
+    
+    
+}

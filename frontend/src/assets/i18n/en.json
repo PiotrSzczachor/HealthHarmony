@@ -1,0 +1,26 @@
+{
+    "header": {
+        "home": "Home",
+        "contact": "Contact",
+        "faq": "FAQ",
+        "login": "Login",
+        "register": "Register"
+    },
+    "mainPage": {
+        "tiles": {
+            "support": {
+                "title": "24/7 Support",
+                "content": "In our clinic you can keep with us in touch 24h a day, 7 days a week"
+            },
+            "healthcare": {
+                "title": "Proffesional healthcare",
+                "content": "The best specialists in the country will take care of your health"
+            },
+            "documentation": {
+                "title": "Medical documentation",
+                "content": "You don't have to keep your medical documents - everything is here!"
+            }
+        }
+        
+    }
+}
