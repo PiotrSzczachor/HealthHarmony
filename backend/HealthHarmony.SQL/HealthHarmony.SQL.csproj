@@ -17,4 +17,14 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HealthHarmony.Addresses\HealthHarmony.Addresses.csproj" />
+    <ProjectReference Include="..\HealthHarmony.Auth\HealthHarmony.Auth.csproj" />
+    <ProjectReference Include="..\HealthHarmony.Clinics\HealthHarmony.Clinics.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

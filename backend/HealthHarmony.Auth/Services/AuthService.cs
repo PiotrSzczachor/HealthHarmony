@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using HealthHarmony.Auth.DTOs.User;
 using HealthHarmony.Auth.Interfaces;
-using HealthHarmony.SQL.Entities;
+using HealthHarmony.Auth.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

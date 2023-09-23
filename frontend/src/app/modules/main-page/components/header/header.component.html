@@ -12,9 +12,11 @@
         <li class="menu" [class.is-open]="isMenuOpen">
             <a href="#" class="menu-item">{{'header.home' | translate}}</a>
             <a href="#" class="menu-item">{{'header.contact' | translate}}</a>
-            <a href="#" class="menu-item">{{'header.faq' | translate}}</a>
-            <button class="register-button">{{'header.login' | translate}}</button>
-            <button class="register-button">{{'header.register' | translate}}</button>
+            <a href="faq" class="menu-item">{{'header.faq' | translate}}</a>
+            <div class="button-container">
+                <button class="register-button">{{'header.login' | translate}}</button>
+                <button class="register-button">{{'header.register' | translate}}</button>
+            </div>
         </li>
     </ul>
 </nav>

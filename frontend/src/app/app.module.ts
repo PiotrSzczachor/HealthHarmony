@@ -2,10 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './modules/auth/components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RegisterComponent } from './modules/auth/components/register/register.component';
 import { HTTP_INTERCEPTORS, HttpClientModule, HttpClient } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { ToastrModule } from 'ngx-toastr';
@@ -17,6 +15,7 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { MainPageModule } from './modules/main-page/main-page.module';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { MatIconModule } from '@angular/material/icon'
 
 @NgModule({
     declarations: [
@@ -32,6 +31,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
         ReactiveFormsModule,
         ToastrModule.forRoot(),
         HttpClientModule,
+        MatIconModule,
         StoreModule.forRoot({}),
         EffectsModule.forRoot(),
         TranslateModule.forRoot({

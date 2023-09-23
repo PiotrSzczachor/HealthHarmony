@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HealthHarmony.WebApi.Entities.Base
+namespace HealthHarmony.Common.Models.Base
 {
     public class BaseModel
     {
         [Key]
-        Guid Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

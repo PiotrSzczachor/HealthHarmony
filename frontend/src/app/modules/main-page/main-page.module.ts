@@ -6,20 +6,24 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { MapComponent } from './components/map/map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MatIconModule } from '@angular/material/icon';
 
 const COMPONENTS = [
-    MainPageComponent, HeaderComponent, FooterComponent
+    MainPageComponent, HeaderComponent, FooterComponent, MapComponent
 ]
 
 @NgModule({
   declarations: [
-    COMPONENTS,
-    MapComponent,
+    COMPONENTS
   ],
   imports: [
     CommonModule,
     TranslateModule.forRoot(),
     LeafletModule,
+    MatIconModule
+  ],
+  exports: [
+    COMPONENTS
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

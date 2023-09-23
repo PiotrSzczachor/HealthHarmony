@@ -5,6 +5,7 @@ import { DashboardPageComponent } from './modules/dashboard/containers/dashboard
 import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './modules/auth/components/register/register.component';
 import { MainPageComponent } from './modules/main-page/containers/main-page/main-page.component';
+import { FaqPageComponent } from './modules/faq/containers/faq-page/faq-page.component';
 
 const routes: Routes = [
     {
@@ -23,6 +24,10 @@ const routes: Routes = [
         path: 'dashboard',
         component: DashboardPageComponent,
         canActivate: [AuthGuard]
+    },
+    {
+        path: 'faq',
+        component: FaqPageComponent
     }
 ];
 

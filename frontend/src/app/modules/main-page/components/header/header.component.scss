@@ -111,24 +111,35 @@ $menuBreakpoint: 768px;
             }
         }
 
-        button {
-            background-image: linear-gradient(to right, #0066ff 0%, #1c2cbd 51%, #0011ff 100%);
-            margin-left: 10px;
-            width: 100px;
-            height: 40px;
-            transition: 0.5s;
-            background-size: 200% auto;
-            color: white;
-            border-radius: 30px;
-            border: none;
-            display: block;
-            cursor: pointer;
+        .button-container {
+            display: flex;
+            @media (max-width: $menuBreakpoint) {
+                width: 100vw;
+                justify-content: center;
+            }
 
-            &:hover {
-                background-position: right center;
-                color: #fff;
+            button {
+                background-image: linear-gradient(to right, #0066ff 0%, #1c2cbd 51%, #0011ff 100%);
+                margin-left: 10px;
+                width: 100px;
+                height: 40px;
+                transition: 0.5s;
+                background-size: 200% auto;
+                color: white;
+                border-radius: 30px;
+                border: none;
+                display: block;
+                cursor: pointer;
+                @media (max-width: $menuBreakpoint) {
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                }
+
+                &:hover {
+                    background-position: right center;
+                    color: #fff;
+                }
             }
         }
-
     }
 }

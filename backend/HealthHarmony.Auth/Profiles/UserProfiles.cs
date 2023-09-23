@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using HealthHarmony.Auth.DTOs.User;
-using HealthHarmony.SQL.Entities;
+using HealthHarmony.Auth.Models;
 
 namespace HealthHarmony.Auth.Profiles
 {
