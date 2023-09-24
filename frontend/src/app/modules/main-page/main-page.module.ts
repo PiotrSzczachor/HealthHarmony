@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MapComponent } from './components/map/map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MatIconModule } from '@angular/material/icon';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const COMPONENTS = [
     MainPageComponent, HeaderComponent, FooterComponent, MapComponent
@@ -20,7 +21,7 @@ const COMPONENTS = [
     CommonModule,
     TranslateModule.forRoot(),
     LeafletModule,
-    MatIconModule
+    SharedModule
   ],
   exports: [
     COMPONENTS

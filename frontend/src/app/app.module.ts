@@ -16,6 +16,8 @@ import { MainPageModule } from './modules/main-page/main-page.module';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { MatIconModule } from '@angular/material/icon'
+import { SharedModule } from './shared/shared.module';
+import { FaqModule } from './modules/faq/faq.module';
 
 @NgModule({
     declarations: [
@@ -31,7 +33,7 @@ import { MatIconModule } from '@angular/material/icon'
         ReactiveFormsModule,
         ToastrModule.forRoot(),
         HttpClientModule,
-        MatIconModule,
+        SharedModule,
         StoreModule.forRoot({}),
         EffectsModule.forRoot(),
         TranslateModule.forRoot({
@@ -40,7 +42,8 @@ import { MatIconModule } from '@angular/material/icon'
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        })
+        }),
+        FaqModule
     ],
     providers: [
         { 

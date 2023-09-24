@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class FaqPageComponent {
 
+    faqList = [
+        { question: 'Question 1', answer: 'Anwser 1', expanded: false },
+        { question: 'Question 2', answer: 'Anwser 2', expanded: false },
+      ];
+    
+      toggleAnswer(item: any) {
+        item.expanded = !item.expanded;
+      }
 }
