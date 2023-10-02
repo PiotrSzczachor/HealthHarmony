@@ -2,5 +2,6 @@ export interface SwiperSlide {
     name: string,
     src: string,
     title: string,
-    content: string
+    content: string,
+    class: string
 }

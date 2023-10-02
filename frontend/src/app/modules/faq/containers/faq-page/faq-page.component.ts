@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
+import { FaqItemsList } from 'src/app/constants/faq/faq-items-list.constant';
+import { FaqItem } from 'src/app/models/faq/faq-item.model';
 
 @Component({
-  selector: 'app-faq-page',
-  templateUrl: './faq-page.component.html',
-  styleUrls: ['./faq-page.component.scss']
+    selector: 'app-faq-page',
+    templateUrl: './faq-page.component.html',
+    styleUrls: ['./faq-page.component.scss']
 })
 export class FaqPageComponent {
 
-    faqList = [
-        { question: 'Question 1', answer: 'Anwser 1', expanded: false },
-        { question: 'Question 2', answer: 'Anwser 2', expanded: false },
-      ];
-    
-      toggleAnswer(item: any) {
+    faqList: FaqItem[] = FaqItemsList;
+
+    toggleAnswer(item: any) {
         item.expanded = !item.expanded;
-      }
+    }
 }

@@ -4,15 +4,15 @@
             <div class="logo-container">
                 <img src="../../../../../assets/logo.png" alt="logo" class="logo">
             </div>
-            <p class="logo-name">HealthHarmony</p>
+            <p class="logo-name">Health Harmony</p>
         </li>
         <li class="burger" (click)="toggleMenu()">
             <i class="material-icons">{{ isMenuOpen ? "close" : "menu" }}</i>
         </li>
         <li class="menu" [class.is-open]="isMenuOpen">
-            <a href="#" class="menu-item">{{'header.home' | translate}}</a>
+            <a href="#" class="menu-item" [ngClass]="isSelected('') ? 'selected' : null">{{'header.home' | translate}}</a>
             <a href="#" class="menu-item">{{'header.contact' | translate}}</a>
-            <a href="faq" class="menu-item">{{'header.faq' | translate}}</a>
+            <a href="faq" class="menu-item" [ngClass]="isSelected('faq') ? 'selected' : null">{{'header.faq' | translate}}</a>
             <div class="button-container">
                 <button class="register-button">{{'header.login' | translate}}</button>
                 <button class="register-button">{{'header.register' | translate}}</button>

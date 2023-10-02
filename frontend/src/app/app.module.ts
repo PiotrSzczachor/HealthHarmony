@@ -15,7 +15,6 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { MainPageModule } from './modules/main-page/main-page.module';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { MatIconModule } from '@angular/material/icon'
 import { SharedModule } from './shared/shared.module';
 import { FaqModule } from './modules/faq/faq.module';
 
@@ -29,7 +28,6 @@ import { FaqModule } from './modules/faq/faq.module';
         MainPageModule,
         BrowserModule,
         AppRoutingModule,
-        BrowserAnimationsModule,
         ReactiveFormsModule,
         ToastrModule.forRoot(),
         HttpClientModule,

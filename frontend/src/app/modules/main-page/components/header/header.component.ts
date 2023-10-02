@@ -14,9 +14,14 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit(): void {
         this.url = this.route.snapshot.routeConfig?.path;
+        console.log(this.url);
     }
 
     toggleMenu(): void {
       this.isMenuOpen = !this.isMenuOpen;
+    }
+
+    isSelected(section: string): boolean {
+        return section == this.url
     }
 }

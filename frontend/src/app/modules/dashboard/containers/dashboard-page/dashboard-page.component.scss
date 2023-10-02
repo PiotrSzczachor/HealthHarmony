@@ -1,0 +1,84 @@
+@use '../../../../../variables';
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+mat-sidenav-container {
+    height: 100vh;
+    width: 100vw;
+    background-color: variables.$white-color;
+
+    mat-sidenav {
+        background-color: variables.$basic-blue-color;
+        width: 15%;
+
+        .menu-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .user-info-container {
+                width: 90%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 20px;
+                border-bottom: 2px solid variables.$white-color;
+
+                .image-container {
+                    width: 120px;
+                    height: 120px;
+                    background-color: variables.$gray-color;
+                    border-radius: 100%;
+                }
+
+                .username {
+                    font-family: 'Poppins', sans-serif;
+                    text-transform: uppercase;
+                    font-size: 18pt;
+                    margin-top: 20px;
+
+                }
+            }
+
+            .menu-container {
+                width: 90%;
+                display: flex;
+                align-items: flex-start;
+
+                .menu-item {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    border-bottom: 1px solid variables.$white-color;
+                    cursor: pointer;
+
+                    .icon {
+                        width: 42px;
+                        height: 42px;
+                        display: flex;
+                        margin: 10px 10px 10px 0px;
+                    }
+
+                    .menu-item-name {
+                        margin: 0;
+                        font-family: 'Poppins', sans-serif;
+                        text-transform: uppercase;
+                        font-size: 14pt;
+                    }
+                }
+
+            }
+
+            .menu-item:hover {
+                // background-color: variables.$white-color;
+                // color: variables.$basic-blue-color;
+                border-bottom: 4px solid variables.$white-color!important;
+            }
+        }
+    }
+}
+
+::ng-deep .mat-drawer-inner-container {
+    overflow: hidden !important;
+}

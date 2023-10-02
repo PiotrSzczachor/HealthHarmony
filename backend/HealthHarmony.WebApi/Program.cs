@@ -1,7 +1,7 @@
 using HealthHarmony.Auth.Interfaces;
+using HealthHarmony.Auth.Models;
 using HealthHarmony.Auth.Services;
 using HealthHarmony.SQL;
-using HealthHarmony.SQL.Entities;
 using HealthHarmony.WebApi.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;

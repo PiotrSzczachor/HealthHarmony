@@ -6,7 +6,9 @@
                 <div class="slide-container">
                     <img [src]="slide.src" alt="">
                     <div class="content-container">
-                        <div class="slide-content">{{slide.content}}</div>
+                        <div class="slide-content">
+                            <p [ngClass]="slide.class">{{slide.content}}</p>
+                        </div>
                     </div>
                 </div>
             </swiper-slide>

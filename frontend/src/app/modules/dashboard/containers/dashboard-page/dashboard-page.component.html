@@ -1,1 +1,22 @@
-<p>dashboard-page works!</p>
+<mat-sidenav-container>
+    <mat-sidenav mode="side" [opened]="opened">
+        <div class="menu-container">
+            <div class="user-info-container">
+                <div class="image-container">
+
+                </div>
+                <p class="username">John Doe</p>
+            </div>
+            <div class="menu-container">
+                <div class="menu-item" *ngFor="let item of menuItems">
+                    <img class="icon" [src]="item.icon" alt="">
+                    <p class="menu-item-name">{{ item.name | translate }}</p>
+                </div>
+            </div>
+        </div>
+    </mat-sidenav>
+    
+    <mat-sidenav-content>
+      <router-outlet name="dashboard-outlet"></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

@@ -2,12 +2,12 @@
     <app-header></app-header>
     <div class="wrapper">
         <h1 class="header">FAQ</h1>
-        <p>Explore our frequently asked questions to find answers to some of the most common queries. We've compiled a
-            list of detailed responses to help you navigate through our services and offerings.</p>
+        <p class="description">Explore our frequently asked questions to find answers to some of the most common
+            queries. We've compiled a list of detailed responses to help you navigate through our services and offerings:</p>
         <div *ngFor="let item of faqList" class="faq-item">
-            <div class="question">
+            <div class="question" (click)="toggleAnswer(item)">
                 <div class="circle">
-                    <mat-icon class="arrow-icon" (click)="toggleAnswer(item)">{{ item.expanded ? 'keyboard_arrow_up' :
+                    <mat-icon class="arrow-icon">{{ item.expanded ? 'keyboard_arrow_up' :
                         'keyboard_arrow_down' }}</mat-icon>
                 </div>
                 {{ item.question }}

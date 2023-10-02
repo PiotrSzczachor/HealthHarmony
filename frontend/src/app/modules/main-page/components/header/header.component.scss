@@ -45,6 +45,7 @@ $menuBreakpoint: 768px;
                 font-family: variables.$font-family;
                 font-weight: bolder;
                 color: #454545;
+                margin-left: 20px;
             }
         }
     }
@@ -111,8 +112,14 @@ $menuBreakpoint: 768px;
             }
         }
 
+        .selected {
+            color: #0066ff;
+            border-bottom: 3px solid #0066ff;
+        }
+
         .button-container {
             display: flex;
+
             @media (max-width: $menuBreakpoint) {
                 width: 100vw;
                 justify-content: center;
@@ -130,6 +137,7 @@ $menuBreakpoint: 768px;
                 border: none;
                 display: block;
                 cursor: pointer;
+
                 @media (max-width: $menuBreakpoint) {
                     margin-top: 10px;
                     margin-bottom: 10px;
