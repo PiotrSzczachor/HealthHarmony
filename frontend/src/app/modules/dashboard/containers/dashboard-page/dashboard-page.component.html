@@ -6,17 +6,21 @@
 
                 </div>
                 <p class="username">John Doe</p>
+                <div class="online"></div>
             </div>
             <div class="menu-container">
-                <div class="menu-item" *ngFor="let item of menuItems">
+                <div class="menu-item" *ngFor="let item of menuItems" (click)="routeToChildren(item.route)" [ngClass]="(isItemSelected(item.route) | async) ? 'selected' : null">
                     <img class="icon" [src]="item.icon" alt="">
                     <p class="menu-item-name">{{ item.name | translate }}</p>
                 </div>
+            </div>
+            <div class="logout-container">
+                <button class="logout-btn">Log out</button>
             </div>
         </div>
     </mat-sidenav>
     
     <mat-sidenav-content>
-      <router-outlet name="dashboard-outlet"></router-outlet>
+      <router-outlet name="dashboard"></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

@@ -29,7 +29,9 @@
             "visits": "Visits",
             "documents": "Documents",
             "results": "Results",
-            "contact": "Contact"
+            "contact": "Contact",
+            "home": "Home",
+            "settings": "Settings"
         }
     }
 }

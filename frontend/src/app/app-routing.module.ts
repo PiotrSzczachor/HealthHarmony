@@ -13,6 +13,10 @@ const routes: Routes = [
         component: MainPageComponent
     },
     {
+        path: 'faq',
+        component: FaqPageComponent
+    },
+    {
         path: 'login',
         component: LoginComponent
     },
@@ -23,12 +27,29 @@ const routes: Routes = [
     {
         path: 'dashboard',
         component: DashboardPageComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        children: [
+            {
+                path: 'home',
+                component: MainPageComponent,
+                canActivate: [AuthGuard],
+                outlet: 'dashboard'
+            },
+            {
+                path: 'doctors',
+                component: MainPageComponent,
+                canActivate: [AuthGuard],
+                outlet: 'dashboard'
+            },
+            {
+                path: 'hospitals',
+                component: FaqPageComponent,
+                canActivate: [AuthGuard],
+                outlet: 'dashboard'
+            },
+        ]
     },
-    {
-        path: 'faq',
-        component: FaqPageComponent
-    }
+
 ];
 
 @NgModule({

@@ -8,7 +8,7 @@ mat-sidenav-container {
 
     mat-sidenav {
         background-color: variables.$basic-blue-color;
-        width: 15%;
+        width: 350px;
 
         .menu-container {
             width: 100%;
@@ -39,6 +39,16 @@ mat-sidenav-container {
                     margin-top: 20px;
 
                 }
+
+                .online {
+                    position: relative;
+                    width: 15px;
+                    height: 15px;
+                    background-color: variables.$online-color;
+                    border-radius: 100%;
+                    bottom: 150px;
+                    left: 50px;
+                }
             }
 
             .menu-container {
@@ -51,6 +61,7 @@ mat-sidenav-container {
                     align-items: center;
                     width: 100%;
                     border-bottom: 1px solid variables.$white-color;
+                    transition: 0.1s;
                     cursor: pointer;
 
                     .icon {
@@ -68,12 +79,36 @@ mat-sidenav-container {
                     }
                 }
 
+                .selected {
+                    border-bottom: 4px solid variables.$white-color !important;
+                }
+
             }
 
             .menu-item:hover {
-                // background-color: variables.$white-color;
-                // color: variables.$basic-blue-color;
-                border-bottom: 4px solid variables.$white-color!important;
+                border-bottom: 4px solid variables.$white-color !important;
+            }
+
+            .logout-container {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+
+                .logout-btn {
+                    margin-bottom: 30px;
+                    width: 100px;
+                    background-color: variables.$white-color;
+                    height: 40px;
+                    border-radius: 100px;
+                    border: none;
+                    font-family: 'Poppins', sans-serif;
+                    text-transform: uppercase;
+                    font-size: 10pt;
+                    color: variables.$basic-blue-color;
+                    cursor: pointer;
+                }
             }
         }
     }

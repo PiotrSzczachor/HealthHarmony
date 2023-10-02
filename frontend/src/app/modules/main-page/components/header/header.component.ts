@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit(): void {
         this.url = this.route.snapshot.routeConfig?.path;
-        console.log(this.url);
     }
 
     toggleMenu(): void {

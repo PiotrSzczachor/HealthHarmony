@@ -2,6 +2,12 @@ import { MenuItem } from "src/app/models/dashboard/menu-item.model";
 
 export const MenuItems: MenuItem[] = [
     {
+        name: "dashboard.menu.home",
+        route: "home",
+        icon: "../../../assets/icons/side-nav/home.png",
+        requiredClaim: null
+    },
+    {
         name: "dashboard.menu.doctors",
         route: "doctors",
         icon: "../../../assets/icons/side-nav/doctors.png",
@@ -35,6 +41,12 @@ export const MenuItems: MenuItem[] = [
         name: "dashboard.menu.contact",
         route: "contact",
         icon: "../../../assets/icons/side-nav/contact.png",
+        requiredClaim: null
+    },
+    {
+        name: "dashboard.menu.settings",
+        route: "settings",
+        icon: "../../../assets/icons/side-nav/settings.png",
         requiredClaim: null
     }
 ];
