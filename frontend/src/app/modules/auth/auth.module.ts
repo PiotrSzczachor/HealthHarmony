@@ -7,20 +7,22 @@ import { StoreModule } from '@ngrx/store';
 import { AuthEffects, reducers } from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MainPageModule } from "../main-page/main-page.module";
 
 const COMPONENTS = [
     LoginComponent, RegisterComponent
 ];
 
 @NgModule({
-  declarations: [COMPONENTS],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    StoreModule.forFeature('authState', reducers),
-    EffectsModule.forFeature([AuthEffects]),
-  ],
-  exports: [COMPONENTS],
-  providers: [AuthService]
+    declarations: [COMPONENTS],
+    exports: [COMPONENTS],
+    providers: [AuthService],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        StoreModule.forFeature('authState', reducers),
+        EffectsModule.forFeature([AuthEffects]),
+        MainPageModule
+    ]
 })
 export class AuthModule { }

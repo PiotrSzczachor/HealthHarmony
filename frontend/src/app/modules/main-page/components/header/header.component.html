@@ -14,9 +14,9 @@
             <a href="#" class="menu-item">{{'header.contact' | translate}}</a>
             <a href="faq" class="menu-item" [ngClass]="isSelected('faq') ? 'selected' : null">{{'header.faq' | translate}}</a>
             <div class="button-container">
-                <button class="register-button" appIsNotLoggedIn>{{'header.login' | translate}}</button>
-                <button class="register-button" appIsNotLoggedIn>{{'header.register' | translate}}</button>
-                <button class="register-button" appIsLoggedIn>{{'header.logout' | translate}}</button>
+                <button class="register-button" appIsNotLoggedIn (click)="navigate('login')">{{'header.login' | translate}}</button>
+                <button class="register-button" appIsNotLoggedIn (click)="navigate('register')">{{'header.register' | translate}}</button>
+                <button class="register-button" appIsLoggedIn (click)="logout()">{{'header.logout' | translate}}</button>
             </div>
         </li>
     </ul>

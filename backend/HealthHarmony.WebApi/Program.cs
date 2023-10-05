@@ -99,6 +99,8 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
+app.UseDeveloperExceptionPage();
+
 app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 app.MapControllers();

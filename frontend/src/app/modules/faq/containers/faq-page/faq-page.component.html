@@ -3,7 +3,8 @@
     <div class="wrapper">
         <h1 class="header">FAQ</h1>
         <p class="description">Explore our frequently asked questions to find answers to some of the most common
-            queries. We've compiled a list of detailed responses to help you navigate through our services and offerings:</p>
+            queries. We've compiled a list of detailed responses to help you navigate through our services and
+            offerings:</p>
         <div *ngFor="let item of faqList" class="faq-item">
             <div class="question" (click)="toggleAnswer(item)">
                 <div class="circle">

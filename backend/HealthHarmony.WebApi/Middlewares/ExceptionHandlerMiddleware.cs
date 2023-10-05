@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Text.Json;
 
 namespace HealthHarmony.WebApi.Middlewares
 {
@@ -21,13 +22,15 @@ namespace HealthHarmony.WebApi.Middlewares
             {
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                await context.Response.WriteAsync(new ErrorDetails
+                string errorDetails = JsonSerializer.Serialize(new ErrorDetails
                 {
                     StatusCode = context.Response.StatusCode,
                     Message = ex.Message,
                     ExceptionType = ex.GetType().ToString()
-                }.ToString());
+                });
 
+                await context.Response.WriteAsync(errorDetails);
+                var x = context;
             }
         }
     }

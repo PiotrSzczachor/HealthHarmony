@@ -30,7 +30,7 @@ export class AuthEffects {
                 AuthActions.loginSuccess,
                 AuthActions.registerSuccess
             ),
-            tap(() => this.router.navigateByUrl('dashboard'))
+            tap(() => this.router.navigateByUrl('dashboard/home'))
         ), { dispatch: false }
     )
 

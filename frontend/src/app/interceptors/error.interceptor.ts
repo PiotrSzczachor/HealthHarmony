@@ -19,15 +19,15 @@ export class ErrorInterceptor implements HttpInterceptor {
         return next.handle(request)
             .pipe(
                 catchError((error: HttpErrorResponse) => {
-                    console.error(error)
-                    var errorDetails = error.error instanceof ErrorDetails ? error.error : undefined;
-                    if (errorDetails) {
-                        this.handleServerSideError(errorDetails.statusCode, errorDetails.message);
+                    console.error(error);
+                    const errorType = typeof error.error;
+                    if (errorType === 'object' && error.error !== null && error.error.hasOwnProperty('StatusCode') && error.error.hasOwnProperty('Message') && error.error.hasOwnProperty('ExceptionType')) {
+                        this.handleServerSideError(error.error.StatusCode, error.error.Message);
                     }
-                    else if (error.error instanceof ErrorEvent) {
+                    else if (errorType === 'object' && error.error instanceof ErrorEvent) {
                         this.handleClientSideError(error.error);
                     } else {
-                        this.handleServerSideError(error.status, error.message)
+                        this.handleServerSideError(error.status, error.message);
                     }
                     return throwError(() => error);
                 })
@@ -40,10 +40,10 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     private handleServerSideError(statusCode: number, message: string): void {
         if (statusCode === 401) {
-            
+
         } else if (statusCode === 403) {
             //this.notAuthorized();
-        } 
+        }
         this.toast.error(message, statusCode as unknown as string);
     }
 

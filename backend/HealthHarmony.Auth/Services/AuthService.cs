@@ -56,8 +56,10 @@ namespace HealthHarmony.Auth.Services
                     new Claim("userId", user.Id.ToString())
                 };
                 return GenerateToken(claims);
+            } else
+            {
+                throw new Exception(string.Join(", ", result.Errors.Select(e => e.Description)));
             }
-            return null;
         }
 
         public async Task<string?> Login(UserLoginDto dto)
