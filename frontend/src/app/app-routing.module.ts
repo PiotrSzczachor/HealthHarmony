@@ -6,6 +6,13 @@ import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './modules/auth/components/register/register.component';
 import { MainPageComponent } from './modules/main-page/containers/main-page/main-page.component';
 import { FaqPageComponent } from './modules/faq/containers/faq-page/faq-page.component';
+import { HomePageComponent } from './modules/home/containers/home-page/home-page.component';
+import { DoctorsPageComponent } from './modules/doctors/containers/doctors-page/doctors-page.component';
+import { HospitalsPageComponent } from './modules/hospitals/containers/hospitals-page/hospitals-page.component';
+import { VisitsPageComponent } from './modules/visits/containers/visits-page/visits-page.component';
+import { DocumentsPageComponent } from './modules/documents/containers/documents-page/documents-page.component';
+import { ResultsPageComponent } from './modules/results/containers/results-page/results-page.component';
+import { SettingsPageComponent } from './modules/settings/settings-page/settings-page.component';
 
 const routes: Routes = [
     {
@@ -31,21 +38,43 @@ const routes: Routes = [
         children: [
             {
                 path: 'home',
-                component: MainPageComponent,
+                component: HomePageComponent,
                 canActivate: [AuthGuard],
-                outlet: 'dashboard'
             },
             {
                 path: 'doctors',
-                component: MainPageComponent,
+                component: DoctorsPageComponent,
                 canActivate: [AuthGuard],
-                outlet: 'dashboard'
             },
             {
                 path: 'hospitals',
-                component: FaqPageComponent,
+                component: HospitalsPageComponent,
                 canActivate: [AuthGuard],
-                outlet: 'dashboard'
+            },
+            {
+                path: 'visits',
+                component: VisitsPageComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'documents',
+                component: DocumentsPageComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'results',
+                component: ResultsPageComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'results',
+                component: ResultsPageComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'settings',
+                component: SettingsPageComponent,
+                canActivate: [AuthGuard],
             },
         ]
     },

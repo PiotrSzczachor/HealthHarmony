@@ -8,10 +8,16 @@ import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ErrorInterceptor } from '../interceptors/error.interceptor';
 import { TokenInterceptor } from '../interceptors/token.interceptor';
+import { IsLoggedInDirective } from '../directives/is-logged-in.directive';
+import { IsNotLoggedInDirective } from '../directives/is-not-logged-in.directive';
+
+const DIRECTIVES = [
+    IsLoggedInDirective, IsNotLoggedInDirective
+]
 
 
 @NgModule({
-  declarations: [],
+  declarations: [DIRECTIVES],
   imports: [
     CommonModule,
     MatIconModule,
@@ -23,7 +29,8 @@ import { TokenInterceptor } from '../interceptors/token.interceptor';
     MatIconModule,
     BrowserAnimationsModule,
     MatSidenavModule,
-    TranslateModule
+    TranslateModule,
+    DIRECTIVES
   ]
 })
 

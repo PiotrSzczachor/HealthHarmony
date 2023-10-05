@@ -38,7 +38,7 @@ export class DashboardPageComponent implements AfterContentInit {
     }
 
     routeToChildren(route: string): void {
-        this.router.navigate([{ outlets: { dashboard: [ route ] }}], {relativeTo: this.route});  
+        this.router.navigate(['dashboard/' + route]);  
     }
 
 }
