@@ -1,3 +1,5 @@
+using HealthHarmony.Addresses.Interfaces;
+using HealthHarmony.Addresses.Services;
 using HealthHarmony.Auth.Interfaces;
 using HealthHarmony.Auth.Models;
 using HealthHarmony.Auth.Services;
@@ -58,6 +60,8 @@ builder.Services.AddIdentity<User, IdentityRole>()
                 .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAddressesService, AddressesService>();
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddAuthentication(opt => {
     opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

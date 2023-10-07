@@ -4,6 +4,6 @@ namespace HealthHarmony.Addresses.Interfaces
 {
     public interface IAddressesService
     {
-        Task<Tuple<float, float>> GetLatAndLong(Address address);
+        Task<Coordinates> GetLatAndLong(Address address);
     }
 }
