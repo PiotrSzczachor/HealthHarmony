@@ -31,8 +31,8 @@ namespace HealthHarmony.Addresses.Services
 
         private string GenerateUrl(Address address)
         {
-            string apiUrl = "https://api.geoapify.com/v1/geocode/search";
-            string apiKey = _configuration.GetSection("GeoapifyKey").Value;
+            string apiUrl = _configuration.GetSection("Geoapify:ApiUrl").Value;
+            string apiKey = _configuration.GetSection("Geoapify:Key").Value;
             string addressString = GenerateAddressString(address);
             return $"{apiUrl}?text={addressString}&apiKey={apiKey}";
         }
