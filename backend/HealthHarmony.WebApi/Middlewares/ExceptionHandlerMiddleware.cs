@@ -30,7 +30,6 @@ namespace HealthHarmony.WebApi.Middlewares
                 });
 
                 await context.Response.WriteAsync(errorDetails);
-                var x = context;
             }
         }
     }

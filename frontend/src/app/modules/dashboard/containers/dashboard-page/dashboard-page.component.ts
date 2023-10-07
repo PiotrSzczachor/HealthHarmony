@@ -5,6 +5,7 @@ import { MenuItem } from 'src/app/models/dashboard/menu-item.model';
 import { MenuItems } from 'src/app/constants/dashboard/menu-items.constant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
 
 @Component({
     selector: 'app-dashboard-page',
@@ -20,7 +21,7 @@ export class DashboardPageComponent implements AfterContentInit {
     opened: boolean = true;
     url!: string;
 
-    constructor(private observer: BreakpointObserver, private route: ActivatedRoute, private router: Router) { }
+    constructor(private observer: BreakpointObserver, private route: ActivatedRoute, private router: Router, private authService: AuthService) { }
 
     ngAfterContentInit(): void {
         this.route.children[0]?.url?.subscribe(x => this.url = x[0].path);
@@ -39,6 +40,11 @@ export class DashboardPageComponent implements AfterContentInit {
 
     routeToChildren(route: string): void {
         this.router.navigate(['dashboard/' + route]);  
+    }
+
+    logout(): void {
+        this.authService.logout();
+        this.router.navigateByUrl('');
     }
 
 }

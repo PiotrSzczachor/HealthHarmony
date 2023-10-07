@@ -15,11 +15,10 @@
                 </div>
             </div>
             <div class="logout-container">
-                <button class="logout-btn">Log out</button>
+                <button class="logout-btn" (click)="logout()">{{ "menu.logout" | translate }}</button>
             </div>
         </div>
     </mat-sidenav>
-    
     <mat-sidenav-content>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
