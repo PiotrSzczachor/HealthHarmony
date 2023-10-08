@@ -32,6 +32,12 @@ jobs:
       run: |
         # For now there are no any tests for backend
 
+    - name: Archive Backend Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: backend-artifacts
+        path: backend/HealthHarmony.WebApi/bin/Release/net6.0/publish
+
   build_frontend:
     name: Build Frontend
     runs-on: ubuntu-latest
@@ -56,12 +62,6 @@ jobs:
       with:
         name: frontend-artifacts
         path: frontend/dist
-
-    - name: Archive Backend Artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: backend-artifacts
-        path: backend/HealthHarmony.WebApi/bin/Release/net6.0/publish
 
 permissions:
   contents: read
