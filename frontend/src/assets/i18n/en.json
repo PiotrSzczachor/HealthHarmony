@@ -25,7 +25,7 @@
     "dashboard": {
         "menu": {
             "doctors": "Doctors",
-            "hospitals": "Hospitals",
+            "clinics": "Clinics",
             "visits": "Visits",
             "documents": "Documents",
             "results": "Results",

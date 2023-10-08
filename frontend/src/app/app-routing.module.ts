@@ -8,11 +8,11 @@ import { MainPageComponent } from './modules/main-page/containers/main-page/main
 import { FaqPageComponent } from './modules/faq/containers/faq-page/faq-page.component';
 import { HomePageComponent } from './modules/home/containers/home-page/home-page.component';
 import { DoctorsPageComponent } from './modules/doctors/containers/doctors-page/doctors-page.component';
-import { HospitalsPageComponent } from './modules/hospitals/containers/hospitals-page/hospitals-page.component';
 import { VisitsPageComponent } from './modules/visits/containers/visits-page/visits-page.component';
 import { DocumentsPageComponent } from './modules/documents/containers/documents-page/documents-page.component';
 import { ResultsPageComponent } from './modules/results/containers/results-page/results-page.component';
 import { SettingsPageComponent } from './modules/settings/settings-page/settings-page.component';
+import { ClinicsPageComponent } from './modules/clinics/containers/clinics-page/clinics-page.component';
 
 const routes: Routes = [
     {
@@ -47,8 +47,8 @@ const routes: Routes = [
                 canActivate: [AuthGuard],
             },
             {
-                path: 'hospitals',
-                component: HospitalsPageComponent,
+                path: 'clinics',
+                component: ClinicsPageComponent,
                 canActivate: [AuthGuard],
             },
             {
