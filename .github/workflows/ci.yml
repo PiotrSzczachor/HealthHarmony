@@ -1,0 +1,68 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  build_backend:
+    name: Build Backend
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.x
+
+    - name: Build .NET Core Web API
+      run: |
+        cd backend
+        dotnet restore
+        dotnet build --configuration Release --no-restore
+
+    - name: Test Backend
+      run: |
+        # For now there are no any tests for backend
+
+  build_frontend:
+    name: Build Frontend
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16.17.0'
+
+    - name: Build Angular Client
+      run: |
+        cd frontend
+        npm install
+        npm run build
+
+    - name: Archive Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: frontend-artifacts
+        path: frontend/dist
+
+    - name: Archive Backend Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: backend-artifacts
+        path: backend/HealthHarmony.WebApi/bin/Release/net6.0/publish
+
+permissions:
+  contents: read
+  pull-requests: write
