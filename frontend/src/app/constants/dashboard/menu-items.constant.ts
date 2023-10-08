@@ -14,9 +14,9 @@ export const MenuItems: MenuItem[] = [
         requiredClaim: null
     },
     {
-        name: "dashboard.menu.hospitals",
-        route: "hospitals",
-        icon: "../../../assets/icons/side-nav/hospitals.png",
+        name: "dashboard.menu.clinics",
+        route: "clinics",
+        icon: "../../../assets/icons/side-nav/clinics.png",
         requiredClaim: null
     },
     {
