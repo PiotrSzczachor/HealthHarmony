@@ -27,7 +27,7 @@ namespace HealthHarmony.WebApi.Controllers
         public async Task<IActionResult> Login([FromBody] UserLoginDto dto)
         {
             var token = await _authService.Login(dto);
-            return token == null ? Unauthorized() : Ok(new { token })
+            return token == null ? Unauthorized() : Ok(new { token });
         }
     }
 }

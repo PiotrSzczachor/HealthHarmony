@@ -35,7 +35,7 @@ export class DashboardPageComponent implements AfterContentInit {
     }
 
     isItemSelected(item: string): Observable<boolean> {
-        retur this.route.children[0]?.url?.pipe(map( x => x[0].path == item));
+        return this.route.children[0]?.url?.pipe(map( x => x[0].path == item));
     }
 
     routeToChildren(route: string): void {
