@@ -1,7 +1,5 @@
 ﻿using HealthHarmony.Auth.DTOs.User;
 using HealthHarmony.Auth.Interfaces;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HealthHarmony.WebApi.Controllers
