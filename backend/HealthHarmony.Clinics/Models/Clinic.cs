@@ -1,6 +1,6 @@
 ﻿using HealthHarmony.Addresses.Models;
-using HealthHarmony.Common.Models;
 using HealthHarmony.Common.Models.Base;
+using HealthHarmony.SQLRepository.Interfaces;
 
 namespace HealthHarmony.Clinics.Models
 {

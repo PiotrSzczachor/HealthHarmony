@@ -3,13 +3,13 @@ using System.Linq.Expressions;
 
 namespace HealthHarmony.SQLRepository.Interfaces
 {
-    public interface IRepository<T> where T : BaseModel
+    public interface IRepository
     {
-        IQueryable<T> GetAll();
-        Task<T> Get(Guid id);
-        Task<T> Get(Expression<Func<T, bool>> filter);
-        Task Add(T entity);
-        Task Update(T entity);
-        Task Delete(Guid id);
+        IQueryable<T> GetAll<T>() where T : BaseModel;
+        Task<T> Get<T>(Guid id) where T : BaseModel;
+        Task<T> Get<T>(Expression<Func<T, bool>> filter) where T : BaseModel;
+        Task Add<T>(T entity) where T : BaseModel;
+        Task Update<T>(T entity) where T : BaseModel;
+        Task Delete<T>(Guid id) where T : BaseModel;
     }
 }
