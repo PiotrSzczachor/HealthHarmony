@@ -1,6 +1,6 @@
-﻿using HealthHarmony.Addresses.Models;
-using HealthHarmony.Auth.Models;
-using HealthHarmony.Clinics.Models;
+﻿using HealthHarmony.Auth.Models;
+using HealthHarmony.Models.Addresses.Entities;
+using HealthHarmony.Models.Clinics.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

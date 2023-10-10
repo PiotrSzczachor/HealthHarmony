@@ -20,11 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\HealthHarmony.Addresses\HealthHarmony.Addresses.csproj" />
     <ProjectReference Include="..\HealthHarmony.Auth\HealthHarmony.Auth.csproj" />
-    <ProjectReference Include="..\HealthHarmony.Clinics\HealthHarmony.Clinics.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\HealthHarmony.Models\HealthHarmony.Models.csproj" />
   </ItemGroup>
 
 </Project>

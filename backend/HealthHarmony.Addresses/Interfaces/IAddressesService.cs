@@ -1,4 +1,5 @@
-﻿using HealthHarmony.Addresses.Models;
+﻿using HealthHarmony.Models.Addresses;
+using HealthHarmony.Models.Addresses.Entities;
 
 namespace HealthHarmony.Addresses.Interfaces
 {

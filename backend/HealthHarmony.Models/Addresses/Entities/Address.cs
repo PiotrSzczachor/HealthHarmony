@@ -1,6 +1,6 @@
 ﻿using HealthHarmony.Common.Models.Base;
 
-namespace HealthHarmony.Addresses.Models
+namespace HealthHarmony.Models.Addresses.Entities
 {
     public class Address : BaseModel
     {
@@ -9,6 +9,6 @@ namespace HealthHarmony.Addresses.Models
         public string FlatNumber { get; set; }
         public string PostalCode { get; set; }
         public string City { get; set; }
-        public string Country { get; set; } 
+        public string Country { get; set; }
     }
 }

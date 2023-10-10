@@ -9,13 +9,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthHarmony.Auth", "Healt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthHarmony.SQL", "HealthHarmony.SQL\HealthHarmony.SQL.csproj", "{20F1C498-5DE3-4953-9A7F-5093A155CF16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthHarmony.Clinics", "HealthHarmony.Clinics\HealthHarmony.Clinics.csproj", "{4A4D01C9-51C4-49C3-BC8D-545D84F92824}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthHarmony.Clinics", "HealthHarmony.Clinics\HealthHarmony.Clinics.csproj", "{4A4D01C9-51C4-49C3-BC8D-545D84F92824}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthHarmony.Common", "HealthHarmony.Common\HealthHarmony.Common.csproj", "{1A6D106D-64DE-49C1-90CD-AD972E21D011}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthHarmony.Common", "HealthHarmony.Common\HealthHarmony.Common.csproj", "{1A6D106D-64DE-49C1-90CD-AD972E21D011}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthHarmony.Addresses", "HealthHarmony.Addresses\HealthHarmony.Addresses.csproj", "{C80B7D8E-98D1-46E3-9C04-44D5D97AB922}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthHarmony.Addresses", "HealthHarmony.Addresses\HealthHarmony.Addresses.csproj", "{C80B7D8E-98D1-46E3-9C04-44D5D97AB922}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthHarmony.SQLRepository", "HealthHarmony.SQLRepository\HealthHarmony.SQLRepository.csproj", "{246FE8C2-41DB-4717-9B10-28672399E656}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthHarmony.SQLRepository", "HealthHarmony.SQLRepository\HealthHarmony.SQLRepository.csproj", "{C6154056-4ABE-43F0-8AC7-831A304A077B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthHarmony.Models", "HealthHarmony.Models\HealthHarmony.Models.csproj", "{C664104A-B9C7-4308-BD72-9396CA766C8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +49,14 @@ Global
 		{C80B7D8E-98D1-46E3-9C04-44D5D97AB922}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C80B7D8E-98D1-46E3-9C04-44D5D97AB922}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C80B7D8E-98D1-46E3-9C04-44D5D97AB922}.Release|Any CPU.Build.0 = Release|Any CPU
-		{246FE8C2-41DB-4717-9B10-28672399E656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{246FE8C2-41DB-4717-9B10-28672399E656}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{246FE8C2-41DB-4717-9B10-28672399E656}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{246FE8C2-41DB-4717-9B10-28672399E656}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6154056-4ABE-43F0-8AC7-831A304A077B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6154056-4ABE-43F0-8AC7-831A304A077B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6154056-4ABE-43F0-8AC7-831A304A077B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6154056-4ABE-43F0-8AC7-831A304A077B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C664104A-B9C7-4308-BD72-9396CA766C8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C664104A-B9C7-4308-BD72-9396CA766C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C664104A-B9C7-4308-BD72-9396CA766C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C664104A-B9C7-4308-BD72-9396CA766C8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,8 @@
 ﻿using HealthHarmony.Addresses.Interfaces;
-using HealthHarmony.Addresses.Models;
+using HealthHarmony.Models.Addresses;
+using HealthHarmony.Models.Addresses.Entities;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
-using System;
 
 namespace HealthHarmony.Addresses.Services
 {
