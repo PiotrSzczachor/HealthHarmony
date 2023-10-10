@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace HealthHarmony.SQLRepository.Implementation
 {
-    public class Repository<T> : IRepository
+    public class Repository : IRepository
     {
         private readonly HealthHarmonyContext _context;
         public Repository(HealthHarmonyContext context)
@@ -40,10 +40,15 @@ namespace HealthHarmony.SQLRepository.Implementation
                 .FirstOrDefaultAsync(filter);
         }
 
-
         public IQueryable<T> GetAll<T>() where T : BaseModel
         {
             return _context.Set<T>().AsNoTracking();
+        }
+
+        public IQueryable<T> GetAllWithIncludes<T>(params Expression<Func<T, object>>[] includes) where T : BaseModel
+        {
+            IQueryable<T> query = _context.Set<T>();
+            return includes.Aggregate(query, (current, include) => current.Include(include));
         }
 
         public async Task Update<T>(T entity) where T : BaseModel
