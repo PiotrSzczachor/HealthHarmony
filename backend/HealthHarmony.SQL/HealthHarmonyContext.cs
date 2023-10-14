@@ -12,6 +12,16 @@ namespace HealthHarmony.SQL
         {
 
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Clinic>()
+                .HasOne(c => c.Address)
+                .WithOne()
+                .HasForeignKey<Clinic>(c => c.AddressId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            base.OnModelCreating(modelBuilder);
+        }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Clinic> Clinics { get; set; }
     }
