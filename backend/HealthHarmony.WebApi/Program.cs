@@ -3,7 +3,11 @@ using HealthHarmony.Addresses.Services;
 using HealthHarmony.Auth.Interfaces;
 using HealthHarmony.Auth.Models;
 using HealthHarmony.Auth.Services;
+using HealthHarmony.Clinics.Interfaces;
+using HealthHarmony.Clinics.Services;
 using HealthHarmony.SQL;
+using HealthHarmony.SQLRepository.Implementation;
+using HealthHarmony.SQLRepository.Interfaces;
 using HealthHarmony.WebApi.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -59,8 +63,10 @@ builder.Services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<HealthHarmonyContext>()
                 .AddDefaultTokenProviders();
 
+builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IAddressesService, AddressesService>();
+builder.Services.AddScoped<IClinicsService, ClinicsService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddAuthentication(opt => {

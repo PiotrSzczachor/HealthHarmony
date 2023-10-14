@@ -26,7 +26,6 @@ namespace HealthHarmony.Addresses.Services
             {
                 throw new Exception("Faild to fetch geoapify data");
             }
-
         }
 
         private string GenerateUrl(Address address)
