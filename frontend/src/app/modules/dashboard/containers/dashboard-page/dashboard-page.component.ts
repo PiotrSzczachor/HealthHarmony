@@ -5,7 +5,7 @@ import { MenuItem } from 'src/app/models/dashboard/menu-item.model';
 import { MenuItems } from 'src/app/constants/dashboard/menu-items.constant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
-import { AuthService } from 'src/app/modules/auth/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'app-dashboard-page',

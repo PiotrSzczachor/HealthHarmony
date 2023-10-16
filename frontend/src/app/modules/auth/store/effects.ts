@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { AuthService } from "../services/auth.service";
 import { AuthActions } from ".";
 import { catchError, map, mergeMap, of, tap } from "rxjs";
 import { Router } from "@angular/router";
+import { AuthService } from "src/app/services/auth.service";
 
 @Injectable()
 export class AuthEffects {
