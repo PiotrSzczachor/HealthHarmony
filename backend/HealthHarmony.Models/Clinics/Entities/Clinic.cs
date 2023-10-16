@@ -5,6 +5,8 @@ namespace HealthHarmony.Models.Clinics.Entities
 {
     public class Clinic : BaseNamedModel
     {
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
         public Guid AddressId { get; set; }
         public virtual Address Address { get; set; }
     }

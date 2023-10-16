@@ -13,10 +13,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthModule } from './modules/auth/auth.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { MainPageModule } from './modules/main-page/main-page.module';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import { TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { SharedModule } from './shared/shared.module';
 import { FaqModule } from './modules/faq/faq.module';
+import { ClinicsModule } from './modules/clinics/clinics.module';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { FaqModule } from './modules/faq/faq.module';
     ],
     imports: [
         AuthModule,
+        ClinicsModule,
         DashboardModule,
         MainPageModule,
         BrowserModule,
