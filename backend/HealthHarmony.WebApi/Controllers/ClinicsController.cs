@@ -20,22 +20,46 @@ namespace HealthHarmony.WebApi.Controllers
             return await _clinicsService.GetAllClinics();
         }
 
-        [HttpGet("with-address")]
-        public async Task<List<Clinic>> GetAllClinicsWithAddresses()
-        {
-            return await _clinicsService.GetAllClinicsWithAddresses();
-        }
-
         [HttpGet("{id}")]
         public async Task<Clinic> GetClinicById(Guid id)
         {
             return await _clinicsService.GetClinicById(id);
         }
 
-        [HttpGet("with-address/{id}")]
-        public async Task<Clinic> GetClinicWithAddressById(Guid id)
+        [HttpGet("without-address")]
+        public async Task<List<Clinic>> GetAllClinicsWithoutAddresses()
         {
-            return await _clinicsService.GetClinicWithAddressById(id);
+            return await _clinicsService.GetAllClinicsWithoutAddresses();
+        }
+
+        [HttpGet("without-address/{id}")]
+        public async Task<Clinic> GetClinicWithoutAddressById(Guid id)
+        {
+            return await _clinicsService.GetClinicWithoutAddressById(id);
+        }
+
+        [HttpGet("without-images")]
+        public async Task<List<Clinic>> GetAllClinicsWithoutImages()
+        {
+            return await _clinicsService.GetAllClinicsWithoutImages();
+        }
+
+        [HttpGet("without-images/{id}")]
+        public async Task<Clinic> GetClinicWithoutImagesById(Guid id)
+        {
+            return await _clinicsService.GetClinicWithoutImagesById(id);
+        }
+
+        [HttpGet("without-includes")]
+        public async Task<List<Clinic>> GetAllClinicsWithoutIncludes()
+        {
+            return await _clinicsService.GetAllClinicsWithoutIncludes();
+        }
+
+        [HttpGet("without-includes/{id}")]
+        public async Task<Clinic> GetClinicWithoutIncludesById(Guid id)
+        {
+            return await _clinicsService.GetClinicWithoutIncludesById(id);
         }
 
         [HttpPost]

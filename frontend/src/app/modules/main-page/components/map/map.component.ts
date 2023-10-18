@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { icon, latLng, marker, tileLayer, Map } from 'leaflet';
 import { Observable, map } from 'rxjs';
 import { Clinic } from 'src/app/models/clinics/clinic.model';
-import { ClinicsActions, getClinicsWithAddressesSelector } from 'src/app/modules/clinics/store';
+import { ClinicsActions, getClinicsWithoutImagesSelector,  } from 'src/app/modules/clinics/store';
 import { AppState } from 'src/app/store/app.state';
 
 @Component({
@@ -23,11 +23,11 @@ export class MapComponent implements OnInit, AfterViewInit {
     };
 
     constructor(private store: Store<AppState>) {
-        this.clinics$ = this.store.select(getClinicsWithAddressesSelector);
+        this.clinics$ = this.store.select(getClinicsWithoutImagesSelector);
     }
 
     ngOnInit(): void {
-        this.store.dispatch(ClinicsActions.getClinicsWithAddresses());
+        this.store.dispatch(ClinicsActions.getClinicsWithoutImages());
     }
 
     ngAfterViewInit() {

@@ -31,22 +31,42 @@ namespace HealthHarmony.Clinics.Services
 
         public async Task<Clinic> GetClinicById(Guid Id)
         {
-            return await _repository.Get<Clinic>(Id);
+            return await _repository.GetAllWithIncludes<Clinic>(x => x.Address, x => x.Images).FirstOrDefaultAsync(x => x.Id == Id);
         }
 
         public async Task<List<Clinic>> GetAllClinics()
         {
+            return await _repository.GetAllWithIncludes<Clinic>(x => x.Address, x => x.Images).ToListAsync();
+        }
+
+        public async Task<List<Clinic>> GetAllClinicsWithoutIncludes()
+        {
             return await _repository.GetAll<Clinic>().ToListAsync();
         }
 
-        public async Task<List<Clinic>> GetAllClinicsWithAddresses()
+        public async Task<Clinic> GetClinicWithoutIncludesById(Guid Id)
+        {
+            return await _repository.Get<Clinic>(Id);
+        }
+
+        public async Task<List<Clinic>> GetAllClinicsWithoutImages()
         {
             return await _repository.GetAllWithIncludes<Clinic>(x => x.Address).ToListAsync();
         }
 
-        public async Task<Clinic> GetClinicWithAddressById(Guid Id)
+        public async Task<Clinic> GetClinicWithoutImagesById(Guid Id)
         {
             return await _repository.GetAllWithIncludes<Clinic>(x => x.Address).FirstOrDefaultAsync(x => x.Id == Id);
+        }
+
+        public async Task<List<Clinic>> GetAllClinicsWithoutAddresses()
+        {
+            return await _repository.GetAllWithIncludes<Clinic>(x => x.Images).ToListAsync();
+        }
+
+        public async Task<Clinic> GetClinicWithoutAddressById(Guid Id)
+        {
+            return await _repository.GetAllWithIncludes<Clinic>(x => x.Images).FirstOrDefaultAsync(x => x.Id == Id);
         }
 
         public async Task UpdateClinic(Clinic clinic)
