@@ -5,8 +5,8 @@ import { ClinicsActions } from ".";
 export const initialState: ClinicsState = {
     clinic: undefined,
     clinics: [],
-    clinicWithAddress: undefined,
-    clinicsWithAddresses: []
+    clinicWithoutImages: undefined,
+    clinicsWithoutImages: []
 }
 
 export const reducers = createReducer(
@@ -19,13 +19,13 @@ export const reducers = createReducer(
         ...state,
         clinic: action.clinic
     })),
-    on(ClinicsActions.getClinicByIdWithAddress, (state) => ({
+    on(ClinicsActions.getClinicByIdWithoutImages, (state) => ({
         ...state,
-        clinicWithAddress: undefined
+        clinicWithoutImages: undefined
     })),
-    on(ClinicsActions.getClinicByIdWithAddressSuccess, (state, action) => ({
+    on(ClinicsActions.getClinicByIdWithoutImagesSuccess, (state, action) => ({
         ...state,
-        clinicWithAddress: action.clinic
+        clinicWithoutImages: action.clinic
     })),
     on(ClinicsActions.getClinics, (state) => ({
         ...state,
@@ -35,12 +35,12 @@ export const reducers = createReducer(
         ...state,
         clinics: action.clinics
     })),
-    on(ClinicsActions.getClinicsWithAddresses, (state) => ({
+    on(ClinicsActions.getClinicsWithoutImages, (state) => ({
         ...state,
-        clinicsWithAddresses: []
+        clinicsWithoutImages: []
     })),
-    on(ClinicsActions.getClinicsWithAddressesSuccess, (state, action) => ({
+    on(ClinicsActions.getClinicsWithoutImagesSuccess, (state, action) => ({
         ...state,
-        clinicsWithAddresses: action.clinics
+        clinicsWithoutImages: action.clinics
     })),
 )

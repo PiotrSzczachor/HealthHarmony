@@ -1,6 +1,8 @@
 ﻿using HealthHarmony.Auth.Models;
 using HealthHarmony.Models.Addresses.Entities;
 using HealthHarmony.Models.Clinics.Entities;
+using HealthHarmony.Models.Common.Entities;
+using HealthHarmony.SQL.Configurations;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,15 +16,11 @@ namespace HealthHarmony.SQL
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Clinic>()
-                .HasOne(c => c.Address)
-                .WithOne()
-                .HasForeignKey<Clinic>(c => c.AddressId)
-                .OnDelete(DeleteBehavior.Cascade);
-
+            modelBuilder.ApplyConfiguration(new ClinicConfiguration());
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Clinic> Clinics { get; set; }
+        public DbSet<Image> Images { get; set; }
     }
 }

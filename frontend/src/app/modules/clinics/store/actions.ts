@@ -18,18 +18,18 @@ export const getClinicByIdFailure = createAction(
     props<{error: string}>()
 );
 
-export const getClinicByIdWithAddress = createAction(
-    `${prefix} Get Clinic By Id With Address`,
+export const getClinicByIdWithoutImages = createAction(
+    `${prefix} Get Clinic By Id Without Images`,
     props<{id: string}>()
 );
 
-export const getClinicByIdWithAddressSuccess = createAction(
-    `${prefix} Get Clinic By Id With Address Success`,
+export const getClinicByIdWithoutImagesSuccess = createAction(
+    `${prefix} Get Clinic By Id Without Images Success`,
     props<{clinic: Clinic}>()
 );
 
-export const getClinicByIdWithAddressFailure = createAction(
-    `${prefix} Get Clinic By Id With Address Failure`,
+export const getClinicByIdWithoutImagesFailure = createAction(
+    `${prefix} Get Clinic By Id Without Images Failure`,
     props<{error: string}>()
 );
 
@@ -47,17 +47,17 @@ export const getClinicsFailure = createAction(
     props<{error: string}>()
 );
 
-export const getClinicsWithAddresses = createAction(
-    `${prefix} Get Clinics With Addresses`
+export const getClinicsWithoutImages = createAction(
+    `${prefix} Get Clinics Without Images`
 );
 
-export const getClinicsWithAddressesSuccess = createAction(
-    `${prefix} Get Clinics With Addresses Success`,
+export const getClinicsWithoutImagesSuccess = createAction(
+    `${prefix} Get Clinics Without Images Success`,
     props<{clinics: Clinic[]}>()
 );
 
-export const getClinicsWithAddressesFailure = createAction(
-    `${prefix} Get Clinics With Addresses Failure`,
+export const getClinicsWithoutImagesFailure = createAction(
+    `${prefix} Get Clinics Without Images Failure`,
     props<{error: string}>()
 );
 
