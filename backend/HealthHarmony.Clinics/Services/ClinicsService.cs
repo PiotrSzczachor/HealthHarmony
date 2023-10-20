@@ -1,5 +1,6 @@
 ﻿using HealthHarmony.Addresses.Interfaces;
 using HealthHarmony.Clinics.Interfaces;
+using HealthHarmony.Common.Models.Pagination;
 using HealthHarmony.Models.Addresses;
 using HealthHarmony.Models.Clinics.Entities;
 using HealthHarmony.SQLRepository.Interfaces;
@@ -72,6 +73,16 @@ namespace HealthHarmony.Clinics.Services
         public async Task UpdateClinic(Clinic clinic)
         {
             await _repository.Update(clinic);
+        }
+
+        public PagedList<Clinic> GetPagedClinicList(BasePaginationFilters filters)
+        {
+            return _repository.GetPagedListWithIncludes<Clinic>(filters, x => x.Address, x => x.Images);
+        }
+
+        public PagedList<Clinic> GetPagedClinicListWithoutIncludes(BasePaginationFilters filters)
+        {
+            return _repository.GetPagedList<Clinic>(filters);
         }
     }
 }

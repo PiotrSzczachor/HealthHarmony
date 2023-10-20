@@ -1,4 +1,5 @@
 ﻿using HealthHarmony.Common.Models.Base;
+using HealthHarmony.Common.Models.Pagination;
 using System.Linq.Expressions;
 
 namespace HealthHarmony.SQLRepository.Interfaces
@@ -7,6 +8,8 @@ namespace HealthHarmony.SQLRepository.Interfaces
     {
         IQueryable<T> GetAll<T>() where T : BaseModel;
         IQueryable<T> GetAllWithIncludes<T>(params Expression<Func<T, object>>[] includes) where T : BaseModel;
+        PagedList<T> GetPagedList<T>(BasePaginationFilters filters) where T : BaseModel;
+        PagedList<T> GetPagedListWithIncludes<T>(BasePaginationFilters filters, params Expression<Func<T, object>>[] includes) where T : BaseModel;
         Task<T> Get<T>(Guid id) where T : BaseModel;
         Task<T> Get<T>(Expression<Func<T, bool>> filter) where T : BaseModel;
         Task Add<T>(T entity) where T : BaseModel;
