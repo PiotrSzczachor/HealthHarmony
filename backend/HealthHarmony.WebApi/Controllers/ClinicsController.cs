@@ -1,4 +1,5 @@
 ﻿using HealthHarmony.Clinics.Interfaces;
+using HealthHarmony.Common.Models.Pagination;
 using HealthHarmony.Models.Clinics.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -78,6 +79,18 @@ namespace HealthHarmony.WebApi.Controllers
         public async Task UpdateClinic([FromBody] Clinic clinic)
         {
             await _clinicsService.UpdateClinic(clinic);
+        }
+
+        [HttpGet("pagin")]
+        public PagedList<Clinic> GetPagedClinicList([FromQuery] BasePaginationFilters filter)
+        {
+            return _clinicsService.GetPagedClinicList(filter);
+        }
+
+        [HttpGet("pagin/without-includes")]
+        public PagedList<Clinic> GetPagedClinicListWithoutIncludes([FromQuery] BasePaginationFilters filter)
+        {
+            return _clinicsService.GetPagedClinicListWithoutIncludes(filter);
         }
     }
 }
