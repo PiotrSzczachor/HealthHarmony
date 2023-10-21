@@ -16,17 +16,16 @@ export class ClinicsService {
 		return this.http.get<Clinic>(this.prefix + id);
 	}
 
-	getClinicByIdWithAddress(id: string): Observable<Clinic> {
-		return this.http.get<Clinic>(this.prefix + "with-address/" + id);
+	getClinicByIdWithoutImages(id: string): Observable<Clinic> {
+		return this.http.get<Clinic>(this.prefix + "without-images/" + id);
 	}
 
 	getAllClinics(): Observable<Clinic[]> {
 		return this.http.get<Clinic[]>(this.prefix);
 	}
 
-	getAllClinicsWithAddresses(): Observable<Clinic[]> {
-        console.log("test")
-		return this.http.get<Clinic[]>(this.prefix + "with-address");
+	getAllClinicsWithoutImages(): Observable<Clinic[]> {
+		return this.http.get<Clinic[]>(this.prefix + "without-images");
 	}
 
 	addClinic(clinic: Clinic): Observable<any> {

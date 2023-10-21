@@ -8,9 +8,9 @@ export const getClinicByIdSelector = createSelector(
     (state) => state.clinic
 );
 
-export const getClinicByIdWithAddressSelector = createSelector(
+export const getClinicByIdWithoutImagesSelector = createSelector(
     selectFeature,
-    (state) => state.clinicWithAddress
+    (state) => state.clinicWithoutImages
 );
 
 export const getClinicsSelector = createSelector(
@@ -18,7 +18,7 @@ export const getClinicsSelector = createSelector(
     (state) => state.clinics
 );
 
-export const getClinicsWithAddressesSelector = createSelector(
+export const getClinicsWithoutImagesSelector = createSelector(
     selectFeature,
-    (state) => state?.clinicsWithAddresses
+    (state) => state?.clinicsWithoutImages
 );

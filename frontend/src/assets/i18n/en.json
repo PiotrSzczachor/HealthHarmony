@@ -31,7 +31,8 @@
             "results": "Results",
             "contact": "Contact",
             "home": "Home",
-            "settings": "Settings"
+            "settings": "Settings",
+            "logout": "Logout"
         }
     }
 }

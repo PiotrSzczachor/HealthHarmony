@@ -24,14 +24,14 @@ export class ClinicsEffects {
         )
     );
 
-     getClinicByIdWithAddress$ = createEffect(() =>
+     getClinicByIdWithoutImages$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(ClinicsActions.getClinicByIdWithAddress),
+            ofType(ClinicsActions.getClinicByIdWithoutImages),
             mergeMap( action => {
-                return this.clinicsService.getClinicByIdWithAddress(action.id).pipe(
-                    map(clinic => ClinicsActions.getClinicByIdWithAddressSuccess({clinic})),
+                return this.clinicsService.getClinicByIdWithoutImages(action.id).pipe(
+                    map(clinic => ClinicsActions.getClinicByIdWithoutImagesSuccess({clinic})),
                     catchError(error => {
-                        return of(ClinicsActions.getClinicByIdWithAddressFailure({ error: error.message }))
+                        return of(ClinicsActions.getClinicByIdWithoutImagesFailure({ error: error.message }))
                     })
                 )
             })
@@ -52,14 +52,14 @@ export class ClinicsEffects {
         )
     );
 
-    getClinicsWithAddresses$ = createEffect(() =>
+    getClinicsWithoutImages$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(ClinicsActions.getClinicsWithAddresses),
+            ofType(ClinicsActions.getClinicsWithoutImages),
             mergeMap(action => {
-                return this.clinicsService.getAllClinicsWithAddresses().pipe(
-                    map(clinics => ClinicsActions.getClinicsWithAddressesSuccess({clinics})),
+                return this.clinicsService.getAllClinicsWithoutImages().pipe(
+                    map(clinics => ClinicsActions.getClinicsWithoutImagesSuccess({clinics})),
                     catchError(error => {
-                        return of(ClinicsActions.getClinicsWithAddressesFailure({ error: error.message }))
+                        return of(ClinicsActions.getClinicsWithoutImagesFailure({ error: error.message }))
                     })
                 )
             })

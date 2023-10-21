@@ -1,4 +1,6 @@
-﻿using HealthHarmony.Common.Models.Base;
+﻿using HealthHarmony.Common.Extensions;
+using HealthHarmony.Common.Models.Base;
+using HealthHarmony.Common.Models.Pagination;
 using HealthHarmony.SQL;
 using HealthHarmony.SQLRepository.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -49,6 +51,16 @@ namespace HealthHarmony.SQLRepository.Implementation
         {
             IQueryable<T> query = _context.Set<T>();
             return includes.Aggregate(query, (current, include) => current.Include(include));
+        }
+
+        public PagedList<T> GetPagedList<T>(BasePaginationFilters filters) where T : BaseModel
+        {
+            return GetAll<T>().Filter(filters).ToPagedList(filters);
+        }
+
+        public PagedList<T> GetPagedListWithIncludes<T>(BasePaginationFilters filters, params Expression<Func<T, object>>[] includes) where T : BaseModel
+        {
+            return GetAllWithIncludes(includes).Filter(filters).ToPagedList(filters);
         }
 
         public async Task Update<T>(T entity) where T : BaseModel
