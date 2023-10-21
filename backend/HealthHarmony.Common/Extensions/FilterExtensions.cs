@@ -1,9 +1,11 @@
-﻿using System.Reflection;
+﻿using System.Linq.Expressions;
+using System.Reflection;
 
 namespace HealthHarmony.Common.Extensions
 {
     public static class FilterExtensions
     {
+        private static readonly string[] PaginatorConnectedProperties = { "PageIndex", "PageSize", "OrderBy", "OrderDescending" };
         public static IQueryable<T> Filter<T, TFilter>(this IQueryable<T> source, TFilter filter)
         {
             if (filter == null)
@@ -17,34 +19,74 @@ namespace HealthHarmony.Common.Extensions
             foreach (PropertyInfo property in properties)
             {
                 var name = property.Name;
-                var value = property.GetValue(source, null);
-                if (value == null) 
+                var value = property.GetValue(filter, null);
+                if (value == null || PaginatorConnectedProperties.Contains(name))
                 {
                     continue;
                 }
-                var filterPropetryType = value.GetType();
+                var filterPropertyType = value.GetType();
                 var filterValueAsString = value.ToString();
-                source = source.FilterByProperty(name, filterValueAsString, filterPropetryType);
+                source = source.FilterByProperty(name, filterValueAsString, filterPropertyType);
             }
             return source;
         }
 
-        public static IQueryable<T> FilterByProperty<T, TValue>(this IQueryable<T> source, string propertyName, TValue filterValue, Type filterValueType)
+        private static Expression<Func<T, bool>> GenerateEqualityExpression<T, TValue>(string propertyName, TValue filterValue)
+        {
+            var parameter = Expression.Parameter(typeof(T), "x");
+            var property = Expression.Property(parameter, propertyName);
+            var body = Expression.Equal(property, Expression.Constant(filterValue));
+            return Expression.Lambda<Func<T, bool>>(body, parameter);
+        }
+
+        private static Expression<Func<T, bool>> GenerateContainsExpression<T, TValue>(string propertyName, TValue filterValue)
+        {
+            var parameter = Expression.Parameter(typeof(T), "x");
+            var property = Expression.Property(parameter, propertyName);
+            var body = Expression.Call(property, "Contains", null, Expression.Constant(filterValue));
+            return Expression.Lambda<Func<T, bool>>(body, parameter);
+        }
+
+        private static IQueryable<T> FilterByProperty<T, TValue>(this IQueryable<T> source, string propertyName, TValue filterValue, Type filterValueType)
         {
             if (filterValue == null)
             {
                 return source;
             }
-
-            var propertyType = typeof(T);
-            var propertyInfo = filterValueType.GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Instance | BindingFlags.Public);
+            
+            var type = typeof(T);
+            var propertyInfo = type.GetProperty(propertyName, BindingFlags.IgnoreCase | BindingFlags.Instance | BindingFlags.Public | BindingFlags.FlattenHierarchy);
             if (propertyInfo == null)
             {
                 throw new ArgumentException($"There is no property {propertyName}");
             }
-            //TODO
-            //Check propertyInfo.PropertyType() and filter by specific value
-            throw new NotImplementedException();
+
+            if (propertyInfo.PropertyType == typeof(Guid))
+            {
+                var filterGuidValue = new Guid(filterValue.ToString());
+                var lambda = GenerateEqualityExpression<T, Guid>(propertyName, filterGuidValue);
+                return source.Where(lambda);
+            }
+            if (propertyInfo.PropertyType == typeof(List<Guid>))
+            {
+                var filterGuidListValue = (List<Guid>)Convert.ChangeType(filterValue, typeof(List<Guid>));
+                var lambda = GenerateContainsExpression<T, List<Guid>>(propertyName, filterGuidListValue);
+                return source.Where(lambda);
+            }
+            if (propertyInfo.PropertyType == typeof(bool))
+            {
+                var filterBoolValue = (bool)Convert.ChangeType(filterValue, typeof(bool));
+                var lambda = GenerateEqualityExpression<T, bool>(propertyName, filterBoolValue);
+                return source.Where(lambda);
+            }
+            if (propertyInfo.PropertyType == typeof(string))
+            {
+                var filterStringValue = (string)Convert.ChangeType(filterValue, typeof(string));
+                var lambda = GenerateContainsExpression<T, string>(propertyName, filterStringValue);
+                return source.Where(lambda);
+            }
+
+            return source;
         }
     }
 }

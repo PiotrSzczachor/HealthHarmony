@@ -3,6 +3,7 @@ using HealthHarmony.Clinics.Interfaces;
 using HealthHarmony.Common.Models.Pagination;
 using HealthHarmony.Models.Addresses;
 using HealthHarmony.Models.Clinics.Entities;
+using HealthHarmony.Models.Clinics.Filters;
 using HealthHarmony.SQLRepository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -75,12 +76,12 @@ namespace HealthHarmony.Clinics.Services
             await _repository.Update(clinic);
         }
 
-        public PagedList<Clinic> GetPagedClinicList(BasePaginationFilters filters)
+        public PagedList<Clinic> GetPagedClinicList(ClinicsFilters filters)
         {
             return _repository.GetPagedListWithIncludes<Clinic>(filters, x => x.Address, x => x.Images);
         }
 
-        public PagedList<Clinic> GetPagedClinicListWithoutIncludes(BasePaginationFilters filters)
+        public PagedList<Clinic> GetPagedClinicListWithoutIncludes(ClinicsFilters filters)
         {
             return _repository.GetPagedList<Clinic>(filters);
         }
