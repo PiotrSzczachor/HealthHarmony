@@ -55,12 +55,12 @@ namespace HealthHarmony.SQLRepository.Implementation
 
         public PagedList<T> GetPagedList<T>(BasePaginationFilters filters) where T : BaseModel
         {
-            return GetAll<T>().ToPagedList(filters);
+            return GetAll<T>().Filter(filters).ToPagedList(filters);
         }
 
         public PagedList<T> GetPagedListWithIncludes<T>(BasePaginationFilters filters, params Expression<Func<T, object>>[] includes) where T : BaseModel
         {
-            return GetAllWithIncludes(includes).ToPagedList(filters);
+            return GetAllWithIncludes(includes).Filter(filters).ToPagedList(filters);
         }
 
         public async Task Update<T>(T entity) where T : BaseModel

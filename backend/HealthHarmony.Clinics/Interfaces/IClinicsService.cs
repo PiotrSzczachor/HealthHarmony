@@ -1,12 +1,13 @@
 ﻿using HealthHarmony.Common.Models.Pagination;
 using HealthHarmony.Models.Clinics.Entities;
+using HealthHarmony.Models.Clinics.Filters;
 
 namespace HealthHarmony.Clinics.Interfaces
 {
     public interface IClinicsService
     {
-        PagedList<Clinic> GetPagedClinicList(BasePaginationFilters filters);
-        PagedList<Clinic> GetPagedClinicListWithoutIncludes(BasePaginationFilters filters);
+        PagedList<Clinic> GetPagedClinicList(ClinicsFilters filters);
+        PagedList<Clinic> GetPagedClinicListWithoutIncludes(ClinicsFilters filters);
         Task<List<Clinic>> GetAllClinics();
         Task<Clinic> GetClinicById(Guid Id);
         Task<List<Clinic>> GetAllClinicsWithoutAddresses();
