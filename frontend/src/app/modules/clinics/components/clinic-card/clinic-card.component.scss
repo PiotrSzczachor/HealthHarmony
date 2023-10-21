@@ -1,0 +1,7 @@
+@use '../../../../../variables';
+
+.clinic-card-container {
+    background-color: variables.$basic-blue-color;
+    width: 250px;
+    height: 400px;
+}
