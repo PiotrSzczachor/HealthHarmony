@@ -1,14 +1,12 @@
 <div class="clinic-card-container">
     <swiper-container class="swiper" loop="true" speed="500" autoplay="true">
-        <!-- <swiper-slide class="slide" *ngFor="let slide of slides">
-            <div class="slide-container">
-                <img [src]="slide.src" alt="">
-                <div class="content-container">
-                    <div class="slide-content">
-                        <p [ngClass]="slide.class">{{slide.content}}</p>
-                    </div>
-                </div>
-            </div>
-        </swiper-slide> -->
+        <swiper-slide class="slide" *ngFor="let image of clinic.images">
+            <img [src]="image | decode" alt="">
+        </swiper-slide>
     </swiper-container>
+    <div class="data-wrapper">
+        <div class="heading-container">
+            <p class="title">{{clinic.name}}</p>
+        </div>
+    </div>
 </div>

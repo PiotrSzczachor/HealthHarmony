@@ -1,21 +1,23 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, map, mergeMap, of, tap } from "rxjs";
+import { catchError, map, mergeMap, of, tap, withLatestFrom } from "rxjs";
 import { Router } from "@angular/router";
 import { ClinicsService } from "src/app/services/clinics.service";
-import { ClinicsActions } from ".";
+import { ClinicsActions, getClinicsFilters } from ".";
+import { AppState } from "src/app/store/app.state";
+import { Store, select } from "@ngrx/store";
 
 @Injectable()
 export class ClinicsEffects {
 
-    constructor(private actions$: Actions, private clinicsService: ClinicsService, private router: Router) { };
+    constructor(private actions$: Actions, private clinicsService: ClinicsService, private router: Router, private store: Store<AppState>) { };
 
     getClinicById$ = createEffect(() =>
         this.actions$.pipe(
             ofType(ClinicsActions.getClinicById),
-            mergeMap( action => {
+            mergeMap(action => {
                 return this.clinicsService.getClinicById(action.id).pipe(
-                    map(clinic => ClinicsActions.getClinicByIdSuccess({clinic})),
+                    map(clinic => ClinicsActions.getClinicByIdSuccess({ clinic })),
                     catchError(error => {
                         return of(ClinicsActions.getClinicByIdFailure({ error: error.message }))
                     })
@@ -24,12 +26,30 @@ export class ClinicsEffects {
         )
     );
 
-     getClinicByIdWithoutImages$ = createEffect(() =>
+    getPagedClinics$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(ClinicsActions.getPagedClinics,
+                ClinicsActions.applyFilters,
+                ClinicsActions.applyPaginationFilters,
+                ClinicsActions.clearFilters),
+            withLatestFrom(this.store.pipe(select(getClinicsFilters))),
+            mergeMap(([action, filters]) => {
+                return this.clinicsService.getPagedClinics(filters).pipe(
+                    map(pagedClinics => ClinicsActions.getPagedClinicsSuccess({pagedClinics})),
+                    catchError(error => {
+                        return of(ClinicsActions.getPagedClinicsFailure({error: error.message}))
+                    })
+                )
+            })
+        )
+    )
+
+    getClinicByIdWithoutImages$ = createEffect(() =>
         this.actions$.pipe(
             ofType(ClinicsActions.getClinicByIdWithoutImages),
-            mergeMap( action => {
+            mergeMap(action => {
                 return this.clinicsService.getClinicByIdWithoutImages(action.id).pipe(
-                    map(clinic => ClinicsActions.getClinicByIdWithoutImagesSuccess({clinic})),
+                    map(clinic => ClinicsActions.getClinicByIdWithoutImagesSuccess({ clinic })),
                     catchError(error => {
                         return of(ClinicsActions.getClinicByIdWithoutImagesFailure({ error: error.message }))
                     })
@@ -43,7 +63,7 @@ export class ClinicsEffects {
             ofType(ClinicsActions.getClinics),
             mergeMap(action => {
                 return this.clinicsService.getAllClinics().pipe(
-                    map(clinics => ClinicsActions.getClinicsSuccess({clinics})),
+                    map(clinics => ClinicsActions.getClinicsSuccess({ clinics })),
                     catchError(error => {
                         return of(ClinicsActions.getClinicsFailure({ error: error.message }))
                     })
@@ -57,7 +77,7 @@ export class ClinicsEffects {
             ofType(ClinicsActions.getClinicsWithoutImages),
             mergeMap(action => {
                 return this.clinicsService.getAllClinicsWithoutImages().pipe(
-                    map(clinics => ClinicsActions.getClinicsWithoutImagesSuccess({clinics})),
+                    map(clinics => ClinicsActions.getClinicsWithoutImagesSuccess({ clinics })),
                     catchError(error => {
                         return of(ClinicsActions.getClinicsWithoutImagesFailure({ error: error.message }))
                     })

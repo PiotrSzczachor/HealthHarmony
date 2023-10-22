@@ -1,0 +1,11 @@
+<div class="paginator-container">
+    <div class="page-number left-arrow" (click)="moveToPage(pageIndex - 1)" [ngClass]="pageIndex == 0 ? 'disabled': null">
+        <
+    </div>
+    <div class="page-number" [ngClass]="pageNumber === pageIndex ? 'selected-number' : null" *ngFor="let pageNumber of visiblePages()" (click)="moveToPage(pageNumber)">
+        {{pageNumber != '...' ? pageNumber + 1 : pageNumber}}
+    </div>
+    <div class="page-number right-arrow" (click)="moveToPage(pageIndex + 1)" [ngClass]="pageIndex + 1 == pageCount ? 'disabled' : null">
+        >
+    </div>
+</div>

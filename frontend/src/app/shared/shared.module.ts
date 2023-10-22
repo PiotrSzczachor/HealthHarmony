@@ -10,14 +10,23 @@ import { ErrorInterceptor } from '../interceptors/error.interceptor';
 import { TokenInterceptor } from '../interceptors/token.interceptor';
 import { IsLoggedInDirective } from '../directives/is-logged-in.directive';
 import { IsNotLoggedInDirective } from '../directives/is-not-logged-in.directive';
+import { DecodePipe } from '../pipes/decode.pipe';
+import { PaginatorComponent } from './paginator/paginator.component';
 
 const DIRECTIVES = [
     IsLoggedInDirective, IsNotLoggedInDirective
 ]
 
+const PIPES = [
+    DecodePipe
+]
+
+const COMPONENTS = [
+    PaginatorComponent
+]
 
 @NgModule({
-  declarations: [DIRECTIVES],
+  declarations: [DIRECTIVES, PIPES, COMPONENTS],
   imports: [
     CommonModule,
     MatIconModule,
@@ -30,7 +39,9 @@ const DIRECTIVES = [
     BrowserAnimationsModule,
     MatSidenavModule,
     TranslateModule,
-    DIRECTIVES
+    DIRECTIVES,
+    PIPES,
+    COMPONENTS
   ]
 })
 

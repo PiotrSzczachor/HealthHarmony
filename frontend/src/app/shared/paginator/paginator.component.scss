@@ -1,0 +1,30 @@
+@use '../../../variables';
+
+.paginator-container {
+    display: flex;
+    gap: 10px;
+
+    .page-number{
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        color: variables.$basic-blue-color;
+        background-color: variables.$white-color;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .page-number:hover, .selected-number {
+        background-color: variables.$basic-blue-color;
+        color: variables.$white-color;
+    }
+
+    .disabled {
+        pointer-events: none;
+        color: variables.$gray-color;
+    }
+
+}

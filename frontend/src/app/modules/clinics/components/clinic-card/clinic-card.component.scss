@@ -4,4 +4,45 @@
     background-color: variables.$basic-blue-color;
     width: 250px;
     height: 400px;
+    margin: 20px;
+
+    .swiper {
+        width: 100%;
+        height: 150px;
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    .data-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .heading-container {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        border-bottom: 1px solid variables.$white-color;
+
+        .title {
+            margin: 0;
+            font-size: 18pt;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-align: center;
+        }
+    }
 }

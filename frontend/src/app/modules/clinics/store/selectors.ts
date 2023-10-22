@@ -22,3 +22,13 @@ export const getClinicsWithoutImagesSelector = createSelector(
     selectFeature,
     (state) => state?.clinicsWithoutImages
 );
+
+export const getPagedClinicsSelector = createSelector(
+    selectFeature,
+    (state) => state.pagedClinics
+);
+
+export const getClinicsFilters = createSelector(
+    selectFeature,
+    (state) => state.filters
+);
