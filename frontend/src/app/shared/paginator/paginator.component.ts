@@ -11,6 +11,7 @@ import { AppState } from 'src/app/store/app.state';
 export class PaginatorComponent {
     @Input() pageIndex!: number;
     @Input() pageCount!: number;
+    @Input() totalCount!: number;
     @Output() changePageEvent = new EventEmitter<number>();
     visiblePageCount: number = 3;
 

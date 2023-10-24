@@ -3,6 +3,7 @@
 </div>
 <div class="paginator-wrapper">
     <app-paginator [pageCount]="(clinics$ | async)?.pageCount ?? 0"
-                   [pageIndex]="(clinics$ | async)?.pageIndex?? 0"
+                   [pageIndex]="(clinics$ | async)?.pageIndex ?? 0"
+                   [totalCount]="(clinics$ | async)?.totalCount ?? 0"
                    (changePageEvent)="applyPaginationFilters($event)"></app-paginator>
 </div>

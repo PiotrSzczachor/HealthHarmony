@@ -1,4 +1,5 @@
 @use '../../../../../variables';
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 .clinic-card-container {
     background-color: variables.$basic-blue-color;
@@ -43,6 +44,28 @@
             text-transform: uppercase;
             font-weight: bold;
             text-align: center;
+            font-family: variables.$font-family;
         }
+    }
+
+    .address-container, .contact-container {
+        width: 90%;
+        height: 90px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-bottom: 1px solid variables.$white-color;
+
+        .label {
+            margin: 0;
+            font-size: 12pt;
+            font-family: variables.$font-family;
+        }
+    }
+
+    .contact-container {
+        border-bottom: none;
+        height: 110px;
     }
 }

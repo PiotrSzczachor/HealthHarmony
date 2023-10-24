@@ -2,13 +2,14 @@
 
 .clinics-page-container {
     width: 100%;
+    height: calc(100% - variables.$paginator-wrapper-height);
     display: flex;
     flex-wrap: wrap;
 }
 
 .paginator-wrapper {
     width: 100%;
+    height: variables.$paginator-wrapper-height;
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
 }
