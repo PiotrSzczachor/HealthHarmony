@@ -1,4 +1,5 @@
 import { Address } from "../addresses/address.model";
+import { Image } from "../shared/image.model";
 
 export interface Clinic {
     id: string;
@@ -6,4 +7,5 @@ export interface Clinic {
     email: string;
     phoneNumber: string;
     address: Address
+    images: Image[]
 }

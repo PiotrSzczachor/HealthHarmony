@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Clinic } from '../models/clinics/clinic.model';
 import { environment } from 'src/environments/environments';
+import { ClinicsFilters } from '../models/clinics/clinic-filters.model';
+import { PagedList } from '../models/shared/paged-list.model';
 
 @Injectable({
   	providedIn: 'root'
@@ -15,6 +17,10 @@ export class ClinicsService {
 	getClinicById(id: string): Observable<Clinic> {
 		return this.http.get<Clinic>(this.prefix + id);
 	}
+
+    getPagedClinics(filters: ClinicsFilters): Observable<PagedList<Clinic>> {
+        return this.http.get<PagedList<Clinic>>(this.prefix + `pagin?PageIndex=${filters.pageIndex}&PageSize=${filters.pageSize}&OrderDescending=${filters.orderDescending}`);
+    }
 
 	getClinicByIdWithoutImages(id: string): Observable<Clinic> {
 		return this.http.get<Clinic>(this.prefix + "without-images/" + id);

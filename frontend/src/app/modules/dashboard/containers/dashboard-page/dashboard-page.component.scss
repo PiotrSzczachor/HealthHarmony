@@ -114,6 +114,12 @@ mat-sidenav-container {
     }
 }
 
+mat-sidenav-content {
+    padding-left: variables.$main-container-padding;
+    padding-right: variables.$main-container-padding;
+    background-color: variables.$lightgray-background-color;
+}
+
 ::ng-deep .mat-drawer-inner-container {
     overflow: hidden !important;
 }

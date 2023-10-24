@@ -6,7 +6,15 @@ export const initialState: ClinicsState = {
     clinic: undefined,
     clinics: [],
     clinicWithoutImages: undefined,
-    clinicsWithoutImages: []
+    clinicsWithoutImages: [],
+    pagedClinics: undefined,
+    filters: {
+        pageIndex: 0,
+        pageSize: 10,
+        orderBy: null,
+        orderDescending: false,
+        name: null
+    }
 }
 
 export const reducers = createReducer(
@@ -42,5 +50,30 @@ export const reducers = createReducer(
     on(ClinicsActions.getClinicsWithoutImagesSuccess, (state, action) => ({
         ...state,
         clinicsWithoutImages: action.clinics
+    })),
+    on(ClinicsActions.applyFilters, (state, action) => ({
+        ...state,
+        filters: action.filters
+    })),
+    on(ClinicsActions.clearFilters, (state) => ({
+        ...state,
+        filters: {
+            ...state.filters,
+            name: null
+        }
+    })),
+    on(ClinicsActions.applyPaginationFilters, (state, action) => ({
+        ...state,
+        filters: {
+            ...state.filters,
+            pageIndex: action.filter.pageIndex,
+        }
+    })),
+    on(ClinicsActions.getPagedClinics, (state) => ({
+        ...state
+    })),
+    on(ClinicsActions.getPagedClinicsSuccess, (state, action) => ({
+        ...state,
+        pagedClinics: action.pagedClinics
     })),
 )

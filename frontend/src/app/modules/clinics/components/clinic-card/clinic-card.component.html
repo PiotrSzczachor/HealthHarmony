@@ -1,0 +1,21 @@
+<div class="clinic-card-container">
+    <swiper-container class="swiper" loop="true" speed="500" autoplay="true">
+        <swiper-slide class="slide" *ngFor="let image of clinic.images">
+            <img [src]="image | decode" alt="">
+        </swiper-slide>
+    </swiper-container>
+    <div class="data-wrapper">
+        <div class="heading-container">
+            <p class="title">{{clinic.name}}</p>
+        </div>
+        <div class="address-container">
+            <p class="label">{{clinic.address.street + " " + clinic.address.buildingNumber}}</p>
+            <p class="label">{{clinic.address.postalCode + " " + clinic.address.city}}</p>
+            <p class="label">{{clinic.address.country}}</p>
+        </div>
+        <div class="contact-container">
+            <p class="label">{{clinic.phoneNumber}}</p>
+            <p class="label">{{clinic.email}}</p>
+        </div>
+    </div>
+</div>

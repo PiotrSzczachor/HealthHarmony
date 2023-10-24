@@ -1,1 +1,9 @@
-<p>clinics-page works!</p>
+<div class="clinics-page-container">
+    <app-clinic-card *ngFor="let clinic of (clinics$ | async)?.items" [clinic]="clinic"></app-clinic-card>
+</div>
+<div class="paginator-wrapper">
+    <app-paginator [pageCount]="(clinics$ | async)?.pageCount ?? 0"
+                   [pageIndex]="(clinics$ | async)?.pageIndex ?? 0"
+                   [totalCount]="(clinics$ | async)?.totalCount ?? 0"
+                   (changePageEvent)="applyPaginationFilters($event)"></app-paginator>
+</div>

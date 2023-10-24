@@ -1,5 +1,8 @@
 import { createAction, props } from "@ngrx/store"
+import { ClinicsFilters } from "src/app/models/clinics/clinic-filters.model";
 import { Clinic } from "src/app/models/clinics/clinic.model";
+import { PagedList } from "src/app/models/shared/paged-list.model";
+import { PaginatorEvent } from "src/app/models/shared/paginator-event.model";
 
 const prefix = '[Clinics]'
 
@@ -16,6 +19,34 @@ export const getClinicByIdSuccess = createAction(
 export const getClinicByIdFailure = createAction(
     `${prefix} Get Clinic By Id Failure`,
     props<{error: string}>()
+);
+
+export const getPagedClinics = createAction(
+    `${prefix} Get Paged Clinics`,
+);
+
+export const getPagedClinicsSuccess = createAction(
+    `${prefix} Get Paged Clinics Success`,
+    props<{pagedClinics: PagedList<Clinic>}>()
+);
+
+export const getPagedClinicsFailure = createAction(
+    `${prefix} Get Paged Clinics Failure`,
+    props<{error: string}>()
+);
+
+export const applyFilters = createAction(
+    `${prefix} Apply Filters`,
+    props<{filters: ClinicsFilters}>()
+);
+
+export const applyPaginationFilters = createAction(
+    `${prefix} Apply Pagination Filters`,
+    props<{filter: PaginatorEvent}>()
+);
+
+export const clearFilters = createAction(
+    `${prefix} Clear Filters`,
 );
 
 export const getClinicByIdWithoutImages = createAction(
