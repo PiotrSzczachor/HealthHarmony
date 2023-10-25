@@ -6,11 +6,13 @@ import { ClinicsEffects, reducers } from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { ClinicCardComponent } from './components/clinic-card/clinic-card.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ClinicFiltersComponent } from './components/clinic-filters/clinic-filters.component';
 
 @NgModule({
   declarations: [
     ClinicsPageComponent,
-    ClinicCardComponent
+    ClinicCardComponent,
+    ClinicFiltersComponent
   ],
   imports: [
     CommonModule,

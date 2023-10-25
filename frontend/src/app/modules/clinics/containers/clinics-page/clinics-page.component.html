@@ -1,3 +1,4 @@
+<app-clinic-filters></app-clinic-filters>
 <div class="clinics-page-container">
     <app-clinic-card *ngFor="let clinic of (clinics$ | async)?.items" [clinic]="clinic"></app-clinic-card>
 </div>
