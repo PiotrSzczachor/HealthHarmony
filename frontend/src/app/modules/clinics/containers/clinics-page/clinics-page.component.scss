@@ -2,10 +2,18 @@
 
 .clinics-page-container {
     width: 100%;
-    height: calc(100% - variables.$paginator-wrapper-height);
-    display: flex;
-    flex-wrap: wrap;
+    min-height: calc(100% - variables.$paginator-wrapper-height - variables.$filter-container-height);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    column-gap: 20px;
+    justify-content: space-between;
+
 }
+
+.clinics-page-container::after {
+    content: "";
+    flex: auto;
+  }
 
 .paginator-wrapper {
     width: 100%;
