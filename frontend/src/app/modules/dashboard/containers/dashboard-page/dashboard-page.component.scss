@@ -13,6 +13,7 @@ mat-sidenav-container {
         .menu-container {
             width: 100%;
             height: 100%;
+            color: variables.$white-color;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
@@ -116,6 +117,7 @@ mat-sidenav-container {
 }
 
 mat-sidenav-content {
+    color: variables.$white-color;
     padding-left: variables.$main-container-padding;
     padding-right: variables.$main-container-padding;
     background-color: variables.$lightgray-background-color;

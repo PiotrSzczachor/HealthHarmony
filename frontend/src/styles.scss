@@ -31,19 +31,3 @@ body {
     border-radius: 10px;
     border: 3px solid transparent;
 }
-
-.mat-mdc-text-field-wrapper {
-    background-color: white;
-    border-radius: 5px!important;
-    border: 2px solid variables.$basic-blue-color;
-}
-
-.mat-mdc-select-arrow {
-    *{
-        color: variables.$basic-blue-color;
-    }
-}
-
-.mat-mdc-select-panel {
-    background-color: variables.$white-color!important;
-}

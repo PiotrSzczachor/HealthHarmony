@@ -11,6 +11,7 @@ import { PaginatorComponent } from './paginator/paginator.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from "@angular/material/select";
+import { ReactiveFormsModule } from '@angular/forms';
 
 const DIRECTIVES = [
     IsLoggedInDirective, IsNotLoggedInDirective
@@ -34,7 +35,8 @@ const COMPONENTS = [
     TranslateModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule
   ],
   exports: [
     MatIconModule,
@@ -44,6 +46,7 @@ const COMPONENTS = [
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    ReactiveFormsModule,
     DIRECTIVES,
     PIPES,
     COMPONENTS

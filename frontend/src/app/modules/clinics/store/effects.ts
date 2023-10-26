@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, mergeMap, of, tap, withLatestFrom } from "rxjs";
 import { Router } from "@angular/router";
 import { ClinicsService } from "src/app/services/clinics.service";
-import { ClinicsActions, getClinicsFilters } from ".";
+import { ClinicsActions, getClinicsFiltersSelector } from ".";
 import { AppState } from "src/app/store/app.state";
 import { Store, select } from "@ngrx/store";
 
@@ -32,7 +32,7 @@ export class ClinicsEffects {
                 ClinicsActions.applyFilters,
                 ClinicsActions.applyPaginationFilters,
                 ClinicsActions.clearFilters),
-            withLatestFrom(this.store.pipe(select(getClinicsFilters))),
+            withLatestFrom(this.store.pipe(select(getClinicsFiltersSelector))),
             mergeMap(([action, filters]) => {
                 return this.clinicsService.getPagedClinics(filters).pipe(
                     map(pagedClinics => ClinicsActions.getPagedClinicsSuccess({pagedClinics})),

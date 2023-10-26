@@ -53,13 +53,19 @@ export const reducers = createReducer(
     })),
     on(ClinicsActions.applyFilters, (state, action) => ({
         ...state,
-        filters: action.filters
+        filters: {
+            ...state.filters,
+            name: action.filters.name,
+            orderBy: action.filters.orderBy,
+            pageIndex: 0
+        }
     })),
     on(ClinicsActions.clearFilters, (state) => ({
         ...state,
         filters: {
             ...state.filters,
-            name: null
+            name: null,
+            orderBy: null
         }
     })),
     on(ClinicsActions.applyPaginationFilters, (state, action) => ({

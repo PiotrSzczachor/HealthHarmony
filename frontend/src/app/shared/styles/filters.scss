@@ -24,11 +24,42 @@
 
         .field-container {
             display: flex;
-            align-items: center;
+            align-items: baseline;
             gap: 10px;
 
             .filter-name {
                 font-size: 14pt;
+                margin: 0;
+            }
+
+            .select, .input {
+                height: 35px!important;
+                width: 150px;
+                color: variables.$basic-blue-color;
+                border: 2px solid variables.$basic-blue-color;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+
+            .input:focus, .select:focus {
+                outline: 1px solid variables.$basic-blue-color!important;
+            }
+
+            .search-icon {
+                position: relative;
+                right: 40px;
+                top: 7px;
+            }
+
+            .btn {
+                color: variables.$white-color;
+                background-color: variables.$basic-blue-color;
+                border: none;
+                border-radius: 5px;
+                height: 35px;
+                width: 70px;
+                font-family: variables.$font-family;
+                cursor: pointer;
             }
         }
     }

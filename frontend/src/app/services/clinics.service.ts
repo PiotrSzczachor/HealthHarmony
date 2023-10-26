@@ -19,7 +19,14 @@ export class ClinicsService {
 	}
 
     getPagedClinics(filters: ClinicsFilters): Observable<PagedList<Clinic>> {
-        return this.http.get<PagedList<Clinic>>(this.prefix + `pagin?PageIndex=${filters.pageIndex}&PageSize=${filters.pageSize}&OrderDescending=${filters.orderDescending}`);
+        var url = this.prefix + `pagin?PageIndex=${filters.pageIndex}&PageSize=${filters.pageSize}&OrderDescending=${filters.orderDescending}`
+        if (filters.name) {
+            url += '&name=' + filters.name;
+        }
+        if (filters.orderBy) {
+            url += '&orderBy=' + filters.orderBy;
+        }
+        return this.http.get<PagedList<Clinic>>(url);
     }
 
 	getClinicByIdWithoutImages(id: string): Observable<Clinic> {
