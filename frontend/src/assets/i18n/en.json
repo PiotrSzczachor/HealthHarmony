@@ -1,4 +1,13 @@
 {
+    "common": {
+        "sortBy": "Sort by",
+        "apply": "Apply",
+        "clear": "Clear",
+        "name": "Name",
+        "submit": "Submit",
+        "add": "Add",
+        "cancel": "Cancel"
+    },
     "header": {
         "home": "Home",
         "contact": "Contact",
@@ -34,5 +43,12 @@
             "settings": "Settings",
             "logout": "Logout"
         }
+    },
+    "clinics": {
+        "title": "Clinics",
+        "filters": {
+            "name": "Name"
+        }
     }
+    
 }

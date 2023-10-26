@@ -47,6 +47,22 @@ namespace HealthHarmony.Common.Extensions
             return Expression.Lambda<Func<T, bool>>(body, parameter);
         }
 
+        private static Expression<Func<T, bool>> GenerateCaseInsensitiveContainsExpression<T, TValue>(string propertyName, TValue filterValue)
+        {
+            var parameter = Expression.Parameter(typeof(T), "x");
+            var property = Expression.Property(parameter, propertyName);
+
+            MethodInfo toLowerMethod = typeof(string).GetMethod("ToLower", System.Type.EmptyTypes);
+            var callToLower = Expression.Call(property, toLowerMethod);
+
+            MethodInfo stringContainsMethod = typeof(string).GetMethod("Contains", new[] { typeof(string) });
+            var body = Expression.Call(callToLower, stringContainsMethod, Expression.Constant(filterValue.ToString().ToLower()));
+
+            return Expression.Lambda<Func<T, bool>>(body, parameter);
+        }
+
+
+
         private static IQueryable<T> FilterByProperty<T, TValue>(this IQueryable<T> source, string propertyName, TValue filterValue, Type filterValueType)
         {
             if (filterValue == null)
@@ -82,7 +98,7 @@ namespace HealthHarmony.Common.Extensions
             if (propertyInfo.PropertyType == typeof(string))
             {
                 var filterStringValue = (string)Convert.ChangeType(filterValue, typeof(string));
-                var lambda = GenerateContainsExpression<T, string>(propertyName, filterStringValue);
+                var lambda = GenerateCaseInsensitiveContainsExpression<T, string>(propertyName, filterStringValue);
                 return source.Where(lambda);
             }
 

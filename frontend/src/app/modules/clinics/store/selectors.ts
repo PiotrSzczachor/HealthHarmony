@@ -28,7 +28,7 @@ export const getPagedClinicsSelector = createSelector(
     (state) => state.pagedClinics
 );
 
-export const getClinicsFilters = createSelector(
+export const getClinicsFiltersSelector = createSelector(
     selectFeature,
     (state) => state.filters
 );
