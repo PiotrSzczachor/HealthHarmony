@@ -10,7 +10,7 @@ namespace HealthHarmony.SQLRepository.Interfaces
         IQueryable<T> GetAllWithIncludes<T>(params Expression<Func<T, object>>[] includes) where T : BaseModel;
         PagedList<T> GetPagedList<T>(BasePaginationFilters filters) where T : BaseModel;
         PagedList<T> GetPagedListWithIncludes<T>(BasePaginationFilters filters, params Expression<Func<T, object>>[] includes) where T : BaseModel;
-        Task<T> Get<T>(Guid id) where T : BaseModel;
+        Task<T> Get<T>(Guid id, params Expression<Func<T, object>>[] includes) where T : BaseModel;
         Task<T> Get<T>(Expression<Func<T, bool>> filter) where T : BaseModel;
         Task Add<T>(T entity) where T : BaseModel;
         Task Update<T>(T entity) where T : BaseModel;

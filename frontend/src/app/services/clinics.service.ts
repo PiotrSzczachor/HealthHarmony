@@ -5,6 +5,7 @@ import { Clinic } from '../models/clinics/clinic.model';
 import { environment } from 'src/environments/environments';
 import { ClinicsFilters } from '../models/clinics/clinic-filters.model';
 import { PagedList } from '../models/shared/paged-list.model';
+import { AddClinicDto } from '../models/clinics/add-clinic-dto.model';
 
 @Injectable({
   	providedIn: 'root'
@@ -41,7 +42,8 @@ export class ClinicsService {
 		return this.http.get<Clinic[]>(this.prefix + "without-images");
 	}
 
-	addClinic(clinic: Clinic): Observable<any> {
+	addClinic(clinic: AddClinicDto): Observable<any> {
+        console.log(clinic)
 		return this.http.post(this.prefix, clinic);
 	}
 

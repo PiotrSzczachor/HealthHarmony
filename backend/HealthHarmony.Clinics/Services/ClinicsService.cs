@@ -4,6 +4,7 @@ using HealthHarmony.Common.Models.Pagination;
 using HealthHarmony.Models.Addresses;
 using HealthHarmony.Models.Clinics.Entities;
 using HealthHarmony.Models.Clinics.Filters;
+using HealthHarmony.Models.Common.Entities;
 using HealthHarmony.SQLRepository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -73,7 +74,14 @@ namespace HealthHarmony.Clinics.Services
 
         public async Task UpdateClinic(Clinic clinic)
         {
+            var outdatedClinic = await _repository.Get<Clinic>(clinic.Id, x => x.Images);
             await _repository.Update(clinic);
+            var updatedClinicImagesIds = clinic.Images.Select(x => x.Id);
+            var imagesToRemoveIds = outdatedClinic.Images.Select(x => x.Id).Where(x => !updatedClinicImagesIds.Contains(x));
+            foreach(var imageId in imagesToRemoveIds) 
+            {
+                await _repository.Delete<Image>(imageId);
+            }
         }
 
         public PagedList<Clinic> GetPagedClinicList(ClinicsFilters filters)

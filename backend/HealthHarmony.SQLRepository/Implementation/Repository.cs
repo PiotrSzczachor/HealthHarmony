@@ -28,11 +28,16 @@ namespace HealthHarmony.SQLRepository.Implementation
             await _context.SaveChangesAsync();
         }
 
-        public async Task<T?> Get<T>(Guid id) where T : BaseModel
+        public async Task<T?> Get<T>(Guid id, params Expression<Func<T, object>>[] includes) where T : BaseModel
         {
-            return await _context.Set<T>()
-                .AsNoTracking()
-                .FirstOrDefaultAsync(e => e.Id == id);
+            var query = _context.Set<T>().AsNoTracking().AsQueryable();
+
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+
+            return await query.FirstOrDefaultAsync(e => e.Id == id);
         }
 
         public async Task<T?> Get<T>(Expression<Func<T, bool>> filter) where T : BaseModel

@@ -84,8 +84,19 @@
             <label for="fileDropRef">Browse for file</label>
         </div>
     </div>
+    <div class="thumbnails-container">
+        <div class="thumbnail" *ngFor="let image of imagesArray.value; let i = index">
+            <div class="img-container">
+                <img [src]="image | decode" class="thumbnail-img">
+            </div>
+            <div class="delete-icon" (click)="deleteImage(i)">
+                <mat-icon>close</mat-icon>
+            </div>
+        </div>
+    </div>
     <div class="buttons-container">
-        <button class="btn" (click)="handleSubmit()">{{ 'common.add' | translate }}</button>
+        <button class="btn" (click)="handleSubmit()">{{ (isEdit ? 'common.save' : 'common.add')  | translate }}</button>
         <button class="btn" (click)="cancel()">{{ 'common.cancel' | translate }}</button>
+        <button class="btn delete" (click)="deleteClinic()" *ngIf="isEdit">{{ 'common.delete' | translate }}</button>
     </div>
 </div>

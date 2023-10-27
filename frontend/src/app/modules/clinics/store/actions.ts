@@ -1,4 +1,5 @@
 import { createAction, props } from "@ngrx/store"
+import { AddClinicDto } from "src/app/models/clinics/add-clinic-dto.model";
 import { ClinicsFilters } from "src/app/models/clinics/clinic-filters.model";
 import { Clinic } from "src/app/models/clinics/clinic.model";
 import { PagedList } from "src/app/models/shared/paged-list.model";
@@ -94,7 +95,7 @@ export const getClinicsWithoutImagesFailure = createAction(
 
 export const addClinic = createAction(
     `${prefix} Add Clinic`,
-    props<{clinic: Clinic}>()
+    props<{clinic: AddClinicDto}>()
 );
 
 export const addClinicSuccess = createAction(
