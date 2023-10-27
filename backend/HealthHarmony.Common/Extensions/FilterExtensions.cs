@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using HealthHarmony.Common.Models.Pagination;
+using System.Linq.Expressions;
 using System.Reflection;
 
 namespace HealthHarmony.Common.Extensions
@@ -6,7 +7,7 @@ namespace HealthHarmony.Common.Extensions
     public static class FilterExtensions
     {
         private static readonly string[] PaginatorConnectedProperties = { "PageIndex", "PageSize", "OrderBy", "OrderDescending" };
-        public static IQueryable<T> Filter<T, TFilter>(this IQueryable<T> source, TFilter filter)
+        public static IQueryable<T> Filter<T, TFilter>(this IQueryable<T> source, TFilter filter) where TFilter : BasePaginationFilters
         {
             if (filter == null)
             {
