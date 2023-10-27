@@ -74,6 +74,9 @@ namespace HealthHarmony.Clinics.Services
 
         public async Task UpdateClinic(Clinic clinic)
         {
+            Coordinates coordinates = await _addressesService.GetLatAndLong(clinic.Address);
+            clinic.Address.Latitude = coordinates.Latitude;
+            clinic.Address.Longitude = coordinates.Longitude;
             var outdatedClinic = await _repository.Get<Clinic>(clinic.Id, x => x.Images);
             await _repository.Update(clinic);
             var updatedClinicImagesIds = clinic.Images.Select(x => x.Id);
