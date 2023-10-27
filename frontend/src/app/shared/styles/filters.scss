@@ -61,6 +61,17 @@
                 font-family: variables.$font-family;
                 cursor: pointer;
             }
+
+            .add-btn {
+                width: 35px;
+                height: 35px;
+                font-family: variables.$font-family;
+                color: variables.$white-color;
+                background-color: variables.$basic-blue-color;
+                border-radius: 50%;
+                border: none;
+                cursor: pointer;
+            }
         }
     }
 }

@@ -1,0 +1,117 @@
+@use '../../../variables';
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
+
+.edit-form-container {
+    width: 50vw;
+    overflow-y: auto;
+    background-color: variables.$white-color;
+    font-family: variables.$font-family;
+    color: variables.$basic-blue-color;
+    padding: 30px;
+
+    .heading {
+        .title {
+            text-transform: uppercase;
+            font-size: 36pt;
+            font-weight: 900;
+        }
+    }
+
+    .fields-container {
+        width: 100%;
+        
+        .field {
+            mat-form-field {
+                width: 100%;
+            }
+        }
+
+        .double-field {
+            display: flex;
+            width: 100%;
+            gap: 5%;
+
+            .field {
+                width: 50%;
+                mat-form-field {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .buttons-container {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 10px;
+
+        .btn {
+            height: 35px;
+            min-width: 80px;
+            background-color: variables.$basic-blue-color;
+            border-radius: 5px;
+            color: variables.$white-color;
+            border: none;
+            font-family: variables.$font-family;
+            cursor: pointer;
+        }
+    }
+
+
+    .upload-files-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .drop-zone {
+            width: 60%;
+            background-color: variables.$lightgray-background-color;
+            border: 1px dashed variables.$gray-color;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+
+            h3 {
+                font-family: variables.$font-family;
+            }
+
+            .img-container {
+                width: 50px;
+                height: 50px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            input {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+            label {
+                height: 35px;
+                background-color: variables.$basic-blue-color;
+                font-family: variables.$font-family;
+                color: variables.$white-color;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50px;
+                padding-left: 10px;
+                padding-right: 10px;
+                margin-bottom: 10px;
+                cursor: pointer;
+            }
+        }
+    }
+}
