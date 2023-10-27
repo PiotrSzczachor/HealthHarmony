@@ -1,6 +1,7 @@
 ﻿using HealthHarmony.Common.Models.Base;
 using HealthHarmony.Common.Models.Pagination;
 using System.ComponentModel;
+using System.Reflection;
 
 namespace HealthHarmony.Common.Extensions
 {
@@ -12,7 +13,11 @@ namespace HealthHarmony.Common.Extensions
             result.TotalCount = source.Count();
             if(paginationFilters.OrderBy != null)
             {
-                PropertyDescriptor? prop = TypeDescriptor.GetProperties(typeof(T)).Find(paginationFilters.OrderBy, false);
+                var prop = typeof(T).GetProperty(paginationFilters.OrderBy, BindingFlags.IgnoreCase | BindingFlags.Instance | BindingFlags.Public | BindingFlags.FlattenHierarchy);
+                if (prop == null) 
+                {
+                    throw new ArgumentException($"There is no {paginationFilters.OrderBy} property to order by");
+                }
                 if (paginationFilters.OrderDescending)
                 {
                     source.OrderByDescending(x => prop.GetValue(x));
