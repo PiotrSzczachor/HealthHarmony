@@ -37,26 +37,31 @@ export class MapComponent implements OnInit, AfterViewInit {
     initializeMap() {
         const myMap = new Map('map', this.options);
         this.clinics$.subscribe(clinics => {
-          this.createMarkers(clinics).forEach(marker => marker.addTo(myMap));
+          this.createMarkers(clinics).forEach(marker => marker?.addTo(myMap));
         });
     }
 
     createMarkers(clinics: Clinic[]) {
-        return clinics.map(clinic => 
-            marker(
-                [clinic.address.latitude, clinic.address.longitude],
-                {
-                    icon: icon({
-                        iconSize: [41, 41],
-                        iconUrl: '../../../../../assets/icons/map-marker.png',
-                        shadowUrl: 'leaflet/marker-shadow.png'
-                    })
-                }
-            ).bindPopup(
-                `<p class="heading">${clinic.name}</p>
-                <p class="address">${clinic.address.street} ${clinic.address.buildingNumber}</p>
-                <p class="address">${clinic.address.postalCode} ${clinic.address.city}</p>`
-            )
+        return clinics.map(clinic => {
+            if(clinic.address.latitude && clinic.address.longitude){
+                return marker(
+                    [clinic.address.latitude, clinic.address.longitude],
+                    {
+                        icon: icon({
+                            iconSize: [41, 41],
+                            iconUrl: '../../../../../assets/icons/map-marker.png',
+                            shadowUrl: 'leaflet/marker-shadow.png'
+                        })
+                    }
+                ).bindPopup(
+                    `<p class="heading">${clinic.name}</p>
+                    <p class="address">${clinic.address.street} ${clinic.address.buildingNumber}</p>
+                    <p class="address">${clinic.address.postalCode} ${clinic.address.city}</p>`
+                )
+            }
+            return null
+        }
+            
         );
     }
       
