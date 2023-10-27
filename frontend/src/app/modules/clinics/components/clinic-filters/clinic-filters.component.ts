@@ -4,6 +4,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
 import { ClinicsActions, getClinicsFiltersSelector } from '../../store';
 import { ClinicsFilters } from 'src/app/models/clinics/clinic-filters.model';
+import { MatDialog } from '@angular/material/dialog';
+import { EditClinicComponent } from '../../containers/edit-clinic/edit-clinic.component';
 
 @Component({
   selector: 'app-clinic-filters',
@@ -17,7 +19,7 @@ export class ClinicFiltersComponent implements OnInit {
         orderBy: [null]
     });
 
-    constructor(private fb: FormBuilder, private store: Store<AppState>) { }
+    constructor(private fb: FormBuilder, private store: Store<AppState>, private dialog: MatDialog) { }
 
     ngOnInit(): void {
         this.selectFilters();
@@ -40,6 +42,10 @@ export class ClinicFiltersComponent implements OnInit {
                 orderBy: filters.orderBy
             });
         });
+    }
+
+    openAddPopup(): void {
+        this.dialog.open(EditClinicComponent, {data: {isEdit: false}});
     }
 
 }

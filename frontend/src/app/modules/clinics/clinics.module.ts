@@ -7,12 +7,14 @@ import { EffectsModule } from '@ngrx/effects';
 import { ClinicCardComponent } from './components/clinic-card/clinic-card.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ClinicFiltersComponent } from './components/clinic-filters/clinic-filters.component';
+import { EditClinicComponent } from './containers/edit-clinic/edit-clinic.component';
 
 @NgModule({
   declarations: [
     ClinicsPageComponent,
     ClinicCardComponent,
-    ClinicFiltersComponent
+    ClinicFiltersComponent,
+    EditClinicComponent
   ],
   imports: [
     CommonModule,

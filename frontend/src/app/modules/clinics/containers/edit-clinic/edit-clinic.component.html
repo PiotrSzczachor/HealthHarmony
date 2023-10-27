@@ -1,0 +1,91 @@
+<div class="edit-form-container" [formGroup]="fg">
+    <div class="heading">
+        <p class="title">{{ ('common.add' | translate) + " Clinic"}}</p>
+    </div>
+    <div class="fields-container">
+
+        <div class="field">
+            <p class="field-title">Name</p>
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="name">
+            </mat-form-field>
+        </div>
+
+        <div class="field">
+            <p class="field-title">Email</p>
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="email">
+            </mat-form-field>
+        </div>
+
+        <div class="field">
+            <p class="field-title">PhoneNumber</p>
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="phoneNumber">
+            </mat-form-field>
+        </div>
+
+        <div class="address-container" formGroupName="address">
+
+            <div class="double-field">
+
+                <div class="field">
+                    <p class="field-title">Steet</p>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="street">
+                    </mat-form-field>
+                </div>
+
+                <div class="field">
+                    <p class="field-title">Building number</p>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="buildingNumber">
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <div class="double-field">
+
+                <div class="field">
+                    <p class="field-title">Postal Code</p>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="postalCode">
+                    </mat-form-field>
+                </div>
+
+                <div class="field">
+                    <p class="field-title">City</p>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="city">
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <div class="field">
+                <p class="field-title">Country</p>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="country">
+                </mat-form-field>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="upload-files-container">
+        <div class="drop-zone">
+            <input type="file" #fileDropRef id="fileDropRef" (change)="onFileSelected($event)" accept="image/*" multiple>
+            <div class="img-container">
+                <img src="../../../../../assets/icons/upload.png">
+            </div>
+            <h3>Drag and drop file here</h3>
+            <h3>Or</h3>
+            <label for="fileDropRef">Browse for file</label>
+        </div>
+    </div>
+    <div class="buttons-container">
+        <button class="btn" (click)="handleSubmit()">{{ 'common.add' | translate }}</button>
+        <button class="btn" (click)="cancel()">{{ 'common.cancel' | translate }}</button>
+    </div>
+</div>

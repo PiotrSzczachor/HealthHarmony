@@ -1,7 +1,10 @@
 <div class="clinic-card-container">
     <swiper-container class="swiper" loop="true" speed="500" autoplay="true">
         <swiper-slide class="slide" *ngFor="let image of clinic.images">
-            <img [src]="image | decode" alt="">
+            <img [src]="image | decode" >
+        </swiper-slide>
+        <swiper-slide class="slide" *ngIf="clinic.images.length == 0">
+            <img src="../../../../../assets/empty-photo.png">
         </swiper-slide>
     </swiper-container>
     <div class="data-wrapper">

@@ -18,7 +18,4 @@ export class ClinicCardComponent implements OnInit {
         register();
     }
 
-    decodeImage(image: Image): any {
-        return `data:image/${image.extension};base64,${image.content}`;
-    }
 }

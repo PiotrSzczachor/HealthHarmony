@@ -31,7 +31,8 @@ export class ClinicsEffects {
             ofType(ClinicsActions.getPagedClinics,
                 ClinicsActions.applyFilters,
                 ClinicsActions.applyPaginationFilters,
-                ClinicsActions.clearFilters),
+                ClinicsActions.clearFilters,
+                ClinicsActions.addClinicSuccess),
             withLatestFrom(this.store.pipe(select(getClinicsFiltersSelector))),
             mergeMap(([action, filters]) => {
                 return this.clinicsService.getPagedClinics(filters).pipe(
