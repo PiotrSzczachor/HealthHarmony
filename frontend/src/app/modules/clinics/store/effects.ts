@@ -6,11 +6,16 @@ import { ClinicsService } from "src/app/services/clinics.service";
 import { ClinicsActions, getClinicsFiltersSelector } from ".";
 import { AppState } from "src/app/store/app.state";
 import { Store, select } from "@ngrx/store";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable()
 export class ClinicsEffects {
 
-    constructor(private actions$: Actions, private clinicsService: ClinicsService, private router: Router, private store: Store<AppState>) { };
+    constructor(private actions$: Actions,
+                private clinicsService: ClinicsService, 
+                private router: Router, 
+                private store: Store<AppState>, 
+                private toast: ToastrService) { };
 
     getClinicById$ = createEffect(() =>
         this.actions$.pipe(
@@ -32,7 +37,9 @@ export class ClinicsEffects {
                 ClinicsActions.applyFilters,
                 ClinicsActions.applyPaginationFilters,
                 ClinicsActions.clearFilters,
-                ClinicsActions.addClinicSuccess),
+                ClinicsActions.addClinicSuccess,
+                ClinicsActions.updateClinicSuccess,
+                ClinicsActions.deleteClinicSuccess),
             withLatestFrom(this.store.pipe(select(getClinicsFiltersSelector))),
             mergeMap(([action, filters]) => {
                 return this.clinicsService.getPagedClinics(filters).pipe(
@@ -128,5 +135,32 @@ export class ClinicsEffects {
             })
         )
     );
+
+    onAddSuccess$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(ClinicsActions.addClinicSuccess),
+            tap(() => 
+                this.toast.success("Clinic added successfully")
+            )
+        ), {dispatch: false}
+    )
+
+    onEditSuccess$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(ClinicsActions.updateClinicSuccess),
+            tap(() => 
+                this.toast.success("Clinic updated successfully")
+            )
+        ), {dispatch: false}
+    )
+
+    onDeleteSuccess$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(ClinicsActions.deleteClinicSuccess),
+            tap(() => 
+                this.toast.success("Clinic deleted successfully")
+            )
+        ), {dispatch: false}
+    )
 
 }

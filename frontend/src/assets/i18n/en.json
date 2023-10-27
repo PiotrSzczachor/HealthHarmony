@@ -6,7 +6,9 @@
         "name": "Name",
         "submit": "Submit",
         "add": "Add",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete": "Delete"
     },
     "header": {
         "home": "Home",

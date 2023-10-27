@@ -4,6 +4,7 @@
 
 .edit-form-container {
     width: 50vw;
+    max-height: 90vh;
     overflow-y: auto;
     background-color: variables.$white-color;
     font-family: variables.$font-family;
@@ -58,6 +59,10 @@
             font-family: variables.$font-family;
             cursor: pointer;
         }
+
+        .delete {
+            background-color: variables.$red-color;
+        }
     }
 
 
@@ -110,6 +115,46 @@
                 padding-left: 10px;
                 padding-right: 10px;
                 margin-bottom: 10px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .thumbnails-container {
+        width: 100%;
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        .thumbnail {
+            width: 150px;
+            height: 100px;
+
+            .img-container {
+                border-radius: 5px;
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+
+                .thumbnail-img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .delete-icon {
+                width: 25px;
+                height: 25px;
+                background-color: variables.$gray-color;
+                border-radius: 100%;
+                position: relative;
+                bottom: 110px;
+                left: 135px;
+                color: variables.$white-color;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 cursor: pointer;
             }
         }
