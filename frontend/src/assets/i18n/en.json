@@ -15,7 +15,8 @@
         "contact": "Contact",
         "faq": "FAQ",
         "login": "Login",
-        "register": "Register"
+        "register": "Register",
+        "logout": "Logout"
     },
     "mainPage": {
         "tiles": {
