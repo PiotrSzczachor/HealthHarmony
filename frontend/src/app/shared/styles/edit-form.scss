@@ -4,6 +4,10 @@
 
 .edit-form-container {
     width: 50vw;
+    @media (max-width: 586px) {
+        width: 90vw;
+        //margin: 0 auto;
+    }
     max-height: 90vh;
     overflow-y: auto;
     background-color: variables.$white-color;
@@ -31,10 +35,16 @@
         .double-field {
             display: flex;
             width: 100%;
-            gap: 5%;
+            gap: 4%;
+            @media (max-width: 586px) {
+                flex-direction: column;
+            }
 
             .field {
-                width: 50%;
+                width: 48%;
+                @media (max-width: 586px) {
+                    width: 100%;
+                }
                 mat-form-field {
                     width: 100%;
                 }
@@ -83,6 +93,9 @@
 
             h3 {
                 font-family: variables.$font-family;
+                @media (max-width: 586px) {
+                    display: none;
+                }
             }
 
             .img-container {
