@@ -20,4 +20,8 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.10.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HealthHarmony.Models\HealthHarmony.Models.csproj" />
+  </ItemGroup>
+
 </Project>

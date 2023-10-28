@@ -7,3 +7,8 @@ export const getLoggedInSelector = createSelector(
     selectFeature,
     (state) => state.loggedIn
 );
+
+export const getUserSelector = createSelector(
+    selectFeature,
+    (state) => state.user
+);

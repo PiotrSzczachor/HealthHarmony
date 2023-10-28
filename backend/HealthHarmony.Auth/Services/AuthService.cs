@@ -2,6 +2,7 @@
 using HealthHarmony.Auth.DTOs.User;
 using HealthHarmony.Auth.Interfaces;
 using HealthHarmony.Auth.Models;
+using HealthHarmony.Models.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -79,6 +80,13 @@ namespace HealthHarmony.Auth.Services
                 return GenerateToken(claims);
             }
             return null;
+        }
+
+        public async Task<UserDto?> GetUser(Guid id)
+        {
+            var user = _userManager.Users.FirstOrDefault(x => x.Id == id.ToString());
+            var userDto = _mapper.Map<UserDto>(user);
+            return userDto;
         }
     }
 }

@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Auth\Entities\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\HealthHarmony.Common\HealthHarmony.Common.csproj" />
   </ItemGroup>
 

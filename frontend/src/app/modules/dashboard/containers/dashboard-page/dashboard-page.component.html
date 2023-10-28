@@ -5,7 +5,7 @@
                 <div class="image-container">
 
                 </div>
-                <p class="username">John Doe</p>
+                <p class="username">{{(user$ | async)?.firstName + " " + (user$ | async)?.lastName}}</p>
                 <div class="online"></div>
             </div>
             <div class="menu-container">

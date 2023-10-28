@@ -1,4 +1,5 @@
 ﻿using HealthHarmony.Auth.DTOs.User;
+using HealthHarmony.Models.Auth;
 using System.Security.Claims;
 
 namespace HealthHarmony.Auth.Interfaces
@@ -9,5 +10,6 @@ namespace HealthHarmony.Auth.Interfaces
         public Task<string?> Register(UserRegisterDto dto);
         public Task<string?> CreateUser(UserRegisterDto dto);
         public Task<string?> Login(UserLoginDto dto);
+        public Task<UserDto?> GetUser(Guid id);
     }
 }
