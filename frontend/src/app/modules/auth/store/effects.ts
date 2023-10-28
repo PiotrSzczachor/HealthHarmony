@@ -47,4 +47,18 @@ export class AuthEffects {
             })
         )
     );
+
+    getUser$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AuthActions.getUser),
+            mergeMap(action => {
+                return this.authService.getUser(action.id).pipe(
+                    map(user => AuthActions.getUserSuccess({user})),
+                    catchError(error => {
+                        return of(AuthActions.getUserFailure({ error: error.message }))
+                    })
+                )
+            })
+        )
+    );
 }

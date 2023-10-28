@@ -8,7 +8,8 @@ import { environment } from "src/environments/environments";
 export const initialState: AuthState = {
     loggedIn: false,
     token: undefined,
-    userId: undefined
+    userId: undefined,
+    user: undefined
 }
 
 export const reducers = createReducer(
@@ -21,7 +22,6 @@ export const reducers = createReducer(
     on(AuthActions.loginSuccess, (state, action) => {
         localStorage.setItem(environment.tokenKey, action.response.token);
         var decodedToken = jwt_decode(action.response.token) as DecodedToken;
-        console.log(decodedToken);
         return {
             ...state,
             loggedIn: true,
@@ -43,5 +43,13 @@ export const reducers = createReducer(
             token: action.response.token,
             userId: decodedToken.userId
         }
-    })
+    }),
+    on(AuthActions.getUser, (state) => ({
+        ...state,
+        user: undefined
+    })),
+    on(AuthActions.getUserSuccess, (state, action) => ({
+        ...state,
+        user: action.user
+    })),
 )
