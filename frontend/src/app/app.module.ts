@@ -18,6 +18,7 @@ import { TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { SharedModule } from './shared/shared.module';
 import { FaqModule } from './modules/faq/faq.module';
 import { ClinicsModule } from './modules/clinics/clinics.module';
+import { DoctorsModule } from './modules/doctors/doctors.module';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { ClinicsModule } from './modules/clinics/clinics.module';
     imports: [
         AuthModule,
         ClinicsModule,
+        DoctorsModule,
         DashboardModule,
         MainPageModule,
         BrowserModule,

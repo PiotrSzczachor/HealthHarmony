@@ -1,7 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { PagedList } from 'src/app/models/shared/paged-list.model';
-import { AppState } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-paginator',

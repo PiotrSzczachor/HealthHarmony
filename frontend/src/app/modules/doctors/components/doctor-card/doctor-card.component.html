@@ -1,0 +1,27 @@
+<div class="doctor-card-container">
+    <div class="image-wrapper">
+        <div class="image-container">
+            <img [src]="doctor.image ? (doctor.image | decode) : '../../../../../assets/empty-photo.png'" alt="">
+        </div>
+    </div>
+    <div class="data-wrapper">
+        <div class="heading-container" (click)="openEditDialog()">
+            <p class="title">{{ doctor.firstName + " " + doctor.lastName }}</p>
+        </div>
+        <div class="specializations-container">
+            <p class="label" *ngFor="let specialization of doctor.specializations">{{specialization.name}}</p>
+            <!-- <p class="label">TEST</p>
+            <p class="label">TEST</p>
+            <p class="label">TEST</p>
+            <p class="label">TEST</p>
+            <p class="label">TEST</p> -->
+        </div>
+        <div class="contact-container">
+            <div class="accepts-remotely-container">
+                <p class="label">{{"doctors.acceptsRemotely" | translate}}</p>
+                <mat-icon [ngClass]="doctor.acceptsRemotely ? 'green-icon' : 'red-icon'"> {{doctor.acceptsRemotely ? "check" : "close"}}</mat-icon>
+            </div>
+            <p class="label">{{doctor.email}}</p>
+        </div>
+    </div>
+</div>

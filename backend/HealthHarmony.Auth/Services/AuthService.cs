@@ -97,8 +97,8 @@ namespace HealthHarmony.Auth.Services
             var password = passwordGenerator.Next();
             User user = new User
             {
-                FirstName = doctor.FitrsName,
-                LastName = doctor.FitrsName,
+                FirstName = doctor.FirstName,
+                LastName = doctor.LastName,
                 Email = doctor.Email.Split('@')[0],
                 UserName = doctor.Email
             };

@@ -1,5 +1,5 @@
 <app-clinic-filters></app-clinic-filters>
-<div class="clinics-page-container">
+<div class="cards-page-container">
     <app-clinic-card *ngFor="let clinic of (clinics$ | async)?.items" [clinic]="clinic"></app-clinic-card>
 </div>
 <div class="paginator-wrapper">
