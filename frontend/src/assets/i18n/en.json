@@ -8,7 +8,9 @@
         "add": "Add",
         "cancel": "Cancel",
         "save": "Save",
-        "delete": "Delete"
+        "delete": "Delete",
+        "yes": "Yes",
+        "no": "No"
     },
     "header": {
         "home": "Home",
@@ -51,6 +53,15 @@
         "title": "Clinics",
         "filters": {
             "name": "Name"
+        }
+    },
+    "doctors": {
+        "title": "Doctors",
+        "acceptsRemotely":"Accepts remotely",
+        "filters": {
+            "firstName": "First name",
+            "lastName": "Last name",
+            "acceptsRemotely": "Accepts remotely"
         }
     }
     

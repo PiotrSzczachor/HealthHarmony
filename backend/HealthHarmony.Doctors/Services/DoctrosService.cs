@@ -76,7 +76,7 @@ namespace HealthHarmony.Doctors.Services
             await UpdateDoctrosClinics(doctor, doctorDto.ClinicsIds);
             await UpdateDoctorsSpecializations(doctor, doctorDto);
             
-            doctor.FitrsName = doctorDto.FitrsName;
+            doctor.FirstName = doctorDto.FirstName;
             doctor.LastName = doctorDto.LastName;
             doctor.Email = doctorDto.Email;
             doctor.AcceptsRemotely = doctorDto.AcceptsRemotely;

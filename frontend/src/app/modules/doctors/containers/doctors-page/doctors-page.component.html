@@ -1,1 +1,10 @@
-<p>doctors-page works!</p>
+<app-doctors-filters></app-doctors-filters>
+<div class="cards-page-container">
+    <app-doctor-card *ngFor="let doctor of (doctors$ | async)?.items" [doctor]="doctor"></app-doctor-card>
+</div>
+<div class="paginator-wrapper">
+    <app-paginator [pageCount]="(doctors$ | async)?.pageCount ?? 0"
+                   [pageIndex]="(doctors$ | async)?.pageIndex ?? 0"
+                   [totalCount]="(doctors$ | async)?.totalCount ?? 0"
+                   (changePageEvent)="applyPaginationFilters($event)"></app-paginator>
+</div>

@@ -43,7 +43,6 @@ export class ClinicsService {
 	}
 
 	addClinic(clinic: AddClinicDto): Observable<any> {
-        console.log(clinic)
 		return this.http.post(this.prefix, clinic);
 	}
 
