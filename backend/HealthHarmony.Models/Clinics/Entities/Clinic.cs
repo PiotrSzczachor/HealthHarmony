@@ -1,6 +1,7 @@
 ﻿using HealthHarmony.Common.Models.Base;
 using HealthHarmony.Models.Addresses.Entities;
 using HealthHarmony.Models.Common.Entities;
+using HealthHarmony.Models.Doctors.Entities;
 
 namespace HealthHarmony.Models.Clinics.Entities
 {
@@ -11,5 +12,6 @@ namespace HealthHarmony.Models.Clinics.Entities
         public Guid AddressId { get; set; }
         public virtual Address Address { get; set; }
         public virtual ICollection<Image> Images { get; set; }
+        public virtual ICollection<Doctor>? Doctors { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using HealthHarmony.SQL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HealthHarmony.SQL.Migrations
 {
     [DbContext(typeof(HealthHarmonyContext))]
-    partial class HealthHarmonyContextModelSnapshot : ModelSnapshot
+    [Migration("20231029172649_Remove-Specialisation-Table")]
+    partial class RemoveSpecialisationTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,21 +37,6 @@ namespace HealthHarmony.SQL.Migrations
                     b.HasIndex("DoctorsId");
 
                     b.ToTable("ClinicDoctor");
-                });
-
-            modelBuilder.Entity("DoctorSpecialization", b =>
-                {
-                    b.Property<Guid>("DoctorsId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("SpecializationsId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("DoctorsId", "SpecializationsId");
-
-                    b.HasIndex("SpecializationsId");
-
-                    b.ToTable("DoctorSpecialization");
                 });
 
             modelBuilder.Entity("HealthHarmony.Models.Addresses.Entities.Address", b =>
@@ -256,24 +243,6 @@ namespace HealthHarmony.SQL.Migrations
                     b.ToTable("Doctors");
                 });
 
-            modelBuilder.Entity("HealthHarmony.Models.Doctors.Entities.Specialization", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Specializations");
-                });
-
             modelBuilder.Entity("HealthHarmony.Models.Patients.Entities.Patient", b =>
                 {
                     b.Property<Guid>("Id")
@@ -458,21 +427,6 @@ namespace HealthHarmony.SQL.Migrations
                     b.HasOne("HealthHarmony.Models.Doctors.Entities.Doctor", null)
                         .WithMany()
                         .HasForeignKey("DoctorsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("DoctorSpecialization", b =>
-                {
-                    b.HasOne("HealthHarmony.Models.Doctors.Entities.Doctor", null)
-                        .WithMany()
-                        .HasForeignKey("DoctorsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HealthHarmony.Models.Doctors.Entities.Specialization", null)
-                        .WithMany()
-                        .HasForeignKey("SpecializationsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

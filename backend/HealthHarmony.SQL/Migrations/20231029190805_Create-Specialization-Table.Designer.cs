@@ -3,6 +3,7 @@ using System;
 using HealthHarmony.SQL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HealthHarmony.SQL.Migrations
 {
     [DbContext(typeof(HealthHarmonyContext))]
-    partial class HealthHarmonyContextModelSnapshot : ModelSnapshot
+    [Migration("20231029190805_Create-Specialization-Table")]
+    partial class CreateSpecializationTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -267,9 +269,6 @@ namespace HealthHarmony.SQL.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
 
                     b.ToTable("Specializations");
                 });

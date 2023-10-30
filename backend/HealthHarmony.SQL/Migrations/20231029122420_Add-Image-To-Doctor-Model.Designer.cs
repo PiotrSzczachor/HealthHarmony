@@ -3,6 +3,7 @@ using System;
 using HealthHarmony.SQL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HealthHarmony.SQL.Migrations
 {
     [DbContext(typeof(HealthHarmonyContext))]
-    partial class HealthHarmonyContextModelSnapshot : ModelSnapshot
+    [Migration("20231029122420_Add-Image-To-Doctor-Model")]
+    partial class AddImageToDoctorModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,21 +37,6 @@ namespace HealthHarmony.SQL.Migrations
                     b.HasIndex("DoctorsId");
 
                     b.ToTable("ClinicDoctor");
-                });
-
-            modelBuilder.Entity("DoctorSpecialization", b =>
-                {
-                    b.Property<Guid>("DoctorsId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("SpecializationsId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("DoctorsId", "SpecializationsId");
-
-                    b.HasIndex("SpecializationsId");
-
-                    b.ToTable("DoctorSpecialization");
                 });
 
             modelBuilder.Entity("HealthHarmony.Models.Addresses.Entities.Address", b =>
@@ -226,15 +213,11 @@ namespace HealthHarmony.SQL.Migrations
                     b.Property<bool>("AcceptsRemotely")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("FitrsName")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("ImageId")
+                    b.Property<Guid>("ImageId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("LastName")
@@ -256,10 +239,13 @@ namespace HealthHarmony.SQL.Migrations
                     b.ToTable("Doctors");
                 });
 
-            modelBuilder.Entity("HealthHarmony.Models.Doctors.Entities.Specialization", b =>
+            modelBuilder.Entity("HealthHarmony.Models.Doctors.Entities.Language", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("DoctorId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Name")
@@ -268,8 +254,27 @@ namespace HealthHarmony.SQL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
+                    b.HasIndex("DoctorId");
+
+                    b.ToTable("Languages");
+                });
+
+            modelBuilder.Entity("HealthHarmony.Models.Doctors.Entities.Specialization", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("DoctorId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
 
                     b.ToTable("Specializations");
                 });
@@ -462,21 +467,6 @@ namespace HealthHarmony.SQL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DoctorSpecialization", b =>
-                {
-                    b.HasOne("HealthHarmony.Models.Doctors.Entities.Doctor", null)
-                        .WithMany()
-                        .HasForeignKey("DoctorsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HealthHarmony.Models.Doctors.Entities.Specialization", null)
-                        .WithMany()
-                        .HasForeignKey("SpecializationsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("HealthHarmony.Models.Clinics.Entities.Clinic", b =>
                 {
                     b.HasOne("HealthHarmony.Models.Addresses.Entities.Address", "Address")
@@ -501,7 +491,8 @@ namespace HealthHarmony.SQL.Migrations
                     b.HasOne("HealthHarmony.Models.Common.Entities.Image", "Image")
                         .WithOne()
                         .HasForeignKey("HealthHarmony.Models.Doctors.Entities.Doctor", "ImageId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("HealthHarmony.Models.Auth.Entities.User", "User")
                         .WithOne()
@@ -512,6 +503,20 @@ namespace HealthHarmony.SQL.Migrations
                     b.Navigation("Image");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("HealthHarmony.Models.Doctors.Entities.Language", b =>
+                {
+                    b.HasOne("HealthHarmony.Models.Doctors.Entities.Doctor", null)
+                        .WithMany("Languages")
+                        .HasForeignKey("DoctorId");
+                });
+
+            modelBuilder.Entity("HealthHarmony.Models.Doctors.Entities.Specialization", b =>
+                {
+                    b.HasOne("HealthHarmony.Models.Doctors.Entities.Doctor", null)
+                        .WithMany("Specializations")
+                        .HasForeignKey("DoctorId");
                 });
 
             modelBuilder.Entity("HealthHarmony.Models.Patients.Entities.Patient", b =>
@@ -579,6 +584,13 @@ namespace HealthHarmony.SQL.Migrations
             modelBuilder.Entity("HealthHarmony.Models.Clinics.Entities.Clinic", b =>
                 {
                     b.Navigation("Images");
+                });
+
+            modelBuilder.Entity("HealthHarmony.Models.Doctors.Entities.Doctor", b =>
+                {
+                    b.Navigation("Languages");
+
+                    b.Navigation("Specializations");
                 });
 #pragma warning restore 612, 618
         }

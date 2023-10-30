@@ -20,6 +20,14 @@ namespace HealthHarmony.SQLRepository.Implementation
             await _context.Set<T>().AddAsync(entity);
             await _context.SaveChangesAsync();
         }
+        public async Task Add<T>(List<T> entities) where T : BaseModel
+        {
+            foreach(var entity in entities)
+            {
+                await _context.Set<T>().AddAsync(entity);
+            }
+            await _context.SaveChangesAsync();
+        }
 
         public async Task Delete<T>(Guid id) where T : BaseModel
         {
@@ -49,10 +57,10 @@ namespace HealthHarmony.SQLRepository.Implementation
 
         public IQueryable<T> GetAll<T>() where T : BaseModel
         {
-            return _context.Set<T>().AsNoTracking();
+            return _context.Set<T>();
         }
 
-        public IQueryable<T> GetAllWithIncludes<T>(params Expression<Func<T, object>>[] includes) where T : BaseModel
+        public IQueryable<T> GetAll<T>(params Expression<Func<T, object>>[] includes) where T : BaseModel
         {
             IQueryable<T> query = _context.Set<T>();
             return includes.Aggregate(query, (current, include) => current.Include(include));
@@ -63,9 +71,9 @@ namespace HealthHarmony.SQLRepository.Implementation
             return GetAll<T>().Filter(filters).ToPagedList(filters);
         }
 
-        public PagedList<T> GetPagedListWithIncludes<T>(BasePaginationFilters filters, params Expression<Func<T, object>>[] includes) where T : BaseModel
+        public PagedList<T> GetPagedList<T>(BasePaginationFilters filters, params Expression<Func<T, object>>[] includes) where T : BaseModel
         {
-            return GetAllWithIncludes(includes).Filter(filters).ToPagedList(filters);
+            return GetAll(includes).Filter(filters).ToPagedList(filters);
         }
 
         public async Task Update<T>(T entity) where T : BaseModel

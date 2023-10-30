@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace HealthHarmony.Auth.Models
+namespace HealthHarmony.Models.Auth.Entities
 {
     public class User : IdentityUser
     {

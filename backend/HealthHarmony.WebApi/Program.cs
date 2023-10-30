@@ -1,10 +1,12 @@
 using HealthHarmony.Addresses.Interfaces;
 using HealthHarmony.Addresses.Services;
 using HealthHarmony.Auth.Interfaces;
-using HealthHarmony.Auth.Models;
+using HealthHarmony.Models.Auth.Entities;
 using HealthHarmony.Auth.Services;
 using HealthHarmony.Clinics.Interfaces;
 using HealthHarmony.Clinics.Services;
+using HealthHarmony.Doctors.Interfaces;
+using HealthHarmony.Doctors.Services;
 using HealthHarmony.SQL;
 using HealthHarmony.SQLRepository.Implementation;
 using HealthHarmony.SQLRepository.Interfaces;
@@ -15,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -67,6 +70,7 @@ builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IAddressesService, AddressesService>();
 builder.Services.AddScoped<IClinicsService, ClinicsService>();
+builder.Services.AddScoped<IDoctorsService, DoctrosService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddAuthentication(opt => {
@@ -86,6 +90,12 @@ builder.Services.AddAuthentication(opt => {
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("JWT:Secret").Value))
         };
     });
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    options.JsonSerializerOptions.WriteIndented = true;
+});
 
 var app = builder.Build();
 

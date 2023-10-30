@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using HealthHarmony.Auth.DTOs.User;
 using HealthHarmony.Auth.Interfaces;
-using HealthHarmony.Auth.Models;
+using HealthHarmony.Models.Auth.Entities;
 using HealthHarmony.Models.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +10,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using HealthHarmony.Models.Doctors.Entities;
+using PasswordGenerator;
 
 namespace HealthHarmony.Auth.Services
 {
@@ -87,6 +89,27 @@ namespace HealthHarmony.Auth.Services
             var user = _userManager.Users.FirstOrDefault(x => x.Id == id.ToString());
             var userDto = _mapper.Map<UserDto>(user);
             return userDto;
+        }
+
+        public async Task<User> CreateUserForDoctor(Doctor doctor)
+        {
+            Password passwordGenerator = new Password();
+            var password = passwordGenerator.Next();
+            User user = new User
+            {
+                FirstName = doctor.FitrsName,
+                LastName = doctor.FitrsName,
+                Email = doctor.Email.Split('@')[0],
+                UserName = doctor.Email
+            };
+            var result = await _userManager.CreateAsync(user, password);
+            if (result.Succeeded)
+            {
+                return user;
+            } else
+            {
+                throw new Exception("There was a problem while creating user for doctor");
+            }
         }
     }
 }
