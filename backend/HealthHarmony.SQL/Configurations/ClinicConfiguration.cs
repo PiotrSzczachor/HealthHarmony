@@ -12,6 +12,10 @@ namespace HealthHarmony.SQL.Configurations
                 .WithOne()
                 .HasForeignKey<Clinic>(c => c.AddressId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(c => c.Images)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
