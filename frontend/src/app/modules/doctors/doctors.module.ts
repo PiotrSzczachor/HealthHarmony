@@ -7,6 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { reducers, DoctorsEffects } from './store';
+import { EditDoctorComponent } from './containers/edit-doctor/edit-doctor.component';
 
 
 
@@ -14,7 +15,8 @@ import { reducers, DoctorsEffects } from './store';
   declarations: [
     DoctorsPageComponent,
     DoctorsFiltersComponent,
-    DoctorCardComponent
+    DoctorCardComponent,
+    EditDoctorComponent
   ],
   imports: [
     CommonModule,

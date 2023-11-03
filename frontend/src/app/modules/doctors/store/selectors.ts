@@ -22,3 +22,8 @@ export const getDoctorsFiltersSelector = createSelector(
     selectFeature,
     (state) => state.filters
 );
+
+export const getAllSpecializationsSelector = createSelector(
+    selectFeature,
+    (state) => state.specializations
+);

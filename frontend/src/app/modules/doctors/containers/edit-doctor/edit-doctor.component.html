@@ -1,0 +1,99 @@
+<div class="edit-form-container" [formGroup]="fg">
+    <div class="heading">
+        <p class="title">{{ ('common.add' | translate) + " Doctor"}}</p>
+    </div>
+
+    <div class="profile-photo-container">
+        <div class="profile-photo">
+            <div class="image-container">
+                <img [src]="image.value ? (image.value | decode) : '../../../../../assets/empty-photo.png'">
+            </div>
+            <div class="delete-icon" (click)="deleteImage()" *ngIf="image.value">
+                <mat-icon>close</mat-icon>
+            </div>
+        </div>
+    </div>
+
+    <div class="fields-container">
+
+        <div class="field">
+            <p class="field-title">First name</p>
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="firstName">
+            </mat-form-field>
+        </div>
+
+        <div class="field">
+            <p class="field-title">First name</p>
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="lastName">
+            </mat-form-field>
+        </div>
+
+        <div class="field">
+            <p class="field-title">{{isEdit ? 'Email*' : 'Email' }}</p>
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="email">
+            </mat-form-field>
+        </div>
+
+        <div class="field">
+            <p class="field-title">Accepts remotely</p>
+            <mat-checkbox formControlName="acceptsRemotely">Check me</mat-checkbox>
+        </div>
+
+        <div class="double-field">
+            <div class="field" *ngIf="!showNewSpecializationInput">
+                <p class="field-title">Specializations</p>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="specializations" multiple>
+                        <mat-option [value]="specialization"
+                            *ngFor="let specialization of specializations">{{specialization.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button class="specialization-btn" (click)="changeShowNewSpecializationInput()">Add new</button>
+            </div>
+
+            <div class="field" *ngIf="showNewSpecializationInput" [formGroup]="newSpecializationFg">
+                <p class="field-title">Specializations</p>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="name" placeholder="New Specialization">
+                </mat-form-field>
+                <button class="specialization-btn" (click)="addNewSpecialization()">{{'common.save' | translate}}</button>
+                <button class="specialization-btn" (click)="changeShowNewSpecializationInput()">{{'common.cancel' | translate}}</button>
+            </div>
+
+
+            <div class="field">
+                <p class="field-title">Clinics</p>
+                <mat-form-field appearance="outline">
+                    <mat-select appearance="outline" formControlName="clinicsIds" multiple>
+                        <mat-option [value]="clinic.id"
+                            *ngFor="let clinic of clinics$ | async">{{clinic.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="upload-files-container">
+        <div class="drop-zone">
+            <input type="file" #fileDropRef id="fileDropRef" (change)="onFileSelected($event)" accept="image/*">
+            <div class="img-container">
+                <img src="../../../../../assets/icons/upload.png">
+            </div>
+            <h3>Drag and drop file here</h3>
+            <h3>Or</h3>
+            <label for="fileDropRef">Browse for file</label>
+        </div>
+    </div>
+    <div class="disclaimer">
+        <p>* Changing email will also generate new user for this doctor and remove previous one</p>
+    </div>
+    <div class="buttons-container">
+        <button class="btn" (click)="handleSubmit()">{{ (isEdit ? 'common.save' : 'common.add') | translate }}</button>
+        <button class="btn" (click)="cancel()">{{ 'common.cancel' | translate }}</button>
+        <button class="btn delete" (click)="deleteDoctor()" *ngIf="isEdit">{{ 'common.delete' | translate }}</button>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 import { Clinic } from "../clinics/clinic.model";
 import { Image } from "../shared/image.model";
-import { Specializations } from "./specialization.model";
+import { Specialization } from "./specialization.model";
 
 export interface Doctor {
     id?: string,
@@ -8,7 +8,8 @@ export interface Doctor {
     lastName: string,
     email: string,
     acceptsRemotely: boolean,
+    clinicsIds: string[],
     clinics: Clinic[],
-    specializations: Specializations[],
+    specializations: Specialization[],
     image?: Image
 }

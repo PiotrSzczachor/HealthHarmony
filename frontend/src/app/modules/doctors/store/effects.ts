@@ -108,6 +108,20 @@ export class DoctorsEffects {
         )
     );
 
+    getAllSpecilizations$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(DoctorsActions.getAllSpecializations),
+            mergeMap(() => {
+                return this.doctorsService.getAllSpecializations().pipe(
+                    map((specializations) => DoctorsActions.getAllSpecializationsSuccess({specializations})),
+                    catchError(error => {
+                        return of(DoctorsActions.getAllSpecializationsFailure({ error: error.message }))
+                    })
+                )
+            })
+        )
+    );
+
     onAddSuccess$ = createEffect(() =>
         this.actions$.pipe(
             ofType(DoctorsActions.addDoctorSuccess),

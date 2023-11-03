@@ -2,6 +2,7 @@ import { createAction, props } from "@ngrx/store";
 import { DoctorDto } from "src/app/models/doctors/doctor-dto.model";
 import { Doctor } from "src/app/models/doctors/doctor.model";
 import { DoctorsFilters } from "src/app/models/doctors/doctors-filters.model";
+import { Specialization } from "src/app/models/doctors/specialization.model";
 import { PagedList } from "src/app/models/shared/paged-list.model";
 import { PaginatorEvent } from "src/app/models/shared/paginator-event.model";
 
@@ -103,5 +104,19 @@ export const deleteDoctorSuccess = createAction(
 
 export const deleteDoctorFailure = createAction(
     `${prefix} Delete Doctor Failure`,
+    props<{error: string}>()
+);
+
+export const getAllSpecializations = createAction(
+    `${prefix} Get All Specializations`,
+);
+
+export const getAllSpecializationsSuccess = createAction(
+    `${prefix} Get All Specializations Success`,
+    props<{specializations: Specialization[]}>()
+);
+
+export const getAllSpecializationsFailure = createAction(
+    `${prefix} Get All Specializations Failure`,
     props<{error: string}>()
 );

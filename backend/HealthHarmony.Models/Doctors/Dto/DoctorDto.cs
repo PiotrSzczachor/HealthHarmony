@@ -13,9 +13,7 @@ namespace HealthHarmony.Models.Doctors.Dto
         public string Email { get; set; }
         public bool AcceptsRemotely { get; set; }
         public List<SpecializationDto> Specializations { get; set; }
-        public List<ClinicDto>? Clinics { get; set; }
         public List<Guid>? ClinicsIds { get; set; }
-        public Guid? UserId { get; set; }
         public Image? Image { get; set; }
     }
 }

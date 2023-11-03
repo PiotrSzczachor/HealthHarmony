@@ -1,0 +1,15 @@
+@use "../../../../shared/styles/edit-form.scss";
+@use "../../../../../variables";
+
+.specialization-btn {
+    height: 35px;
+    min-width: 80px;
+    background-color: variables.$basic-blue-color;
+    border-radius: 5px;
+    color: variables.$white-color;
+    border: none;
+    font-family: variables.$font-family;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
