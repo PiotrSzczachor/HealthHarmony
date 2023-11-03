@@ -72,5 +72,11 @@ namespace HealthHarmony.WebApi.Controllers
         {
             await _doctorsService.Update(doctor);
         }
+
+        [HttpGet("specializations")]
+        public async Task<List<Specialization>> GetAllSpecializations()
+        {
+            return await _doctorsService.GetAllSpecializations();
+        }
     }
 }

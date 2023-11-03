@@ -111,5 +111,17 @@ namespace HealthHarmony.Auth.Services
                 throw new Exception("There was a problem while creating user for doctor");
             }
         }
+
+        public async Task DeleteUser(string userId)
+        {
+            var user = await _userManager.Users.SingleAsync(x => x.Id == userId);
+            await _userManager.DeleteAsync(user);
+        }
+
+        public async Task DeleteUserByEmail(string email)
+        {
+            var user = await _userManager.Users.SingleAsync(x => x.Email == email);
+            await _userManager.DeleteAsync(user);
+        }
     }
 }

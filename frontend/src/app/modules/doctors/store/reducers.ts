@@ -14,7 +14,8 @@ export const initialState: DoctorsState = {
         firstName: null,
         lastName: null,
         acceptsRemotely: null
-    }
+    },
+    specializations: []
 }
 
 export const reducers = createReducer(
@@ -69,5 +70,13 @@ export const reducers = createReducer(
     on(DoctorsActions.getPagedDoctorsSuccess, (state, action) => ({
         ...state,
         pagedDoctors: action.pagedDoctors
+    })),
+    on(DoctorsActions.getAllSpecializations, (state) => ({
+        ...state,
+        specializations: []
+    })),
+    on(DoctorsActions.getAllSpecializationsSuccess, (state, action) => ({
+        ...state,
+        specializations: action.specializations
     })),
 )

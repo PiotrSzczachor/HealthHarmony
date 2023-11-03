@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { DoctorsFilters } from 'src/app/models/doctors/doctors-filters.model';
 import { AppState } from 'src/app/store/app.state';
 import { DoctorsActions, getDoctorsFiltersSelector } from '../../store';
+import { EditDoctorComponent } from '../../containers/edit-doctor/edit-doctor.component';
 
 @Component({
   selector: 'app-doctors-filters',
@@ -48,6 +49,6 @@ export class DoctorsFiltersComponent implements OnInit {
     }
 
     openAddPopup(): void {
-        
+        this.dialog.open(EditDoctorComponent, {data: {isEdit: false}})
     }
 }

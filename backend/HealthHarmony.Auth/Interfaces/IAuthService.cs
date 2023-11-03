@@ -14,5 +14,7 @@ namespace HealthHarmony.Auth.Interfaces
         public Task<string?> Login(UserLoginDto dto);
         public Task<UserDto?> GetUser(Guid id);
         Task<User> CreateUserForDoctor(Doctor doctor);
+        Task DeleteUser(string userId);
+        Task DeleteUserByEmail(string email);
     }
 }
