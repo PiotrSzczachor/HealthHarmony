@@ -15,8 +15,11 @@ import { PaginatorComponent } from './paginator/paginator.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from "@angular/material/select";
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const DIRECTIVES = [
     IsLoggedInDirective, IsNotLoggedInDirective
@@ -42,7 +45,10 @@ const COMPONENTS = [
     MatInputModule,
     MatSelectModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     MatIconModule,
@@ -54,6 +60,10 @@ const COMPONENTS = [
     MatSelectModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatCheckboxModule,
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     DIRECTIVES,
     PIPES,
     COMPONENTS

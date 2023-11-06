@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HealthHarmony.Models\HealthHarmony.Models.csproj" />
+    <ProjectReference Include="..\HealthHarmony.SQLRepository\HealthHarmony.SQLRepository.csproj" />
   </ItemGroup>
 
 </Project>

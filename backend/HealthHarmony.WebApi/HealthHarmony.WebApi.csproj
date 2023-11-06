@@ -25,6 +25,7 @@
     <ProjectReference Include="..\HealthHarmony.Clinics\HealthHarmony.Clinics.csproj" />
     <ProjectReference Include="..\HealthHarmony.Doctors\HealthHarmony.Doctors.csproj" />
     <ProjectReference Include="..\HealthHarmony.SQL\HealthHarmony.SQL.csproj" />
+    <ProjectReference Include="..\HealthHarmony.Visits\HealthHarmony.Visits.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,6 +2,7 @@
 using HealthHarmony.Models.Auth.Entities;
 using HealthHarmony.Models.Clinics.Entities;
 using HealthHarmony.Models.Common.Entities;
+using HealthHarmony.Models.Visits.Entities;
 
 namespace HealthHarmony.Models.Doctors.Entities
 {
@@ -17,5 +18,7 @@ namespace HealthHarmony.Models.Doctors.Entities
         public virtual User User { get; set; }
         public Guid? ImageId { get; set; }
         public virtual Image? Image { get; set; }
+        public virtual ICollection<DailySchedule>? DailySchedules { get; set; }
+        public virtual ICollection<Visit>? Visits { get; set; }
     }
 }

@@ -8,6 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MainPageModule } from "../main-page/main-page.module";
 import { AuthService } from 'src/app/services/auth.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const COMPONENTS = [
     LoginComponent, RegisterComponent
@@ -22,7 +23,8 @@ const COMPONENTS = [
         ReactiveFormsModule,
         StoreModule.forFeature('authState', reducers),
         EffectsModule.forFeature([AuthEffects]),
-        MainPageModule
+        MainPageModule,
+        SharedModule
     ]
 })
 export class AuthModule { }

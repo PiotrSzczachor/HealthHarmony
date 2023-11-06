@@ -14,8 +14,4 @@
     <ProjectReference Include="..\HealthHarmony.Common\HealthHarmony.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Visits\Entities\" />
-  </ItemGroup>
-
 </Project>

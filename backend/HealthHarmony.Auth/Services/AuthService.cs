@@ -10,21 +10,23 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using HealthHarmony.Models.Doctors.Entities;
-using PasswordGenerator;
+using HealthHarmony.SQLRepository.Interfaces;
+using HealthHarmony.Models.Patients.Entities;
 
 namespace HealthHarmony.Auth.Services
 {
     public class AuthService : IAuthService
     {
         private readonly IConfiguration _configuration;
+        private readonly IRepository _repository;
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
-        public AuthService(IConfiguration configuration, UserManager<User> userManager, IMapper mapper)
+        public AuthService(IConfiguration configuration, UserManager<User> userManager, IMapper mapper, IRepository repository)
         {
             _configuration = configuration;
             _userManager = userManager;
             _mapper = mapper;
+            _repository = repository;
         }
 
         public string GenerateToken(List<Claim> claims)
@@ -54,6 +56,7 @@ namespace HealthHarmony.Auth.Services
             var result = await _userManager.CreateAsync(user, userDto.Password);
             if( result.Succeeded)
             {
+                await GeneratePatientForUser(user, userDto.PhoneNumber, userDto.BirthDate, userDto.Pesel);
                 List<Claim> claims = new List<Claim>
                 {
                     new Claim("userId", user.Id.ToString())
@@ -91,25 +94,32 @@ namespace HealthHarmony.Auth.Services
             return userDto;
         }
 
-        public async Task<User> CreateUserForDoctor(Doctor doctor)
+        public async Task DeleteUser(string userId)
         {
-            Password passwordGenerator = new Password();
-            var password = passwordGenerator.Next();
-            User user = new User
+            var user = await _userManager.Users.SingleAsync(x => x.Id == userId);
+            await _userManager.DeleteAsync(user);
+        }
+
+        public async Task DeleteUserByEmail(string email)
+        {
+            var user = await _userManager.Users.SingleAsync(x => x.Email == email);
+            await _userManager.DeleteAsync(user);
+        }
+
+        private async Task GeneratePatientForUser(User user, string phoneNumber, DateTime birthDate, string pesel)
+        {
+            var patient = new Patient
             {
-                FirstName = doctor.FitrsName,
-                LastName = doctor.FitrsName,
-                Email = doctor.Email.Split('@')[0],
-                UserName = doctor.Email
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                User = user,
+                UserId = user.Id,
+                BirthDate = birthDate.ToUniversalTime(),
+                PhoneNumber = phoneNumber,
+                Pesel = pesel
             };
-            var result = await _userManager.CreateAsync(user, password);
-            if (result.Succeeded)
-            {
-                return user;
-            } else
-            {
-                throw new Exception("There was a problem while creating user for doctor");
-            }
+            await _repository.Add(patient);
         }
     }
 }

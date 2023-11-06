@@ -16,16 +16,19 @@ export class RegisterComponent {
 
     checkPasswords: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
         let pass = group.get('password')?.value;
-        let confirmPass = group.get('confirmPassword')?.value
+        let confirmPass = group.get('repeatPassword')?.value
         return pass === confirmPass ? null : { notSame: true }
     }
 
     registerForm = this.formBuilder.group({
-        firstName: new FormControl('', Validators.required),
-        lastName: new FormControl('', Validators.required),
-        email: new FormControl('', Validators.required),
-        password: new FormControl('', Validators.required),
-        repeatPassword: new FormControl('', Validators.required),
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: ['', Validators.required],
+        pesel: ['', Validators.required],
+        phoneNumber: ['', Validators.required],
+        birthDate: [null as unknown as Date, Validators.required], 
+        password: ['', Validators.required],
+        repeatPassword: ['', Validators.required],
     });
 
     LogInButtonClick(): void {
@@ -33,10 +36,10 @@ export class RegisterComponent {
     }
 
     SignUpButtonClick(): void {
+        console.log(this.registerForm)
+        console.log(this.registerForm.valid)
         if (this.registerForm.valid) {
-            console.log("TEST")
             const registerDto = this.registerForm.value as UserRegisterDto
-            console.log(registerDto)
             this.store.dispatch(AuthActions.register({ registerDto }));
         }
     }

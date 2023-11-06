@@ -52,6 +52,18 @@
         "filters": {
             "name": "Name"
         }
+    },
+    "doctors": {
+        "title": "Doctors",
+        "acceptsRemotely":"Accepts remotely",
+        "filters": {
+            "firstName": "First name",
+            "lastName": "Last name",
+            "acceptsRemotely": "Accepts remotely"
+        }
+    },
+    "visits": {
+        "title": "Visits"
     }
     
 }
