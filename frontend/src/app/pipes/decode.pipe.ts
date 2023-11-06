@@ -6,7 +6,7 @@ import { Image } from '../models/shared/image.model';
 })
 export class DecodePipe implements PipeTransform {
 
-    transform(image: Image, ...args: unknown[]): any {
+    transform(image: Image): any {
         return `data:image/${image.extension};base64,${image.content}`;;
     }
 

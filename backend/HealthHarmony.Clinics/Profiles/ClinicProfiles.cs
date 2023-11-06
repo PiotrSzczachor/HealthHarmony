@@ -9,6 +9,7 @@ namespace HealthHarmony.Clinics.Profiles
         public ClinicProfiles()
         {
             CreateMap<ClinicDto, Clinic>();
+            CreateMap<Clinic, ClinicDto>();
         }
     }
 }

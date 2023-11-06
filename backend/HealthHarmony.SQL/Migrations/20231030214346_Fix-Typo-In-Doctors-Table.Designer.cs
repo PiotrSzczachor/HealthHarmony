@@ -3,6 +3,7 @@ using System;
 using HealthHarmony.SQL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HealthHarmony.SQL.Migrations
 {
     [DbContext(typeof(HealthHarmonyContext))]
-    partial class HealthHarmonyContextModelSnapshot : ModelSnapshot
+    [Migration("20231030214346_Fix-Typo-In-Doctors-Table")]
+    partial class FixTypoInDoctorsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -315,87 +317,6 @@ namespace HealthHarmony.SQL.Migrations
                     b.ToTable("Patients");
                 });
 
-            modelBuilder.Entity("HealthHarmony.Models.Visits.Entities.DailySchedule", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ClinicId")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("DayOff")
-                        .HasColumnType("boolean");
-
-                    b.Property<Guid>("DoctorId")
-                        .HasColumnType("uuid");
-
-                    b.Property<TimeSpan>("Duration")
-                        .HasColumnType("interval");
-
-                    b.Property<TimeOnly>("EndHour")
-                        .HasColumnType("time without time zone");
-
-                    b.Property<bool>("Remote")
-                        .HasColumnType("boolean");
-
-                    b.Property<TimeOnly>("StartHour")
-                        .HasColumnType("time without time zone");
-
-                    b.Property<int>("Weekday")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClinicId");
-
-                    b.HasIndex("DoctorId", "Weekday")
-                        .IsUnique();
-
-                    b.ToTable("DailySchedules");
-                });
-
-            modelBuilder.Entity("HealthHarmony.Models.Visits.Entities.Visit", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ClinicId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("DoctorId")
-                        .HasColumnType("uuid");
-
-                    b.Property<TimeOnly>("EndHour")
-                        .HasColumnType("time without time zone");
-
-                    b.Property<bool>("IsRemote")
-                        .HasColumnType("boolean");
-
-                    b.Property<Guid?>("PatientId")
-                        .HasColumnType("uuid");
-
-                    b.Property<TimeOnly>("StartHour")
-                        .HasColumnType("time without time zone");
-
-                    b.Property<DateTime>("VisitDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("VisitStatus")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClinicId");
-
-                    b.HasIndex("DoctorId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("Visits");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -606,51 +527,6 @@ namespace HealthHarmony.SQL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("HealthHarmony.Models.Visits.Entities.DailySchedule", b =>
-                {
-                    b.HasOne("HealthHarmony.Models.Clinics.Entities.Clinic", "Clinic")
-                        .WithMany("DailySchedules")
-                        .HasForeignKey("ClinicId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HealthHarmony.Models.Doctors.Entities.Doctor", "Doctor")
-                        .WithMany("DailySchedules")
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Clinic");
-
-                    b.Navigation("Doctor");
-                });
-
-            modelBuilder.Entity("HealthHarmony.Models.Visits.Entities.Visit", b =>
-                {
-                    b.HasOne("HealthHarmony.Models.Clinics.Entities.Clinic", "Clinic")
-                        .WithMany("Visits")
-                        .HasForeignKey("ClinicId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HealthHarmony.Models.Doctors.Entities.Doctor", "Doctor")
-                        .WithMany("Visits")
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HealthHarmony.Models.Patients.Entities.Patient", "Patient")
-                        .WithMany("Visits")
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Clinic");
-
-                    b.Navigation("Doctor");
-
-                    b.Navigation("Patient");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -704,23 +580,7 @@ namespace HealthHarmony.SQL.Migrations
 
             modelBuilder.Entity("HealthHarmony.Models.Clinics.Entities.Clinic", b =>
                 {
-                    b.Navigation("DailySchedules");
-
                     b.Navigation("Images");
-
-                    b.Navigation("Visits");
-                });
-
-            modelBuilder.Entity("HealthHarmony.Models.Doctors.Entities.Doctor", b =>
-                {
-                    b.Navigation("DailySchedules");
-
-                    b.Navigation("Visits");
-                });
-
-            modelBuilder.Entity("HealthHarmony.Models.Patients.Entities.Patient", b =>
-                {
-                    b.Navigation("Visits");
                 });
 #pragma warning restore 612, 618
         }

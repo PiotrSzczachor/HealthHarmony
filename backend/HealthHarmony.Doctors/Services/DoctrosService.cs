@@ -87,12 +87,18 @@ namespace HealthHarmony.Doctors.Services
                 await _userManager.DeleteAsync(user);
             }
             
-            doctor.FitrsName = doctorDto.FitrsName;
+            doctor.FirstName = doctorDto.FirstName;
             doctor.LastName = doctorDto.LastName;
             doctor.Email = doctorDto.Email;
             doctor.AcceptsRemotely = doctorDto.AcceptsRemotely;
             doctor.Image = doctorDto.Image;
             await _repository.Update(doctor);
+        }
+
+        public async Task<List<Specialization>> GetAllSpecializations()
+        {
+            var result = await _repository.GetAll<Specialization>().ToListAsync();
+            return result;
         }
 
         private async Task AssignClinicsToDoctor(Doctor doctor, List<Guid> clinicsIds)
@@ -153,43 +159,6 @@ namespace HealthHarmony.Doctors.Services
                 doctor.Specializations.Remove(specialization);
             }
             await AssignSpecializationsToDoctor(doctor, doctorDto);
-            /*// Specialization
-            var specializationsList = new List<Specialization>();
-            //New specializations to create
-            var newSpecializationsDto = doctorDto.Specializations.Where(x => x.Id == null).ToList();
-            //Check if there is no such specialization in db
-            foreach (var specializationDto in newSpecializationsDto)
-            {
-                var specialization = await _repository.Get<Specialization>(x => x.Name == specializationDto.Name);
-                if (specialization == null)
-                    continue;
-                doctor.Specializations.Add(specialization);
-                newSpecializationsDto.Remove(specializationDto);
-            }
-            var newSpecializations = _mapper.Map<List<Specialization>>(newSpecializationsDto);
-            specializationsList.AddRange(newSpecializations);
-            //upToDate ids
-            var upToDateSpecializationsIds = doctorDto.Specializations.Where(x => x.Id != null).Select(x => x.Id).ToList();
-            var oldDoctorSpecializationsIds = doctor.Specializations.Select(x => x.Id).ToList();
-            var specializationsToRemoveIds = new List<Guid>();
-            foreach (var oldSpecialization in oldDoctorSpecializationsIds)
-            {
-                if (!upToDateSpecializationsIds.Contains(oldSpecialization))
-                {
-                    specializationsToRemoveIds.Add(oldSpecialization);
-                }
-            }
-            var specializationsToRemove = await _repository.GetAll<Specialization>(x => x.Doctors).Where(x => specializationsToRemoveIds.Contains(x.Id)).ToListAsync();
-            foreach (var specializationToRemove in specializationsToRemove)
-            {
-                doctor.Specializations.Remove(specializationToRemove);
-            }
-
-            //Assign specializations already exising in database
-            var newDoctorSpecializationsExistingInDb = doctorDto.Specializations.Where(x => x.Id != null && !oldDoctorSpecializationsIds.Contains((Guid)x.Id)).Select(x => x.Id).ToList();
-            var specializationsFromDb = await _repository.GetAll<Specialization>(x => x.Doctors).Where(x => newDoctorSpecializationsExistingInDb.Contains(x.Id)).ToListAsync();
-            specializationsList.AddRange(specializationsFromDb);
-            doctor.Specializations = specializationsList;*/
         }
 
         private async Task<User> CreateUserForDoctor(Doctor doctor)

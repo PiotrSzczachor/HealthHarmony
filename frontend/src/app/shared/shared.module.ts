@@ -44,6 +44,7 @@ const COMPONENTS = [
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatCheckboxModule,
     ReactiveFormsModule,
     MatDialogModule,
     FormsModule,

@@ -7,6 +7,6 @@ namespace HealthHarmony.Doctors.Interfaces
 {
     public interface IDoctorsService : IBaseService<Doctor, DoctorDto, DoctorsFilters>
     {
-
+        Task<List<Specialization>> GetAllSpecializations();
     }
 }

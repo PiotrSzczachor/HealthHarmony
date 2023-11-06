@@ -28,6 +28,7 @@ import { VisitsModule } from './modules/visits/visits.module';
     imports: [
         AuthModule,
         ClinicsModule,
+        DoctorsModule,
         DashboardModule,
         MainPageModule,
         BrowserModule,

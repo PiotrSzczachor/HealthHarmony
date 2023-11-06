@@ -8,7 +8,9 @@
         "add": "Add",
         "cancel": "Cancel",
         "save": "Save",
-        "delete": "Delete"
+        "delete": "Delete",
+        "yes": "Yes",
+        "no": "No"
     },
     "header": {
         "home": "Home",
