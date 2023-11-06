@@ -1,0 +1,8 @@
+<div class="visits-scheduler-container">
+    <div class="week-days-header">
+        <div class="weekday disable" *ngFor="let day of week">
+            <p>{{day | date:'EEEE'}}</p>
+            <p>{{day | date:'mediumDate'}}</p>
+        </div>
+    </div>
+</div>

@@ -18,6 +18,8 @@ import { MatSelectModule } from "@angular/material/select";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const DIRECTIVES = [
     IsLoggedInDirective, IsNotLoggedInDirective
@@ -45,7 +47,9 @@ const COMPONENTS = [
     MatCheckboxModule,
     ReactiveFormsModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     MatIconModule,
@@ -59,6 +63,8 @@ const COMPONENTS = [
     MatDialogModule,
     MatCheckboxModule,
     FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     DIRECTIVES,
     PIPES,
     COMPONENTS

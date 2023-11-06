@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,7 @@ import { SharedModule } from './shared/shared.module';
 import { FaqModule } from './modules/faq/faq.module';
 import { ClinicsModule } from './modules/clinics/clinics.module';
 import { DoctorsModule } from './modules/doctors/doctors.module';
+import { VisitsModule } from './modules/visits/visits.module';
 
 @NgModule({
     declarations: [
@@ -45,7 +46,8 @@ import { DoctorsModule } from './modules/doctors/doctors.module';
                 deps: [HttpClient]
             }
         }),
-        FaqModule
+        FaqModule,
+        VisitsModule
     ],
     providers: [
         { 

@@ -8,7 +8,7 @@
     background-image: linear-gradient(to right, variables.$gradient-left-color 0%, variables.$gradient-right-color 100%);
 
     .register-form-container {
-        height: 62vh;
+        height: 90vh;
         width: 25vw;
         border-radius: 20px;
         display: flex;
@@ -37,10 +37,6 @@
                 border: 5px solid variables.$basic-blue-color;
             }
 
-            input {
-                text-align: center;
-                border: 5px solid #10C75B;
-            }
         }
 
         .logo-container {

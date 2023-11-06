@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthHarmony.SQLRepository
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthHarmony.Models", "HealthHarmony.Models\HealthHarmony.Models.csproj", "{C664104A-B9C7-4308-BD72-9396CA766C8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthHarmony.Doctors", "HealthHarmony.Doctors\HealthHarmony.Doctors.csproj", "{A1C01AB1-BDF4-44DA-9109-57BDA20F861F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthHarmony.Doctors", "HealthHarmony.Doctors\HealthHarmony.Doctors.csproj", "{A1C01AB1-BDF4-44DA-9109-57BDA20F861F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthHarmony.Visits", "HealthHarmony.Visits\HealthHarmony.Visits.csproj", "{C3938456-3C33-482C-8C1B-7762B025A56C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{A1C01AB1-BDF4-44DA-9109-57BDA20F861F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1C01AB1-BDF4-44DA-9109-57BDA20F861F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1C01AB1-BDF4-44DA-9109-57BDA20F861F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3938456-3C33-482C-8C1B-7762B025A56C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3938456-3C33-482C-8C1B-7762B025A56C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3938456-3C33-482C-8C1B-7762B025A56C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3938456-3C33-482C-8C1B-7762B025A56C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

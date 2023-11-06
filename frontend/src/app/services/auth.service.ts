@@ -24,7 +24,7 @@ export class AuthService {
 
     register(dto: UserRegisterDto): Observable<any> {
 
-        return this.http.post<any>(environment.apiUrl + 'register', dto);
+        return this.http.post<any>(this.prefix + 'register', dto);
     }
 
     getUser(id: string): Observable<User> {

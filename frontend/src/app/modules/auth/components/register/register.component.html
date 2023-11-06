@@ -11,10 +11,21 @@
                 <input type="text" class="register-fields" placeholder="Last Name" formControlName="lastName">
 
                 <input type="text" class="register-fields" placeholder="Email" formControlName="email">
+
+                <input type="text" class="register-fields" placeholder="Phone number" formControlName="phoneNumber">
+
+                <input type="text" class="register-fields" placeholder="Pesel" formControlName="pesel">
+
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" formControlName="birthDate">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker startView="year"></mat-datepicker>
+                  </mat-form-field>
                 
                 <input type="password" class="register-fields" placeholder="Password" formControlName="password">
                 
                 <input type="password" class="register-fields" placeholder="Repeat Password" formControlName="repeatPassword">
+
             </form>
         </div>
         <p class="dont-have-acc">Already have an Account?<span class="collored-words" (click)="LogInButtonClick()">Log In</span> now!</p>

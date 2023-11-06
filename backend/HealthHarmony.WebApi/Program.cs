@@ -18,6 +18,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using System.Text.Json.Serialization;
+using HealthHarmony.Visits.Interfaces;
+using HealthHarmony.Visits.Services;
+using HealthHarmony.Common.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -71,6 +74,7 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IAddressesService, AddressesService>();
 builder.Services.AddScoped<IClinicsService, ClinicsService>();
 builder.Services.AddScoped<IDoctorsService, DoctrosService>();
+builder.Services.AddScoped<IVisitsService, VisitsService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddAuthentication(opt => {
@@ -95,6 +99,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     options.JsonSerializerOptions.WriteIndented = true;
+    options.JsonSerializerOptions.Converters.Add(new TimeOnlyJsonConverter());
 });
 
 var app = builder.Build();

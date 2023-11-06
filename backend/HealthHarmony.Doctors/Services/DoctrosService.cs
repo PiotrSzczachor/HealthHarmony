@@ -1,14 +1,15 @@
 ﻿using AutoMapper;
-using HealthHarmony.Auth.Interfaces;
 using HealthHarmony.Common.Models.Pagination;
 using HealthHarmony.Doctors.Interfaces;
+using HealthHarmony.Models.Auth.Entities;
 using HealthHarmony.Models.Clinics.Entities;
 using HealthHarmony.Models.Doctors.Dto;
 using HealthHarmony.Models.Doctors.Entities;
 using HealthHarmony.Models.Doctors.Filters;
-using HealthHarmony.SQL;
 using HealthHarmony.SQLRepository.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using PasswordGenerator;
 
 namespace HealthHarmony.Doctors.Services
 {
@@ -16,12 +17,12 @@ namespace HealthHarmony.Doctors.Services
     {
         private readonly IRepository _repository;
         private readonly IMapper _mapper;
-        private readonly IAuthService _authService;
-        public DoctrosService(IRepository repository, IMapper mapper, IAuthService authService) 
+        private readonly UserManager<User> _userManager;
+        public DoctrosService(IRepository repository, IMapper mapper, UserManager<User> userManager) 
         {
             _repository = repository;
             _mapper = mapper;
-            _authService = authService;
+            _userManager = userManager;
         }
         public async Task Add(DoctorDto doctorDto)
         {
@@ -36,7 +37,10 @@ namespace HealthHarmony.Doctors.Services
 
         public async Task Delete(Guid Id)
         {
-            await _repository.Delete<Doctor>(Id);
+            //We have to just delete doctor's user - cascade delete will do rest for us
+            var doctor = await _repository.Get<Doctor>(Id, x => x.User);
+            var user = doctor.User;
+            await _userManager.DeleteAsync(user);
         }
 
         public async Task<List<Doctor>> GetAll()
@@ -79,7 +83,8 @@ namespace HealthHarmony.Doctors.Services
             {
                 var mappedDoctorDto = _mapper.Map<Doctor>(doctorDto);
                 await AssignUserToDoctor(mappedDoctorDto);
-                await _authService.DeleteUserByEmail(doctorDto.Email);  
+                var user = await _userManager.Users.SingleAsync(x => x.Email == doctorDto.Email);
+                await _userManager.DeleteAsync(user);
             }
             
             doctor.FirstName = doctorDto.FirstName;
@@ -104,7 +109,7 @@ namespace HealthHarmony.Doctors.Services
 
         private async Task AssignUserToDoctor(Doctor doctor)
         {
-            var user = await _authService.CreateUserForDoctor(doctor);
+            var user = await CreateUserForDoctor(doctor);
             doctor.User = user;
             doctor.UserId = user.Id;
         }
@@ -154,6 +159,28 @@ namespace HealthHarmony.Doctors.Services
                 doctor.Specializations.Remove(specialization);
             }
             await AssignSpecializationsToDoctor(doctor, doctorDto);
+        }
+
+        private async Task<User> CreateUserForDoctor(Doctor doctor)
+        {
+            Password passwordGenerator = new Password();
+            var password = passwordGenerator.Next();
+            User user = new User
+            {
+                FirstName = doctor.FirstName,
+                LastName = doctor.LastName,
+                Email = doctor.Email.Split('@')[0],
+                UserName = doctor.Email
+            };
+            var result = await _userManager.CreateAsync(user, password);
+            if (result.Succeeded)
+            {
+                return user;
+            }
+            else
+            {
+                throw new Exception("There was a problem while creating user for doctor");
+            }
         }
 
     }
