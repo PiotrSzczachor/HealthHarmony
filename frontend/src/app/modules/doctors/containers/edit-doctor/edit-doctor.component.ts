@@ -124,6 +124,7 @@ export class EditDoctorComponent implements OnInit {
 
     deleteDoctor(): void {
         this.store.dispatch(DoctorsActions.deleteDoctor({id: this.data.id}));
+        this.matDialogRef.close();
     }
 
     deleteImage(): void {
