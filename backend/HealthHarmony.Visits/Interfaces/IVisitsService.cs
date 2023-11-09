@@ -10,6 +10,7 @@ namespace HealthHarmony.Visits.Interfaces
         Task<List<VisitsPerDay>> GetNumberOfAvaliableVisitsByDateRange(Guid specializationId, DateTime startDate, DateTime endDate);
         Task GenerateVisistsBasedOnSchedule(WeeklyWorkSchedule schedule, Guid doctorId);
         Task AddDoctorSchedule(WeeklyWorkSchedule schedule, string userId);
+        Task<WeeklyWorkSchedule> GetDoctorSchedule(string userId);
         
     }
 }

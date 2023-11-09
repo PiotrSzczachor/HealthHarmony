@@ -26,6 +26,17 @@ namespace HealthHarmony.WebApi.Controllers
             await _visitsService.AddDoctorSchedule(schedule, userId);
         }
 
+        [HttpGet("schedule")]
+        public async Task<WeeklyWorkSchedule> GetSchedule()
+        {
+            var userId = User.Claims.FirstOrDefault(x => x.Type == TokenClaims.UserId)?.Value;
+            if (userId == null)
+            {
+                throw new ApplicationException("There is no user Id in token");
+            }
+            return await _visitsService.GetDoctorSchedule(userId);
+        }
+
         [HttpPost("per-day")]
         public async Task<List<VisitsPerDay>> GetNumberOfAvaliableVisitsByDateRange([FromBody] VisitsPerDayRequest request)
         {

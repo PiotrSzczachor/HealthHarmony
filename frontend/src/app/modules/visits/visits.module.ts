@@ -4,6 +4,9 @@ import { VisitsPageComponent } from './containers/visits-page/visits-page.compon
 import { SharedModule } from 'src/app/shared/shared.module';
 import { VisitsSchedulerComponent } from './components/visits-scheduler/visits-scheduler.component';
 import { VisitsFiltersComponent } from './components/visits-filters/visits-filters.component';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { reducers, VisitsEffects } from './store';
 
 
 
@@ -11,11 +14,13 @@ import { VisitsFiltersComponent } from './components/visits-filters/visits-filte
   declarations: [
     VisitsPageComponent,
     VisitsSchedulerComponent,
-    VisitsFiltersComponent
+    VisitsFiltersComponent,
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forFeature('visitsState', reducers),
+    EffectsModule.forFeature([VisitsEffects]),
   ]
 })
 export class VisitsModule { }

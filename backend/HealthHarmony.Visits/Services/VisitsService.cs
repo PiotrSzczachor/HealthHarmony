@@ -216,5 +216,31 @@ namespace HealthHarmony.Visits.Services
             };
             return dailySchedule;
         }
+
+        public async Task<WeeklyWorkSchedule> GetDoctorSchedule(string userId)
+        {
+            var doctor = await _repository.GetAll<Doctor>(x => x.DailySchedules).FirstOrDefaultAsync(x => x.UserId == userId);
+            if(doctor == null)
+            {
+                throw new ApplicationException("Coresponding user to this doctor not found");
+            }
+            var monday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.Where(x => x.Weekday == WeekdaysEnum.Monday));
+            var tuesday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.Where(x => x.Weekday == WeekdaysEnum.Tuesday));
+            var wednesday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.Where(x => x.Weekday == WeekdaysEnum.Wednesday));
+            var thursday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.Where(x => x.Weekday == WeekdaysEnum.Thursday));
+            var friday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.Where(x => x.Weekday == WeekdaysEnum.Friday));
+            var saturday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.Where(x => x.Weekday == WeekdaysEnum.Saturday));
+            var sunday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.Where(x => x.Weekday == WeekdaysEnum.Sunday));
+            return new WeeklyWorkSchedule
+            {
+                Monday = monday,
+                Tuesday = tuesday,
+                Wednesday = wednesday,
+                Thursday = thursday,
+                Friday = friday,
+                Saturday = saturday,
+                Sunday = sunday
+            };
+        }
     }
 }

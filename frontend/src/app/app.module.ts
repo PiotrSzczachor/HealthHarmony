@@ -31,6 +31,7 @@ import { VisitsModule } from './modules/visits/visits.module';
         DoctorsModule,
         DashboardModule,
         MainPageModule,
+        VisitsModule,
         BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule,
