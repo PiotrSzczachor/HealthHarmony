@@ -1,0 +1,10 @@
+<div class="confirmation-dialog-container">
+    <div class="dialog-header">
+        <p class="title">{{data.title}}</p>
+    </div>
+    <p class="message">{{data.message}}</p>
+    <div class="buttons-container">
+        <button (click)="confirm()">{{ "common.yes" | translate }}</button>
+        <button (click)="cancel()">{{ "common.no" | translate }}</button>
+    </div>
+</div>

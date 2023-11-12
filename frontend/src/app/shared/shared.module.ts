@@ -3,11 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { ErrorInterceptor } from '../interceptors/error.interceptor';
-import { TokenInterceptor } from '../interceptors/token.interceptor';
+import { TranslateModule } from '@ngx-translate/core';
 import { IsLoggedInDirective } from '../directives/is-logged-in.directive';
 import { IsNotLoggedInDirective } from '../directives/is-not-logged-in.directive';
 import { DecodePipe } from '../pipes/decode.pipe';
@@ -20,17 +16,20 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { HourPipe } from '../pipes/hour.pipe';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 const DIRECTIVES = [
     IsLoggedInDirective, IsNotLoggedInDirective
 ]
 
 const PIPES = [
-    DecodePipe
+    DecodePipe,
+    HourPipe
 ]
 
 const COMPONENTS = [
-    PaginatorComponent
+    PaginatorComponent, ConfirmationDialogComponent
 ]
 
 @NgModule({

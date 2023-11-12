@@ -1,6 +1,8 @@
 ﻿using HealthHarmony.Common.Constants;
 using HealthHarmony.Models.Visits.Dto;
+using HealthHarmony.Models.Visits.Entities;
 using HealthHarmony.Visits.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HealthHarmony.WebApi.Controllers
@@ -26,10 +28,39 @@ namespace HealthHarmony.WebApi.Controllers
             await _visitsService.AddDoctorSchedule(schedule, userId);
         }
 
-        [HttpPost("per-day")]
-        public async Task<List<VisitsPerDay>> GetNumberOfAvaliableVisitsByDateRange([FromBody] VisitsPerDayRequest request)
+        [HttpGet("schedule")]
+        public async Task<WeeklyWorkSchedule> GetSchedule()
         {
-            return await _visitsService.GetNumberOfAvaliableVisitsByDateRange(request.SpecializationId, request.StartDate, request.EndDate);
+            var userId = User.Claims.FirstOrDefault(x => x.Type == TokenClaims.UserId)?.Value;
+            if (userId == null)
+            {
+                throw new ApplicationException("There is no user Id in token");
+            }
+            return await _visitsService.GetDoctorSchedule(userId);
         }
+
+        [HttpGet("per-day")]
+        public async Task<List<VisitsPerDay>> GetNumberOfAvaliableVisitsByDateRange([FromQuery] VisitsPerDayRequest request)
+        {
+            return await _visitsService.GetNumberOfAvaliableVisitsByDateRange(request.SpecializationId, request.ClinicId, request.StartDate, request.IsRemote, 6);
+        }
+
+        [HttpGet("avaliable")]
+        public async Task<List<Visit>> GetAvaliableVisitsForSpecificDate([FromQuery] GetAvaliableVisitsForSpecificDayRequest request)
+        {
+            return await _visitsService.GetAvaliableVisitsForSpecificDate(request);
+        }
+
+        [HttpPatch("{visitId:Guid}/book")]
+        public async Task<Visit> AssignVisitToPatient(Guid visitId)
+        {
+            var userId = User.Claims.FirstOrDefault(x => x.Type == TokenClaims.UserId)?.Value;
+            if (userId == null)
+            {
+                throw new ApplicationException("There is no user Id in token");
+            }
+            return await _visitsService.BookVisit(visitId, userId);
+        }
+
     }
 }

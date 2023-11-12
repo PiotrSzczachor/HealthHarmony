@@ -1,0 +1,46 @@
+@use '../../../variables';
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.confirmation-dialog-container{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: variables.$font-family;
+    color: variables.$basic-blue-color;
+    padding: 20px;
+
+    .dialog-header {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+
+        .title {
+            font-weight: variables.$big-font-weight;
+            font-size: 18pt;
+        }
+    }
+
+    .message {
+
+    }
+
+    .buttons-container {
+        display: flex;
+        width: 100%;
+        gap: 10px;
+        justify-content: flex-end;
+
+        button {
+            color: variables.$white-color;
+            background-color: variables.$basic-blue-color;
+            border: none;
+            border-radius: 5px;
+            height: 35px;
+            width: 70px;
+            font-family: variables.$font-family;
+            cursor: pointer;
+        }
+    }
+}

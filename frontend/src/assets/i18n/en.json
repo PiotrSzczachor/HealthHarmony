@@ -65,7 +65,11 @@
         }
     },
     "visits": {
-        "title": "Visits"
+        "title": "Visits",
+        "filters": {
+            "specialization": "Specialization",
+            "clinic": "Clinic"
+        }
     }
     
 }

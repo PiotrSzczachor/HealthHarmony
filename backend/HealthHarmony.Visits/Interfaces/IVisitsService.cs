@@ -7,9 +7,11 @@ namespace HealthHarmony.Visits.Interfaces
 {
     public interface IVisitsService : IBaseService<Visit, VisitDto, VisitsFilters>
     {
-        Task<List<VisitsPerDay>> GetNumberOfAvaliableVisitsByDateRange(Guid specializationId, DateTime startDate, DateTime endDate);
+        Task<List<VisitsPerDay>> GetNumberOfAvaliableVisitsByDateRange(Guid specializationId, Guid? clinicId, DateTime startDate, bool isRemote, int numberOfDays);
+        Task<List<Visit>> GetAvaliableVisitsForSpecificDate(GetAvaliableVisitsForSpecificDayRequest request);
         Task GenerateVisistsBasedOnSchedule(WeeklyWorkSchedule schedule, Guid doctorId);
         Task AddDoctorSchedule(WeeklyWorkSchedule schedule, string userId);
-        
+        Task<WeeklyWorkSchedule> GetDoctorSchedule(string userId);
+        Task<Visit> BookVisit(Guid visitId, string userId);
     }
 }
