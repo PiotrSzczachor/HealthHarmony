@@ -3,11 +3,16 @@
 
 .visits-scheduler-container {
     width: 100%;
-    height: 100%;
+    height: calc(100% - variables.$filter-container-height);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
 
     .week-days-header {
-        width: 90%;
+        width: 100%;
         display: flex;
+        align-items: center;
         gap: 10px;
 
         .weekday {
@@ -21,13 +26,63 @@
             font-family: variables.$font-family;
             font-size: 16pt;
             flex-direction: column;
+            padding: 10px;
+            background-color: variables.$white-color;
             cursor: pointer;
+
+            .visits-number {
+                margin-bottom: 10px;
+            }
         }
 
         .disable {
-            border: 3px solid variables.$gray-color;
-            color: variables.$gray-color;
+            border: 3px solid variables.$gray-color!important;
+            color: variables.$gray-color!important;
+            pointer-events: none;
             cursor: auto;
+        }
+
+        .selected {
+            background-color: variables.$basic-blue-color;
+            color: variables.$white-color;
+        }
+
+        .arrow {
+            border-radius: 100%;
+            height: 40px;
+            width: 40px;
+            color: variables.$basic-blue-color;
+            border: 3px solid variables.$basic-blue-color;
+            cursor: pointer;
+        }
+    }
+
+    .visits-tiles-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        overflow-y: auto;
+
+        .visit-tile {
+            width: 95%;
+            background-color: variables.$white-color;
+            color: variables.$basic-blue-color;
+            font-family: variables.$font-family;
+            padding: 15px;
+            cursor: pointer;
+
+            .doctor-name {
+                font-size: 18pt;
+                font-weight: variables.$big-font-weight;
+            }
+
+            .hours {
+                font-size: 14pt;
+            }
         }
     }
 }

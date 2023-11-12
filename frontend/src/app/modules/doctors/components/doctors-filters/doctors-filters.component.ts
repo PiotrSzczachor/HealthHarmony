@@ -28,7 +28,6 @@ export class DoctorsFiltersComponent implements OnInit {
     }
 
     applyFilters(): void {
-        console.log(this.fg.value);
         this.store.dispatch(DoctorsActions.applyFilters({ filters: this.fg.value as DoctorsFilters }));
     }
 

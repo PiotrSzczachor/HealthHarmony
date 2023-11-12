@@ -1,8 +1,18 @@
-<div class="visits-scheduler-container">
+<div class="visits-scheduler-container" *ngIf="showDatesWithVisits">
     <div class="week-days-header">
-        <div class="weekday disable" *ngFor="let day of week">
+        <button class="arrow" [ngClass]="disableLeftArray() ? null : 'disable'" (click)="showPreviousWeek()"><mat-icon>keyboard_arrow_left</mat-icon></button>
+        <div class="weekday" [ngClass]="(visitsPerDay$ | async)?.[i]?.numberOfVisits == 0 ? 'disable' : null" [ngClass]="day == selectedDay ? 'selected' : null" *ngFor="let day of week; let i=index" (click)="getAvaliableVisitsForSpecificDate(day)">
             <p>{{day | date:'EEEE'}}</p>
             <p>{{day | date:'mediumDate'}}</p>
+            <p class="visits-number">{{ (visitsPerDay$ | async)?.[i]?.numberOfVisits }}</p>
+        </div>
+        <button class="arrow" (click)="showNextWeek()"><mat-icon>keyboard_arrow_right</mat-icon></button>
+    </div>
+    <div class="visits-tiles-container">
+        <div class="visit-tile" *ngFor="let visit of visits$ | async" (click)="openConfirmationDialog(visit.id)">
+            <p class="doctor-name">{{ visit.doctor.firstName + " " + visit.doctor.lastName }}</p>
+            <p class="hours">{{ (visit.startHour | hour) + " - " + (visit.endHour | hour) }}</p>
+            <p>{{visit.clinic.name}}</p>
         </div>
     </div>
 </div>

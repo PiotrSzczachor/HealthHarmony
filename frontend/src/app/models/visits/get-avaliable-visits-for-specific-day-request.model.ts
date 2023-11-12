@@ -1,5 +1,4 @@
-export interface VisitsPerDayRequest {
-    startDate: Date,
+export interface GetAvaliableVisitsForSpecificDayRequest {
     specializationId: string,
     clinicId?: string | null,
     isRemote: boolean

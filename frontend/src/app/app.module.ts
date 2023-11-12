@@ -20,6 +20,7 @@ import { FaqModule } from './modules/faq/faq.module';
 import { ClinicsModule } from './modules/clinics/clinics.module';
 import { DoctorsModule } from './modules/doctors/doctors.module';
 import { VisitsModule } from './modules/visits/visits.module';
+import { HourPipe } from './pipes/hour.pipe';
 
 @NgModule({
     declarations: [

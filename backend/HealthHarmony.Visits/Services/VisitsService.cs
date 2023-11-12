@@ -2,6 +2,7 @@
 using HealthHarmony.Common.Extensions;
 using HealthHarmony.Common.Models.Pagination;
 using HealthHarmony.Models.Doctors.Entities;
+using HealthHarmony.Models.Patients.Entities;
 using HealthHarmony.Models.Visits.Dto;
 using HealthHarmony.Models.Visits.Entities;
 using HealthHarmony.Models.Visits.Enums;
@@ -65,13 +66,23 @@ namespace HealthHarmony.Visits.Services
         {
             throw new NotImplementedException();
         }
-        public async Task<List<VisitsPerDay>> GetNumberOfAvaliableVisitsByDateRange(Guid specializationId, DateTime startDate, DateTime endDate)
+        public async Task<List<VisitsPerDay>> GetNumberOfAvaliableVisitsByDateRange(Guid specializationId, Guid? clinicId, DateTime startDate, bool isRemote, int numberOfDays = 7)
         {
             List<VisitsPerDay> visitsPerDay = new List<VisitsPerDay>();
+            startDate = startDate.ToUniversalTime();
+            var endDate = startDate.AddDays(numberOfDays);
             var doctorsIds = await _repository.GetAll<Doctor>(x => x.Specializations).Where(x => x.Specializations.Any(x => x.Id == specializationId)).Select(x => x.Id).ToListAsync();
             for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
             {
-                var dailyCount = _repository.GetAll<Visit>(x => x.Doctor).Where(x => x.VisitDate.Date == date.Date && x.VisitStatus == VisitStatusEnum.Avaliable && doctorsIds.Contains(x.DoctorId)).Count();
+                var baseQuery = _repository.GetAll<Visit>(x => x.Doctor).Where(x => x.VisitDate.Date == date.Date && x.VisitStatus == VisitStatusEnum.Avaliable && doctorsIds.Contains(x.DoctorId));
+                int dailyCount = 0;
+                if (isRemote)
+                {
+                    dailyCount = baseQuery.Where(x => x.IsRemote).Count();
+                } else
+                {
+                    dailyCount = baseQuery.Where(x => x.ClinicId == clinicId).Count();
+                }
                 visitsPerDay.Add(new VisitsPerDay
                 {
                     Date = date,
@@ -83,7 +94,7 @@ namespace HealthHarmony.Visits.Services
 
         public async Task GenerateVisistsBasedOnSchedule(WeeklyWorkSchedule schedule, Guid doctorId)
         {
-            var today = DateTime.Today;
+            var today = DateTime.Today.ToUniversalTime();
             var endDate = today.AddDays(30);
 
             List<Visit> visits = new List<Visit>();
@@ -166,7 +177,7 @@ namespace HealthHarmony.Visits.Services
                     visits.Add(new Visit
                     {
                         StartHour = time,
-                        EndHour = time.AddMinutes(duration.Minutes),
+                        EndHour = time.AddMinutes(duration.Hours * 60 + duration.Minutes),
                         VisitDate = date.ToUniversalTime(),
                         IsRemote = isRemote,
                         DoctorId = doctorId,
@@ -241,6 +252,35 @@ namespace HealthHarmony.Visits.Services
                 Saturday = saturday,
                 Sunday = sunday
             };
+        }
+
+        public async Task<List<Visit>> GetAvaliableVisitsForSpecificDate(GetAvaliableVisitsForSpecificDayRequest request)
+        {
+            List<Visit> results = new List<Visit>();
+            request.VisitDate = request.VisitDate.ToUniversalTime();
+            var doctorsIds = await _repository.GetAll<Doctor>(x => x.Specializations).Where(x => x.Specializations.Any(x => x.Id == request.SpecializationId)).Select(x => x.Id).ToListAsync();
+            var baseQuery = _repository.GetAll<Visit>(x => x.Doctor, x => x.Clinic).Where(x => x.VisitDate.Date == request.VisitDate.Date && x.VisitStatus == VisitStatusEnum.Avaliable && doctorsIds.Contains(x.DoctorId));
+            if (request.IsRemote)
+            {
+                baseQuery = baseQuery.Where(x => x.IsRemote);
+            }
+            else
+            {
+                baseQuery = baseQuery.Where(x => x.ClinicId == request.ClinicId);
+            }
+            results = await baseQuery.OrderBy(x => x.StartHour).ToListAsync();
+            return results;
+        }
+
+        public async Task<Visit> BookVisit(Guid visitId, string userId)
+        {
+            var patient = await _repository.Get<Patient>(x => x.UserId == userId);
+            var visit = await _repository.Get<Visit>(visitId);
+            visit.VisitStatus = VisitStatusEnum.Taken;
+            visit.Patient = patient;
+            visit.PatientId = patient.Id;
+            await _repository.Update(visit);
+            return visit;
         }
     }
 }
