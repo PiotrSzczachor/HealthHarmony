@@ -18,6 +18,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HourPipe } from '../pipes/hour.pipe';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 const DIRECTIVES = [
     IsLoggedInDirective, IsNotLoggedInDirective
@@ -48,7 +49,8 @@ const COMPONENTS = [
     MatDialogModule,
     FormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    FullCalendarModule
   ],
   exports: [
     MatIconModule,
@@ -64,6 +66,7 @@ const COMPONENTS = [
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    FullCalendarModule,
     DIRECTIVES,
     PIPES,
     COMPONENTS

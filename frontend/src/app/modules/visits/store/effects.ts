@@ -63,6 +63,20 @@ export class VisitsEffects {
         )
     );
 
+    getPatientTakenVisits$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(VisitsActions.getPatienTakenVisits),
+            mergeMap(() => {
+                return this.visitsService.getPatientTakenVisits().pipe(
+                    map(visits => VisitsActions.getPatientTakenVisitsSuccess({visits})),
+                    catchError(error => {
+                        return of(VisitsActions.getPatientTakenVisitsFailure({ error: error.message }))
+                    })
+                )
+            })
+        )
+    );
+
     addDoctorSchedule$ = createEffect(() =>
         this.actions$.pipe(
             ofType(VisitsActions.addDoctorSchedule),

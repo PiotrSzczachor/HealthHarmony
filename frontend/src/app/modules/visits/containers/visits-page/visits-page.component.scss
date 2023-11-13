@@ -1,0 +1,8 @@
+@use '../../../../../variables';
+
+.calendar-container {
+    height: calc(100% - variables.$filter-container-height - 60px);
+    padding: 20px;
+    background-color: variables.$white-color;
+    color: variables.$basic-blue-color;
+}

@@ -7,6 +7,7 @@ import { PaginatorEvent } from "src/app/models/shared/paginator-event.model";
 import { VisitsFilters } from "src/app/models/visits/visits-filters.model";
 import { DateFilters } from "src/app/models/visits/date-filters.model";
 import { Visit } from "src/app/models/visits/visit.model";
+import { VisitCalendarEvent } from "src/app/models/visits/visit-calendar-event.model";
 
 const prefix = '[Visits]'
 
@@ -84,5 +85,19 @@ export const bookVisitSuccess = createAction(
 
 export const bookVisitFailure = createAction(
     `${prefix} Book Visit Failure`,
+    props<{error: string}>()
+);
+
+export const getPatienTakenVisits = createAction(
+    `${prefix} Get Patient Taken Visits`
+);
+
+export const getPatientTakenVisitsSuccess = createAction(
+    `${prefix} Get Patient Taken Visits Success`,
+    props<{visits: VisitCalendarEvent[]}>()
+);
+
+export const getPatientTakenVisitsFailure = createAction(
+    `${prefix} Get Patient Taken Visits Failure`,
     props<{error: string}>()
 );

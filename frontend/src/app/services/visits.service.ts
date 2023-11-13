@@ -8,6 +8,7 @@ import { WeeklyWorkSchedule } from '../models/visits/weekly-work-schedule.model'
 import { NonNullAssert } from '@angular/compiler';
 import { Visit } from '../models/visits/visit.model';
 import { GetAvaliableVisitsForSpecificDayRequest } from '../models/visits/get-avaliable-visits-for-specific-day-request.model';
+import { VisitCalendarEvent } from '../models/visits/visit-calendar-event.model';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,10 @@ export class VisitsService {
             return this.http.get<Visit[]>(this.prefix + 'avaliable', {params: params});
         }
         return of();
+    }
+
+    getPatientTakenVisits(): Observable<VisitCalendarEvent[]> {
+        return this.http.get<VisitCalendarEvent[]>(this.prefix + 'taken');
     }
 
     bookVisit(visitId: string): Observable<any> {

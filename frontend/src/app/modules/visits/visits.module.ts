@@ -7,14 +7,18 @@ import { VisitsFiltersComponent } from './components/visits-filters/visits-filte
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { reducers, VisitsEffects } from './store';
-
-
+import { BookVisitPageComponent } from './containers/book-visit-page/book-visit-page.component';
+import { BookVisitFiltersComponent } from './components/book-visit-filters/book-visit-filters.component';
+import { VisitsCalendarComponent } from './components/visits-calendar/visits-calendar.component';
 
 @NgModule({
   declarations: [
     VisitsPageComponent,
     VisitsSchedulerComponent,
     VisitsFiltersComponent,
+    BookVisitPageComponent,
+    BookVisitFiltersComponent,
+    VisitsCalendarComponent,
   ],
   imports: [
     CommonModule,

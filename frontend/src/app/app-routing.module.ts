@@ -13,6 +13,7 @@ import { DocumentsPageComponent } from './modules/documents/containers/documents
 import { ResultsPageComponent } from './modules/results/containers/results-page/results-page.component';
 import { SettingsPageComponent } from './modules/settings/settings-page/settings-page.component';
 import { ClinicsPageComponent } from './modules/clinics/containers/clinics-page/clinics-page.component';
+import { BookVisitPageComponent } from './modules/visits/containers/book-visit-page/book-visit-page.component';
 
 const routes: Routes = [
     {
@@ -54,6 +55,11 @@ const routes: Routes = [
             {
                 path: 'visits',
                 component: VisitsPageComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'book-visit',
+                component: BookVisitPageComponent,
                 canActivate: [AuthGuard],
             },
             {

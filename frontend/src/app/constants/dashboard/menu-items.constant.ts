@@ -20,6 +20,12 @@ export const MenuItems: MenuItem[] = [
         requiredClaim: null
     },
     {
+        name: "dashboard.menu.bookVisit",
+        route: "book-visit",
+        icon: "../../../assets/icons/side-nav/visits.png",
+        requiredClaim: null
+    },
+    {
         name: "dashboard.menu.visits",
         route: "visits",
         icon: "../../../assets/icons/side-nav/visits.png",

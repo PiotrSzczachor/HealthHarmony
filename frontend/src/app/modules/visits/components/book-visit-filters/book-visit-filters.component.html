@@ -1,0 +1,29 @@
+<div class="filters-wrapper">
+    <div class="title-container">
+        <p class="module-title">{{ 'bookVisit.title' | translate }}</p>
+    </div>
+    <form>
+        <div class="filters-container" [formGroup]="fg">
+            <div class="field-container">
+                <div class="field-container">
+                    <p class="filter-name">{{ 'visits.filters.specialization' | translate }}</p>
+                    <select class="select" formControlName="specializationId">
+                        <option *ngFor="let specialization of specializations$ | async" [value]="specialization.id">{{ specialization.name }}</option>
+                    </select>
+                </div>
+                <div class="field-container">
+                    <p class="filter-name">{{ 'visits.filters.clinic' | translate }}</p>
+                    <select class="select" formControlName="clinicId">
+                        <option *ngFor="let clinic of clinics$ | async" [value]="clinic.id">{{ clinic.name }}</option>
+                    </select>
+                </div>
+                <div class="field-container">
+                    <p class="filter-name">Accepts remotely</p>
+                    <mat-checkbox formControlName="isRemote"></mat-checkbox>
+                </div>
+                <button class="btn" (click)="applyFilters()">{{ 'common.apply' | translate }}</button>
+                <button class="btn" (click)="clearFilters()">{{ 'common.clear' | translate}}</button>
+            </div>
+        </div>
+    </form>
+</div>
