@@ -17,3 +17,8 @@ export const getAvaliableVisitsForSpecificDateSelector = createSelector(
     selectFeature,
     (state) => state.avaliableVisits
 );
+
+export const getPatientTakenVisitsSelector = createSelector(
+    selectFeature,
+    (state) => state.takenVisitsCalendarEvents
+);

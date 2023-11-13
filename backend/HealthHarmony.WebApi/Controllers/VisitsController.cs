@@ -1,4 +1,5 @@
 ﻿using HealthHarmony.Common.Constants;
+using HealthHarmony.Models.Auth.Entities;
 using HealthHarmony.Models.Visits.Dto;
 using HealthHarmony.Models.Visits.Entities;
 using HealthHarmony.Visits.Interfaces;
@@ -60,6 +61,17 @@ namespace HealthHarmony.WebApi.Controllers
                 throw new ApplicationException("There is no user Id in token");
             }
             return await _visitsService.BookVisit(visitId, userId);
+        }
+
+        [HttpGet("taken")]
+        public async Task<List<VisitCalendarEvent>> GetPatientTakenVisits()
+        {
+            var userId = User.Claims.FirstOrDefault(x => x.Type == TokenClaims.UserId)?.Value;
+            if (userId == null)
+            {
+                throw new ApplicationException("There is no user Id in token");
+            }
+            return await _visitsService.GetPatientTakenVisits(userId);
         }
 
     }

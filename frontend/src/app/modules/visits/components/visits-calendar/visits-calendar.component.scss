@@ -1,0 +1,44 @@
+@use '../../../../../variables';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;900&display=swap');
+
+.calendar {
+    font-family: variables.$font-family;
+}
+
+::ng-deep .fc-day-today {
+    background-color: variables.$today-calendar-background-color!important;
+}
+
+::ng-deep .fc-toolbar-title {
+    font-family: variables.$font-family!important;
+    text-transform: uppercase;
+    font-weight: variables.$big-font-weight!important;
+}
+
+::ng-deep .fc-button {
+    background-color: variables.$basic-blue-color!important;
+    border: none!important;
+    width: 70px;
+}
+
+::ng-deep .fc-button-active {
+    background-color: variables.$white-color!important;
+    color: variables.$basic-blue-color!important;
+    border: 1px solid variables.$basic-blue-color!important;
+    box-shadow: none!important;
+}
+
+::ng-deep .fc-prev-button {
+    margin-right: 10px!important;
+    width: 40px;
+    border-radius: 5px!important;
+}
+
+::ng-deep .fc-next-button {
+    width: 40px;
+    border-radius: 5px!important;
+}
+
+::ng-deep .fc-event-main {
+    background-color: variables.$basic-blue-color;
+}

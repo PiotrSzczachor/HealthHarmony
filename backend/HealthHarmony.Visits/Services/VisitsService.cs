@@ -94,7 +94,7 @@ namespace HealthHarmony.Visits.Services
 
         public async Task GenerateVisistsBasedOnSchedule(WeeklyWorkSchedule schedule, Guid doctorId)
         {
-            var today = DateTime.Today.ToUniversalTime();
+            var today = DateTime.Today;
             var endDate = today.AddDays(30);
 
             List<Visit> visits = new List<Visit>();
@@ -178,7 +178,7 @@ namespace HealthHarmony.Visits.Services
                     {
                         StartHour = time,
                         EndHour = time.AddMinutes(duration.Hours * 60 + duration.Minutes),
-                        VisitDate = date.ToUniversalTime(),
+                        VisitDate = date,
                         IsRemote = isRemote,
                         DoctorId = doctorId,
                         ClinicId = clinicId,
@@ -281,6 +281,20 @@ namespace HealthHarmony.Visits.Services
             visit.PatientId = patient.Id;
             await _repository.Update(visit);
             return visit;
+        }
+
+        public async Task<List<VisitCalendarEvent>> GetPatientTakenVisits(string userId)
+        {
+            var patient = await _repository.Get<Patient>(x => x.UserId == userId);
+            var visits = await _repository.GetAll<Visit>(x => x.Doctor, x => x.Clinic).Where(x => x.VisitStatus == VisitStatusEnum.Taken && x.PatientId == patient.Id).ToListAsync();
+            var visitCalendarEvents = _mapper.Map<List<VisitCalendarEvent>>(visits);
+            for(int i = 0; i < visits.Count(); i++)
+            {
+                visitCalendarEvents[i].Title = visits[i].Doctor.FirstName + " " + visits[i].Doctor.LastName;
+                visitCalendarEvents[i].Start = visits[i].VisitDate.AddHours(visits[i].StartHour.Hour).AddMinutes(visits[i].StartHour.Minute);
+                visitCalendarEvents[i].End = visits[i].VisitDate.AddHours(visits[i].EndHour.Hour).AddMinutes(visits[i].EndHour.Minute);
+            }
+            return visitCalendarEvents;
         }
     }
 }

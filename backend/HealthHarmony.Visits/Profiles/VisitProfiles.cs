@@ -10,6 +10,7 @@ namespace HealthHarmony.Visits.Profiles
         {
             CreateMap<DailySchedule, WeekdayWorkingHours>();
             CreateMap<WeekdayWorkingHours, DailySchedule>();
+            CreateMap<Visit, VisitCalendarEvent>();
         }
     }
 }
