@@ -10,6 +10,7 @@ namespace HealthHarmony.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class VisitsController : ControllerBase
     {
         private readonly IVisitsService _visitsService;

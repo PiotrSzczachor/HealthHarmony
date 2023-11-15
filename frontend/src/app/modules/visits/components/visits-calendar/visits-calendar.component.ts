@@ -6,7 +6,6 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
 import { VisitsActions, getPatientTakenVisitsSelector } from '../../store';
 import { Observable } from 'rxjs';
-import { Visit } from 'src/app/models/visits/visit.model';
 import { VisitCalendarEvent } from 'src/app/models/visits/visit-calendar-event.model';
 
 @Component({

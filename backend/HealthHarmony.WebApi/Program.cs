@@ -21,6 +21,7 @@ using System.Text.Json.Serialization;
 using HealthHarmony.Visits.Interfaces;
 using HealthHarmony.Visits.Services;
 using HealthHarmony.Common.Helpers;
+using HealthHarmony.Common.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -75,6 +76,7 @@ builder.Services.AddScoped<IAddressesService, AddressesService>();
 builder.Services.AddScoped<IClinicsService, ClinicsService>();
 builder.Services.AddScoped<IDoctorsService, DoctrosService>();
 builder.Services.AddScoped<IVisitsService, VisitsService>();
+builder.Services.AddScoped<SeedService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddAuthentication(opt => {
@@ -104,6 +106,13 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 var app = builder.Build();
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var seedService = services.GetRequiredService<SeedService>();
+    await seedService.SeedData();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -1,6 +1,7 @@
 ﻿using HealthHarmony.Auth.DTOs.User;
 using HealthHarmony.Auth.Interfaces;
 using HealthHarmony.Models.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HealthHarmony.WebApi.Controllers
@@ -29,6 +30,7 @@ namespace HealthHarmony.WebApi.Controllers
             return token == null ? Unauthorized() : Ok(new { token });
         }
 
+        [Authorize]
         [HttpGet("users/{id}")]
         public async Task<UserDto?> GetUser(Guid id)
         {

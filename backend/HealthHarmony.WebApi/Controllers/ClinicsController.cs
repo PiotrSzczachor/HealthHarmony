@@ -3,12 +3,14 @@ using HealthHarmony.Common.Models.Pagination;
 using HealthHarmony.Models.Clinics.Dto;
 using HealthHarmony.Models.Clinics.Entities;
 using HealthHarmony.Models.Clinics.Filters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HealthHarmony.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ClinicsController : ControllerBase
     {
         private readonly IClinicsService _clinicsService;
@@ -41,6 +43,7 @@ namespace HealthHarmony.WebApi.Controllers
             return await _clinicsService.GetClinicWithoutAddressById(id);
         }
 
+        [AllowAnonymous]
         [HttpGet("without-images")]
         public async Task<List<Clinic>> GetAllClinicsWithoutImages()
         {

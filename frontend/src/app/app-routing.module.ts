@@ -14,6 +14,7 @@ import { ResultsPageComponent } from './modules/results/containers/results-page/
 import { SettingsPageComponent } from './modules/settings/settings-page/settings-page.component';
 import { ClinicsPageComponent } from './modules/clinics/containers/clinics-page/clinics-page.component';
 import { BookVisitPageComponent } from './modules/visits/containers/book-visit-page/book-visit-page.component';
+import { Roles } from './enums/roles.enum';
 
 const routes: Routes = [
     {
@@ -61,6 +62,7 @@ const routes: Routes = [
                 path: 'book-visit',
                 component: BookVisitPageComponent,
                 canActivate: [AuthGuard],
+                data: {requiredRole: Roles.Patient}
             },
             {
                 path: 'documents',

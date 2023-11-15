@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environments';
 import { User } from '../models/auth/user.model';
 import jwt_decode from "jwt-decode";
 import { DecodedToken } from '../models/auth/decoded-token.model';
+import { Roles } from '../enums/roles.enum';
 
 @Injectable({
     providedIn: 'root'
@@ -28,7 +29,6 @@ export class AuthService {
     }
 
     getUser(id: string): Observable<User> {
-        console.log("Test")
         return this.http.get<any>(this.prefix + 'users/' + id);
     }
 
@@ -39,13 +39,28 @@ export class AuthService {
 
     getUserIdFromToken(): string {
         const token = localStorage.getItem(environment.tokenKey);
-        console.log(token);
         if (!token) {
             this.logout()
             return '';
         }
         const decodedToken = jwt_decode(token) as DecodedToken;
         return decodedToken.userId;
+    }
+
+    getUserRoles(): string[] {
+        const token = localStorage.getItem(environment.tokenKey);
+        if (!token) {
+            this.logout()
+            return [];
+        }
+        const decodedToken = jwt_decode(token) as DecodedToken;
+        return decodedToken.roles;
+    }
+
+    checkIfUserHasRole(role: Roles): boolean {
+        const roles = this.getUserRoles();
+        console.log(roles)
+        return roles.includes(role);
     }
 
 }

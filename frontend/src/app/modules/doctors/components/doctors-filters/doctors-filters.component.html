@@ -31,7 +31,7 @@
         <div class="field-container">
             <button class="btn" (click)="applyFilters()">{{ 'common.apply' | translate }}</button>
             <button class="btn" (click)="clearFilters()">{{ 'common.clear' | translate}}</button>
-            <button class="add-btn" (click)="openAddPopup()">+</button>
+            <button class="add-btn" (click)="openAddPopup()" *ngIf="isAdmin()">+</button>
         </div>
     </div>
     </form>

@@ -5,12 +5,14 @@ using HealthHarmony.Models.Clinics.Filters;
 using HealthHarmony.Models.Doctors.Dto;
 using HealthHarmony.Models.Doctors.Entities;
 using HealthHarmony.Models.Doctors.Filters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HealthHarmony.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class DoctorsController : ControllerBase
     {
         private readonly IDoctorsService _doctorsService;

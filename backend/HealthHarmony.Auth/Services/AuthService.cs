@@ -12,6 +12,9 @@ using System.Security.Claims;
 using System.Text;
 using HealthHarmony.SQLRepository.Interfaces;
 using HealthHarmony.Models.Patients.Entities;
+using HealthHarmony.Common.Constants;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace HealthHarmony.Auth.Services
 {
@@ -56,10 +59,14 @@ namespace HealthHarmony.Auth.Services
             var result = await _userManager.CreateAsync(user, userDto.Password);
             if( result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, Roles.Patient);
                 await GeneratePatientForUser(user, userDto.PhoneNumber, userDto.BirthDate, userDto.Pesel);
+                var roles = await _userManager.GetRolesAsync(user);
+                var rolesString = JsonConvert.SerializeObject(roles);
                 List<Claim> claims = new List<Claim>
                 {
-                    new Claim("userId", user.Id.ToString())
+                    new Claim("userId", user.Id.ToString()),
+                    new Claim("roles", rolesString)
                 };
                 return GenerateToken(claims);
             } else
@@ -78,9 +85,12 @@ namespace HealthHarmony.Auth.Services
             bool validationResult = await _userManager.CheckPasswordAsync(user, dto.Password);
             if (validationResult)
             {
+                var roles = await _userManager.GetRolesAsync(user);
+                var rolesString = JsonConvert.SerializeObject(roles);
                 List<Claim> claims = new List<Claim>
                 {
-                    new Claim("userId", user.Id.ToString())
+                    new Claim("userId", user.Id.ToString()),
+                    new Claim("roles", rolesString),
                 };
                 return GenerateToken(claims);
             }
