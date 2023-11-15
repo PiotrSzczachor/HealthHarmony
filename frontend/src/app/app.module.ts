@@ -1,8 +1,7 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule, HttpClient } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
@@ -20,7 +19,6 @@ import { FaqModule } from './modules/faq/faq.module';
 import { ClinicsModule } from './modules/clinics/clinics.module';
 import { DoctorsModule } from './modules/doctors/doctors.module';
 import { VisitsModule } from './modules/visits/visits.module';
-import { HourPipe } from './pipes/hour.pipe';
 
 @NgModule({
     declarations: [

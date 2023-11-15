@@ -6,6 +6,8 @@ import { DoctorsFilters } from 'src/app/models/doctors/doctors-filters.model';
 import { AppState } from 'src/app/store/app.state';
 import { DoctorsActions, getDoctorsFiltersSelector } from '../../store';
 import { EditDoctorComponent } from '../../containers/edit-doctor/edit-doctor.component';
+import { AuthService } from 'src/app/services/auth.service';
+import { Roles } from 'src/app/enums/roles.enum';
 
 @Component({
   selector: 'app-doctors-filters',
@@ -21,7 +23,7 @@ export class DoctorsFiltersComponent implements OnInit {
         orderBy: [null]
     });
 
-    constructor(private fb: FormBuilder, private store: Store<AppState>, private dialog: MatDialog) { }
+    constructor(private fb: FormBuilder, private store: Store<AppState>, private dialog: MatDialog, private authService: AuthService) { }
 
     ngOnInit(): void {
         this.selectFilters();
@@ -49,5 +51,9 @@ export class DoctorsFiltersComponent implements OnInit {
 
     openAddPopup(): void {
         this.dialog.open(EditDoctorComponent, {data: {isEdit: false}})
+    }
+
+    isAdmin(): boolean {
+        return this.authService.checkIfUserHasRole(Roles.Admin);
     }
 }

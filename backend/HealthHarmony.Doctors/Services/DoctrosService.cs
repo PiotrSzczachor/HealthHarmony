@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HealthHarmony.Common.Constants;
 using HealthHarmony.Common.Models.Pagination;
 using HealthHarmony.Doctors.Interfaces;
 using HealthHarmony.Models.Auth.Entities;
@@ -175,6 +176,7 @@ namespace HealthHarmony.Doctors.Services
             var result = await _userManager.CreateAsync(user, password);
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, Roles.Doctor);
                 return user;
             }
             else

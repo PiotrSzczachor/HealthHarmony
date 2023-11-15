@@ -6,6 +6,8 @@ import { ClinicsActions, getClinicsFiltersSelector } from '../../store';
 import { ClinicsFilters } from 'src/app/models/clinics/clinic-filters.model';
 import { MatDialog } from '@angular/material/dialog';
 import { EditClinicComponent } from '../../containers/edit-clinic/edit-clinic.component';
+import { AuthService } from 'src/app/services/auth.service';
+import { Roles } from 'src/app/enums/roles.enum';
 
 @Component({
   selector: 'app-clinic-filters',
@@ -19,7 +21,7 @@ export class ClinicFiltersComponent implements OnInit {
         orderBy: [null]
     });
 
-    constructor(private fb: FormBuilder, private store: Store<AppState>, private dialog: MatDialog) { }
+    constructor(private fb: FormBuilder, private store: Store<AppState>, private dialog: MatDialog, private authService: AuthService) { }
 
     ngOnInit(): void {
         this.selectFilters();
@@ -48,4 +50,7 @@ export class ClinicFiltersComponent implements OnInit {
         this.dialog.open(EditClinicComponent, {data: {isEdit: false}});
     }
 
+    isAdmin(): boolean {
+        return this.authService.checkIfUserHasRole(Roles.Admin);
+    }
 }
