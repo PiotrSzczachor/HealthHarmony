@@ -68,6 +68,10 @@ namespace HealthHarmony.Auth.Services
                     new Claim("userId", user.Id.ToString()),
                     new Claim("roles", rolesString)
                 };
+                foreach(var role in roles)
+                {
+                    claims.Add(new Claim("roles", role));
+                }
                 return GenerateToken(claims);
             } else
             {
@@ -90,8 +94,12 @@ namespace HealthHarmony.Auth.Services
                 List<Claim> claims = new List<Claim>
                 {
                     new Claim("userId", user.Id.ToString()),
-                    new Claim("roles", rolesString),
+                    new Claim("roles", rolesString)
                 };
+                foreach (var role in roles)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, role));
+                }
                 return GenerateToken(claims);
             }
             return null;

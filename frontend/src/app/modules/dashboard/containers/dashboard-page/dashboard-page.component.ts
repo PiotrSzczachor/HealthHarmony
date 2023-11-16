@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
 import { AuthActions, getUserSelector } from 'src/app/modules/auth/store';
 import { User } from 'src/app/models/auth/user.model';
+import { Roles } from 'src/app/enums/roles.enum';
 
 @Component({
     selector: 'app-dashboard-page',
@@ -66,6 +67,12 @@ export class DashboardPageComponent implements OnInit, AfterContentInit {
 
     selectUser(): void {
         this.user$ = this.store.select(getUserSelector);
+    }
+
+    hasRequiredRole(role: Roles | null): boolean {
+        if(role)
+            return this.authService.checkIfUserHasRole(role);
+        return true;
     }
 
 }

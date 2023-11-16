@@ -9,10 +9,13 @@
                 <div class="online"></div>
             </div>
             <div class="menu-container">
-                <div class="menu-item" *ngFor="let item of menuItems" (click)="routeToChildren(item.route)" [ngClass]="(isItemSelected(item.route) | async) ? 'selected' : null">
-                    <img class="icon" [src]="item.icon" alt="">
-                    <p class="menu-item-name">{{ item.name | translate }}</p>
-                </div>
+                <ng-container *ngFor="let item of menuItems"> 
+                    <div class="menu-item" *ngIf="hasRequiredRole(item.requiredRole)" (click)="routeToChildren(item.route)"
+                        [ngClass]="(isItemSelected(item.route) | async) ? 'selected' : null">
+                        <img class="icon" [src]="item.icon" alt="">
+                        <p class="menu-item-name">{{ item.name | translate }}</p>
+                    </div>
+                </ng-container>
             </div>
             <div class="logout-container">
                 <button class="logout-btn" (click)="logout()">{{ "dashboard.menu.logout" | translate }}</button>
@@ -20,6 +23,6 @@
         </div>
     </mat-sidenav>
     <mat-sidenav-content class="content">
-      <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
     </mat-sidenav-content>
-  </mat-sidenav-container>
+</mat-sidenav-container>

@@ -101,3 +101,17 @@ export const getPatientTakenVisitsFailure = createAction(
     `${prefix} Get Patient Taken Visits Failure`,
     props<{error: string}>()
 );
+
+export const getTakenVisitsAssignedToDoctor = createAction(
+    `${prefix} Get Taken Visits Assigned To Doctor`
+);
+
+export const getTakenVisitsAssignedToDoctorSuccess = createAction(
+    `${prefix} Get Taken Visits Assigned To Doctor Success`,
+    props<{visits: VisitCalendarEvent[]}>()
+);
+
+export const getTakenVisitsAssignedToDoctorFailure = createAction(
+    `${prefix} Get Taken Visits Assigned To Doctor Failure`,
+    props<{error: string}>()
+);
