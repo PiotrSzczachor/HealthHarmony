@@ -10,6 +10,7 @@ import { reducers, VisitsEffects } from './store';
 import { BookVisitPageComponent } from './containers/book-visit-page/book-visit-page.component';
 import { BookVisitFiltersComponent } from './components/book-visit-filters/book-visit-filters.component';
 import { VisitsCalendarComponent } from './components/visits-calendar/visits-calendar.component';
+import { DoctorsVisitPageComponent } from './containers/doctors-visit-page/doctors-visit-page.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { VisitsCalendarComponent } from './components/visits-calendar/visits-cal
     BookVisitPageComponent,
     BookVisitFiltersComponent,
     VisitsCalendarComponent,
+    DoctorsVisitPageComponent,
   ],
   imports: [
     CommonModule,

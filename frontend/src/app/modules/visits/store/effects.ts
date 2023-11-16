@@ -77,6 +77,20 @@ export class VisitsEffects {
         )
     );
 
+    getTakenVisitsAssignedToDoctor$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(VisitsActions.getTakenVisitsAssignedToDoctor),
+            mergeMap(() => {
+                return this.visitsService.getTakenVisitsAssignedToDoctor().pipe(
+                    map(visits => VisitsActions.getTakenVisitsAssignedToDoctorSuccess({visits})),
+                    catchError(error => {
+                        return of(VisitsActions.getTakenVisitsAssignedToDoctorFailure({ error: error.message }))
+                    })
+                )
+            })
+        )
+    );
+
     addDoctorSchedule$ = createEffect(() =>
         this.actions$.pipe(
             ofType(VisitsActions.addDoctorSchedule),

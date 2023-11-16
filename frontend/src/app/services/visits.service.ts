@@ -53,6 +53,11 @@ export class VisitsService {
         return this.http.get<VisitCalendarEvent[]>(this.prefix + 'taken');
     }
 
+    getTakenVisitsAssignedToDoctor(): Observable<VisitCalendarEvent[]> {
+        return this.http.get<VisitCalendarEvent[]>(this.prefix + 'assigned');
+    }
+
+
     bookVisit(visitId: string): Observable<any> {
         return this.http.patch(this.prefix + visitId + '/book', {});
     }

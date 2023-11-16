@@ -64,6 +64,7 @@ namespace HealthHarmony.WebApi.Controllers
             return await _visitsService.BookVisit(visitId, userId);
         }
 
+        [Authorize(Roles = Roles.Patient)]
         [HttpGet("taken")]
         public async Task<List<VisitCalendarEvent>> GetPatientTakenVisits()
         {
@@ -73,6 +74,18 @@ namespace HealthHarmony.WebApi.Controllers
                 throw new ApplicationException("There is no user Id in token");
             }
             return await _visitsService.GetPatientTakenVisits(userId);
+        }
+
+        [Authorize(Roles = Roles.Doctor)]
+        [HttpGet("assigned")]
+        public async Task<List<VisitCalendarEvent>> GetTakenVisitsAssignedToDoctor()
+        {
+            var userId = User.Claims.FirstOrDefault(x => x.Type == TokenClaims.UserId)?.Value;
+            if (userId == null)
+            {
+                throw new ApplicationException("There is no user Id in token");
+            }
+            return await _visitsService.GetTakenVisitsAssignedToDoctor(userId);
         }
 
     }

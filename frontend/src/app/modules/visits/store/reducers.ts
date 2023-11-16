@@ -14,7 +14,8 @@ export const initialState: VisitsState = {
         startDate: new Date(),
     },
     avaliableVisits: [],
-    takenVisitsCalendarEvents: []
+    takenVisitsCalendarEvents: [],
+    doctorVisitsCalendarEvents: []
 }
 
 export const reducers = createReducer(
@@ -79,5 +80,13 @@ export const reducers = createReducer(
     on(VisitsActions.getPatientTakenVisitsSuccess, (state, action) => ({
         ...state,
         takenVisitsCalendarEvents: action.visits
+    })),
+    on(VisitsActions.getTakenVisitsAssignedToDoctor, (state) => ({
+        ...state,
+        doctorVisitsCalendarEvents: []
+    })),
+    on(VisitsActions.getTakenVisitsAssignedToDoctorSuccess, (state, action) => ({
+        ...state,
+        doctorVisitsCalendarEvents: action.visits
     })),
 )

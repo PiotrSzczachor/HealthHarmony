@@ -59,7 +59,6 @@ export class AuthService {
 
     checkIfUserHasRole(role: Roles): boolean {
         const roles = this.getUserRoles();
-        console.log(roles)
         return roles.includes(role);
     }
 

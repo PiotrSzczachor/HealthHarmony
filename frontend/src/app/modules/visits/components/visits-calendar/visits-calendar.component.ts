@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid'
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
-import { VisitsActions, getPatientTakenVisitsSelector } from '../../store';
+import { VisitsActions, getPatientTakenVisitsSelector, getTakenVisitsAssignedToDoctorSelector } from '../../store';
 import { Observable } from 'rxjs';
 import { VisitCalendarEvent } from 'src/app/models/visits/visit-calendar-event.model';
 
@@ -15,7 +15,8 @@ import { VisitCalendarEvent } from 'src/app/models/visits/visit-calendar-event.m
 })
 export class VisitsCalendarComponent implements OnInit {
     
-    takenVisitsCalendarEvents$!: Observable<VisitCalendarEvent[]>
+    visitsCalendarEvents$!: Observable<VisitCalendarEvent[]>
+    @Input() isPatient: boolean = true;
     
     calendarOptions: CalendarOptions = {
         initialView: 'dayGridMonth',
@@ -36,18 +37,23 @@ export class VisitsCalendarComponent implements OnInit {
     };
 
     constructor(private store: Store<AppState>) { 
-        this.selectTakenVisits();
+        
     }
 
     ngOnInit(): void {
-        this.dispatchTakenVisits();
+        this.selectTakenVisits();
+        this.dispatchVisits();
     }
 
-    dispatchTakenVisits(): void {
-        this.store.dispatch(VisitsActions.getPatienTakenVisits());
+    dispatchVisits(): void {
+        if(this.isPatient) {
+            this.store.dispatch(VisitsActions.getPatienTakenVisits());
+        } else {
+            this.store.dispatch(VisitsActions.getTakenVisitsAssignedToDoctor());
+        }
     }
 
     selectTakenVisits(): void {
-        this.takenVisitsCalendarEvents$ = this.store.select(getPatientTakenVisitsSelector);
+        this.visitsCalendarEvents$ = this.isPatient ? this.store.select(getPatientTakenVisitsSelector) : this.store.select(getTakenVisitsAssignedToDoctorSelector);
     }
 }

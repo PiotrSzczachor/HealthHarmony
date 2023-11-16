@@ -22,6 +22,7 @@ using HealthHarmony.Visits.Interfaces;
 using HealthHarmony.Visits.Services;
 using HealthHarmony.Common.Helpers;
 using HealthHarmony.Common.Services;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -93,7 +94,8 @@ builder.Services.AddAuthentication(opt => {
             ValidateIssuerSigningKey = true,
             ValidIssuer = configuration.GetSection("JWT:ValidIssuer").Value,
             ValidAudience = configuration.GetSection("JWT:ValidAudience").Value,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("JWT:Secret").Value))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("JWT:Secret").Value)),
+            RoleClaimType = ClaimTypes.Role
         };
     });
 

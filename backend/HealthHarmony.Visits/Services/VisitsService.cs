@@ -296,5 +296,19 @@ namespace HealthHarmony.Visits.Services
             }
             return visitCalendarEvents;
         }
+
+        public async Task<List<VisitCalendarEvent>> GetTakenVisitsAssignedToDoctor(string userId)
+        {
+            var doctor = await _repository.Get<Doctor>(x => x.UserId == userId);
+            var visits = await _repository.GetAll<Visit>(x => x.Patient, x => x.Clinic).Where(x => x.VisitStatus == VisitStatusEnum.Taken && x.DoctorId == doctor.Id).ToListAsync();
+            var visitCalendarEvents = _mapper.Map<List<VisitCalendarEvent>>(visits);
+            for (int i = 0; i < visits.Count(); i++)
+            {
+                visitCalendarEvents[i].Title = visits[i].Patient?.FirstName + " " + visits[i].Patient?.LastName;
+                visitCalendarEvents[i].Start = visits[i].VisitDate.AddHours(visits[i].StartHour.Hour).AddMinutes(visits[i].StartHour.Minute);
+                visitCalendarEvents[i].End = visits[i].VisitDate.AddHours(visits[i].EndHour.Hour).AddMinutes(visits[i].EndHour.Minute);
+            }
+            return visitCalendarEvents;
+        }
     }
 }

@@ -7,5 +7,6 @@ export interface VisitsState {
     visitsPerDay: VisitsPerDay[],
     avaliableVisits: Visit[],
     filters: VisitsFilters,
-    takenVisitsCalendarEvents: VisitCalendarEvent[]
+    takenVisitsCalendarEvents: VisitCalendarEvent[],
+    doctorVisitsCalendarEvents: VisitCalendarEvent[]
 }
