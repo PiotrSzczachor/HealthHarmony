@@ -3,6 +3,7 @@ using System;
 using HealthHarmony.SQL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HealthHarmony.SQL.Migrations
 {
     [DbContext(typeof(HealthHarmonyContext))]
-    partial class HealthHarmonyContextModelSnapshot : ModelSnapshot
+    [Migration("20231120094103_Make-Clinic-Optional-In-DailySchedule-Table-To-Handle-Remote-Case")]
+    partial class MakeClinicOptionalInDailyScheduleTableToHandleRemoteCase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -361,7 +363,7 @@ namespace HealthHarmony.SQL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("ClinicId")
+                    b.Property<Guid>("ClinicId")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("DoctorId")
@@ -629,7 +631,8 @@ namespace HealthHarmony.SQL.Migrations
                     b.HasOne("HealthHarmony.Models.Clinics.Entities.Clinic", "Clinic")
                         .WithMany("Visits")
                         .HasForeignKey("ClinicId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("HealthHarmony.Models.Doctors.Entities.Doctor", "Doctor")
                         .WithMany("Visits")

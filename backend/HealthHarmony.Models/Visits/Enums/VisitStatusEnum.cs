@@ -4,6 +4,7 @@
     {
         Avaliable,
         Taken,
-        Completed
+        Completed,
+        Canceled
     }
 }

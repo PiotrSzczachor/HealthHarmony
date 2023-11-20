@@ -27,3 +27,8 @@ export const getTakenVisitsAssignedToDoctorSelector = createSelector(
     selectFeature,
     (state) => state.doctorVisitsCalendarEvents
 );
+
+export const getDoctorScheduleSelector = createSelector(
+    selectFeature,
+    (state) => state.doctorSchedule
+);

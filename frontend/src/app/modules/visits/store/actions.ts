@@ -1,11 +1,8 @@
 import { createAction, props } from "@ngrx/store";
-import { Doctor } from "src/app/models/doctors/doctor.model";
 import { VisitsPerDay } from "src/app/models/visits/visits-per-day.model";
-import { VisitsPerDayRequest } from "src/app/models/visits/visits-per-day-request.model";
 import { WeeklyWorkSchedule } from "src/app/models/visits/weekly-work-schedule.model";
 import { PaginatorEvent } from "src/app/models/shared/paginator-event.model";
 import { VisitsFilters } from "src/app/models/visits/visits-filters.model";
-import { DateFilters } from "src/app/models/visits/date-filters.model";
 import { Visit } from "src/app/models/visits/visit.model";
 import { VisitCalendarEvent } from "src/app/models/visits/visit-calendar-event.model";
 
@@ -39,6 +36,34 @@ export const addDoctorScheduleFailure = createAction(
     props<{error: string}>()
 );
 
+export const updateDoctorSchedule = createAction(
+    `${prefix} Update Doctor Schedule`,
+    props<{request: WeeklyWorkSchedule}>()
+);
+
+export const updateDoctorScheduleSuccess = createAction(
+    `${prefix} Update Doctor Schedule Success`,
+);
+
+export const updateDoctorScheduleFailure = createAction(
+    `${prefix} Update Doctor Schedule Failure`,
+    props<{error: string}>()
+);
+
+export const getDoctorSchedule = createAction(
+    `${prefix} Get Doctor Schedule`
+);
+
+export const getDoctorScheduleSuccess = createAction(
+    `${prefix} Get Doctor Schedule Success`,
+    props<{doctorSchedule: WeeklyWorkSchedule}>()
+);
+
+export const getDoctorScheduleFailure = createAction(
+    `${prefix} Get Doctor Schedule Failure`,
+    props<{error: string}>()
+);
+
 export const applyFilters = createAction(
     `${prefix} Apply Filters`,
     props<{filters: VisitsFilters}>()
@@ -46,7 +71,7 @@ export const applyFilters = createAction(
 
 export const applyDateFilters = createAction(
     `${prefix} Apply Date Filters`,
-    props<{startDate: Date}>()
+    props<{addDays: number}>()
 );
 
 export const applyPaginationFilters = createAction(

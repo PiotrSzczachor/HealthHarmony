@@ -7,5 +7,5 @@ export interface WeekdayWorkingHours {
     remote: boolean,
     dayOff: boolean,
     clinicId: string,
-    weekdaysEnum: WeekdaysEnum
+    weekday: WeekdaysEnum
 }

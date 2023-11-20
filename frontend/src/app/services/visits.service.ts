@@ -20,10 +20,9 @@ export class VisitsService {
 
     getNumberOfAvaliableVisitsPerDay(request: VisitsPerDayRequest): Observable<VisitsPerDay[]> {
         if(request.specializationId && (request.clinicId || request.isRemote)){
-            const formattedDate = request.startDate.toISOString();
             let params = new HttpParams()
                 .set('specializationId', request.specializationId)
-                .set('startDate', formattedDate)
+                .set('addDays', request.addDays)
                 .set('isRemote', request.isRemote)
             if (request.clinicId) {
                 params = params.set('clinicId', request.clinicId);
@@ -62,7 +61,15 @@ export class VisitsService {
         return this.http.patch(this.prefix + visitId + '/book', {});
     }
 
-    addDoctorSchedule(request: WeeklyWorkSchedule): Observable<any> {
-        return this.http.post<any>(this.prefix + 'schedule', request);
+    addDoctorSchedule(schedule: WeeklyWorkSchedule): Observable<any> {
+        return this.http.post<any>(this.prefix + 'schedule', schedule);
+    }
+
+    getDoctorSchedule(): Observable<WeeklyWorkSchedule> {
+        return this.http.get<WeeklyWorkSchedule>(this.prefix + 'schedule');
+    }
+
+    updateDoctorSchedule(schedule: WeeklyWorkSchedule): Observable<any> {
+        return this.http.put<any>(this.prefix + 'schedule', schedule);
     }
 }

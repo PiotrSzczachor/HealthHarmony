@@ -1,3 +1,4 @@
+import { Clinic } from "src/app/models/clinics/clinic.model";
 import { Doctor } from "src/app/models/doctors/doctor.model";
 import { DoctorsFilters } from "src/app/models/doctors/doctors-filters.model";
 import { Specialization } from "src/app/models/doctors/specialization.model";
@@ -7,6 +8,7 @@ export interface DoctorsState {
     doctor: Doctor | undefined;
     doctors: Doctor[];
     pagedDoctors: PagedList<Doctor> | undefined;
-    filters: DoctorsFilters
-    specializations: Specialization[]
+    filters: DoctorsFilters;
+    specializations: Specialization[];
+    clinics: Clinic[];
 }

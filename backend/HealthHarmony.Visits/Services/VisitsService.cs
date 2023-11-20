@@ -66,10 +66,10 @@ namespace HealthHarmony.Visits.Services
         {
             throw new NotImplementedException();
         }
-        public async Task<List<VisitsPerDay>> GetNumberOfAvaliableVisitsByDateRange(Guid specializationId, Guid? clinicId, DateTime startDate, bool isRemote, int numberOfDays = 7)
+        public async Task<List<VisitsPerDay>> GetNumberOfAvaliableVisitsByDateRange(Guid specializationId, Guid? clinicId, int addDays, bool isRemote, int numberOfDays = 7)
         {
             List<VisitsPerDay> visitsPerDay = new List<VisitsPerDay>();
-            startDate = startDate.ToUniversalTime();
+            DateTime startDate = DateTime.Today.AddDays(addDays);
             var endDate = startDate.AddDays(numberOfDays);
             var doctorsIds = await _repository.GetAll<Doctor>(x => x.Specializations).Where(x => x.Specializations.Any(x => x.Id == specializationId)).Select(x => x.Id).ToListAsync();
             for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
@@ -103,7 +103,7 @@ namespace HealthHarmony.Visits.Services
                 TimeOnly startHour = new TimeOnly();
                 TimeOnly endHour = new TimeOnly();
                 TimeSpan duration = new TimeSpan();
-                Guid clinicId = Guid.NewGuid();
+                Guid? clinicId = null;
                 bool isRemote = false;
                 bool dayOff = false;
 
@@ -113,7 +113,7 @@ namespace HealthHarmony.Visits.Services
                         startHour = schedule.Monday.StartHour;
                         endHour = schedule.Monday.EndHour;
                         duration = schedule.Monday.Duration;
-                        clinicId = schedule.Monday.ClinicId;
+                        clinicId = schedule.Monday.ClinicId == Guid.Empty ? null : schedule.Monday.ClinicId;
                         isRemote = schedule.Monday.Remote;
                         dayOff = schedule.Monday.DayOff;
                         break;
@@ -121,7 +121,7 @@ namespace HealthHarmony.Visits.Services
                         startHour = schedule.Tuesday.StartHour;
                         endHour = schedule.Tuesday.EndHour;
                         duration = schedule.Tuesday.Duration;
-                        clinicId = schedule.Tuesday.ClinicId;
+                        clinicId = schedule.Tuesday.ClinicId == Guid.Empty ? null : schedule.Tuesday.ClinicId;
                         isRemote = schedule.Tuesday.Remote;
                         dayOff = schedule.Tuesday.DayOff;
                         break;
@@ -129,7 +129,7 @@ namespace HealthHarmony.Visits.Services
                         startHour = schedule.Wednesday.StartHour;
                         endHour = schedule.Wednesday.EndHour;
                         duration = schedule.Wednesday.Duration;
-                        clinicId = schedule.Wednesday.ClinicId;
+                        clinicId = schedule.Wednesday.ClinicId == Guid.Empty ? null : schedule.Wednesday.ClinicId;
                         isRemote = schedule.Wednesday.Remote;
                         dayOff = schedule.Wednesday.DayOff;
                         break;
@@ -137,7 +137,7 @@ namespace HealthHarmony.Visits.Services
                         startHour = schedule.Thursday.StartHour;
                         endHour = schedule.Thursday.EndHour;
                         duration = schedule.Thursday.Duration;
-                        clinicId = schedule.Thursday.ClinicId;
+                        clinicId = schedule.Thursday.ClinicId == Guid.Empty ? null : schedule.Thursday.ClinicId;
                         isRemote = schedule.Thursday.Remote;
                         dayOff = schedule.Thursday.DayOff;
                         break;
@@ -145,7 +145,7 @@ namespace HealthHarmony.Visits.Services
                         startHour = schedule.Friday.StartHour;
                         endHour = schedule.Friday.EndHour;
                         duration = schedule.Friday.Duration;
-                        clinicId = schedule.Friday.ClinicId;
+                        clinicId = schedule.Friday.ClinicId == Guid.Empty ? null : schedule.Friday.ClinicId;
                         isRemote = schedule.Friday.Remote;
                         dayOff = schedule.Friday.DayOff;
                         break;
@@ -153,7 +153,7 @@ namespace HealthHarmony.Visits.Services
                         startHour = schedule.Saturday.StartHour;
                         endHour = schedule.Saturday.EndHour;
                         duration = schedule.Saturday.Duration;
-                        clinicId = schedule.Saturday.ClinicId;
+                        clinicId = schedule.Saturday.ClinicId == Guid.Empty ? null : schedule.Saturday.ClinicId;
                         isRemote = schedule.Saturday.Remote;
                         dayOff = schedule.Saturday.DayOff;
                         break;
@@ -161,7 +161,7 @@ namespace HealthHarmony.Visits.Services
                         startHour = schedule.Sunday.StartHour;
                         endHour = schedule.Sunday.EndHour;
                         duration = schedule.Sunday.Duration;
-                        clinicId = schedule.Sunday.ClinicId;
+                        clinicId = schedule.Sunday.ClinicId == Guid.Empty ? null : schedule.Sunday.ClinicId;
                         isRemote = schedule.Sunday.Remote;
                         dayOff = schedule.Sunday.DayOff;
                         break;
@@ -222,26 +222,30 @@ namespace HealthHarmony.Visits.Services
                 Remote = weekdayWorkingHours.Remote,
                 DayOff = weekdayWorkingHours.DayOff,
                 Weekday = weekdayWorkingHours.Weekday,
-                ClinicId = weekdayWorkingHours.ClinicId,
+                ClinicId = weekdayWorkingHours.ClinicId == Guid.Empty ? null : weekdayWorkingHours.ClinicId,
                 DoctorId = doctor.Id,
             };
             return dailySchedule;
         }
 
-        public async Task<WeeklyWorkSchedule> GetDoctorSchedule(string userId)
+        public async Task<WeeklyWorkSchedule?> GetDoctorSchedule(string userId)
         {
             var doctor = await _repository.GetAll<Doctor>(x => x.DailySchedules).FirstOrDefaultAsync(x => x.UserId == userId);
             if(doctor == null)
             {
                 throw new ApplicationException("Coresponding user to this doctor not found");
             }
-            var monday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.Where(x => x.Weekday == WeekdaysEnum.Monday));
-            var tuesday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.Where(x => x.Weekday == WeekdaysEnum.Tuesday));
-            var wednesday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.Where(x => x.Weekday == WeekdaysEnum.Wednesday));
-            var thursday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.Where(x => x.Weekday == WeekdaysEnum.Thursday));
-            var friday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.Where(x => x.Weekday == WeekdaysEnum.Friday));
-            var saturday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.Where(x => x.Weekday == WeekdaysEnum.Saturday));
-            var sunday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.Where(x => x.Weekday == WeekdaysEnum.Sunday));
+            if(doctor.DailySchedules == null || doctor.DailySchedules.Count == 0)
+            {
+                return null;
+            }
+            var monday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.First(x => x.Weekday == WeekdaysEnum.Monday));
+            var tuesday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.First(x => x.Weekday == WeekdaysEnum.Tuesday));
+            var wednesday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.First(x => x.Weekday == WeekdaysEnum.Wednesday));
+            var thursday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.First(x => x.Weekday == WeekdaysEnum.Thursday));
+            var friday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.First(x => x.Weekday == WeekdaysEnum.Friday));
+            var saturday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.First(x => x.Weekday == WeekdaysEnum.Saturday));
+            var sunday = _mapper.Map<WeekdayWorkingHours>(doctor.DailySchedules.First(x => x.Weekday == WeekdaysEnum.Sunday));
             return new WeeklyWorkSchedule
             {
                 Monday = monday,
@@ -309,6 +313,26 @@ namespace HealthHarmony.Visits.Services
                 visitCalendarEvents[i].End = visits[i].VisitDate.AddHours(visits[i].EndHour.Hour).AddMinutes(visits[i].EndHour.Minute);
             }
             return visitCalendarEvents;
+        }
+
+        public async Task UpdateDoctorSchedule(string userId, WeeklyWorkSchedule schedule)
+        {
+            var doctor = await _repository.GetAll<Doctor>(x => x.DailySchedules).FirstOrDefaultAsync(x => x.UserId == userId);
+            if(doctor != null && doctor.DailySchedules != null)
+            {
+                var takenVisits = await _repository.GetAll<Visit>(x => x.Patient, x => x.Clinic).Where(x => x.VisitStatus == VisitStatusEnum.Taken && x.DoctorId == doctor.Id).ToListAsync();
+                //TODO Notify patient that visit has been canceled
+                foreach(var takenVisit in takenVisits)
+                {
+                    takenVisit.VisitStatus = VisitStatusEnum.Canceled;
+                }
+                await _repository.Update(takenVisits);
+                var avaliableVisitsIds = await _repository.GetAll<Visit>().Where(x => x.VisitStatus == VisitStatusEnum.Avaliable && x.DoctorId == doctor.Id).Select(x => x.Id).ToListAsync();
+                await _repository.Delete<Visit>(avaliableVisitsIds);
+                var oldScheduleIds = doctor.DailySchedules.Select(x => x.Id).ToList();
+                await _repository.Delete<DailySchedule>(oldScheduleIds);
+                await AddDoctorSchedule(schedule, userId);
+            }
         }
     }
 }

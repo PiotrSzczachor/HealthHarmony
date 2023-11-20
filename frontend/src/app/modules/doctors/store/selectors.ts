@@ -27,3 +27,8 @@ export const getAllSpecializationsSelector = createSelector(
     selectFeature,
     (state) => state.specializations
 );
+
+export const getDoctorClinicsSelector = createSelector(
+    selectFeature,
+    (state) => state.clinics
+)

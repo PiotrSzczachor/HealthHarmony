@@ -15,7 +15,8 @@ export const initialState: DoctorsState = {
         lastName: null,
         acceptsRemotely: null
     },
-    specializations: []
+    specializations: [],
+    clinics: []
 }
 
 export const reducers = createReducer(
@@ -78,5 +79,13 @@ export const reducers = createReducer(
     on(DoctorsActions.getAllSpecializationsSuccess, (state, action) => ({
         ...state,
         specializations: action.specializations
+    })),
+    on(DoctorsActions.getDoctorClinics, (state) => ({
+        ...state,
+        clinics: []
+    })),
+    on(DoctorsActions.getDoctorClinicsSuccess, (state, action) => ({
+        ...state,
+        clinics: action.clinics
     })),
 )

@@ -1,0 +1,52 @@
+<div class="edit-form-container" [formGroup]="fg">
+    <div class="heading">
+        <p class="title">{{ ('doctors.workSchedule' | translate) }}</p>
+    </div>
+
+    <div class="fields-container">
+
+        <div *ngFor="let day of weekdaysEnumKeys; let i = index" class="weekday-fields">
+            <p class="weekday-title">{{ 'visits.weekdays.' + day.toLowerCase() | translate }}</p>
+            <div class="weekday-field" [formGroup]="getFormGroup(day.toLowerCase())">
+
+                <mat-form-field appearance="outline">
+                    <input [ngxTimepicker]="startHour" [format]="24" matInput formControlName="startHour">
+                    <ngx-material-timepicker [enableKeyboardInput]="true" #startHour></ngx-material-timepicker>
+                    <mat-icon matSuffix>access_time</mat-icon>
+                    <mat-label>{{ 'visits.startHour' | translate }}</mat-label>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <input [ngxTimepicker]="endHour" [format]="24" matInput formControlName="endHour">
+                    <ngx-material-timepicker [enableKeyboardInput]="true" #endHour></ngx-material-timepicker>
+                    <mat-icon matSuffix>access_time</mat-icon>
+                    <mat-label>{{ 'visits.endHour' | translate }}</mat-label>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="duration">
+                    <mat-label>{{ 'visits.duration' | translate }}</mat-label>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-select appearance="outline" formControlName="clinicId">
+                        <mat-option [value]="clinic.id" *ngFor="let clinic of clinics$ | async">{{ clinic.name
+                            }}</mat-option>
+                    </mat-select>
+                    <mat-label>{{ 'clinics.singular' | translate }}</mat-label>
+                </mat-form-field>
+
+                <div class="checkbox-container">
+                    <mat-checkbox formControlName="remote">{{ 'visits.remotely' | translate}}</mat-checkbox>
+
+                    <mat-checkbox formControlName="dayOff">{{ 'visits.dayoff' | translate}}</mat-checkbox>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="buttons-container">
+        <button class="btn" (click)="handleSubmit()">{{ (isEdit ? 'common.save' : 'common.add') | translate }}</button>
+    </div>
+</div>

@@ -42,6 +42,7 @@
             "clinics": "Clinics",
             "visits": "Visits",
             "bookVisit": "Book Visit",
+            "schedule": "Schedule",
             "documents": "Documents",
             "results": "Results",
             "contact": "Contact",
@@ -54,7 +55,8 @@
         "title": "Clinics",
         "filters": {
             "name": "Name"
-        }
+        },
+        "singular": "Clinic"
     },
     "doctors": {
         "title": "Doctors",
@@ -63,14 +65,29 @@
             "firstName": "First name",
             "lastName": "Last name",
             "acceptsRemotely": "Accepts remotely"
-        }
+        },
+        "workSchedule": "Work schedule"
     },
     "visits": {
         "title": "Visits",
         "filters": {
             "specialization": "Specialization",
             "clinic": "Clinic"
-        }
+        },
+        "weekdays": {
+            "monday": "Monday",
+            "tuesday": "Tuesday",
+            "wednesday": "Wednesday",
+            "thursday": "Thursday",
+            "friday": "Friday",
+            "saturday": "Saturday",
+            "sunday": "Sunday"
+        },
+        "dayoff": "Day off",
+        "remotely": "Remotely",
+        "startHour": "Start hour",
+        "endHour": "End hour",
+        "duration": "Duration"
     },
     "bookVisit": {
         "title": "Book Visit",

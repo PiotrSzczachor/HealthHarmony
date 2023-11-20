@@ -36,6 +36,16 @@ namespace HealthHarmony.SQLRepository.Implementation
             await _context.SaveChangesAsync();
         }
 
+        public async Task Delete<T>(List<Guid> ids) where T : BaseModel
+        {
+            var entities = GetAll<T>().Where(x => ids.Contains(x.Id));
+            foreach(var entity in entities)
+            {
+                _context.Set<T>().Remove(entity);
+            }
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<T?> Get<T>(Guid id, params Expression<Func<T, object>>[] includes) where T : BaseModel
         {
             var query = _context.Set<T>().AsNoTracking().AsQueryable();
@@ -79,6 +89,15 @@ namespace HealthHarmony.SQLRepository.Implementation
         public async Task Update<T>(T entity) where T : BaseModel
         {
             _context.Set<T>().Update(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task Update<T>(List<T> entities) where T : BaseModel
+        {
+            foreach(var entity in entities)
+            {
+                _context.Set<T>().Update(entity);
+            }
             await _context.SaveChangesAsync();
         }
     }

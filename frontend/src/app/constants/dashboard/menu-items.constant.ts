@@ -39,6 +39,12 @@ export const MenuItems: MenuItem[] = [
         requiredRole: Roles.Doctor
     },
     {
+        name: "dashboard.menu.schedule",
+        route: "schedule",
+        icon: "../../../assets/icons/side-nav/visits.png",
+        requiredRole: Roles.Doctor
+    },
+    {
         name: "dashboard.menu.documents",
         route: "documents",
         icon: "../../../assets/icons/side-nav/documents.png",
