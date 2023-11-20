@@ -140,3 +140,18 @@ export const getTakenVisitsAssignedToDoctorFailure = createAction(
     `${prefix} Get Taken Visits Assigned To Doctor Failure`,
     props<{error: string}>()
 );
+
+export const getVisitById = createAction(
+    `${prefix} Get Visit By Id`,
+    props<{id: string}>()
+);
+
+export const getVisitByIdSuccess = createAction(
+    `${prefix} Get Visit By Id Success`,
+    props<{visit: Visit}>()
+);
+
+export const getVisitByIdFailure = createAction(
+    `${prefix} Get Visit By Id Failure`,
+    props<{error: string}>()
+);

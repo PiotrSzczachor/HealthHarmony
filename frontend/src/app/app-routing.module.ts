@@ -17,6 +17,7 @@ import { BookVisitPageComponent } from './modules/visits/containers/book-visit-p
 import { Roles } from './enums/roles.enum';
 import { DoctorsVisitPageComponent } from './modules/visits/containers/doctors-visit-page/doctors-visit-page.component';
 import { SchedulePageComponent } from './modules/doctors/containers/schedule-page/schedule-page.component';
+import { VisitCoursePageComponent } from './modules/visits/containers/visit-course-page/visit-course-page.component';
 
 const routes: Routes = [
     {
@@ -64,6 +65,12 @@ const routes: Routes = [
             {
                 path: 'doctors-visits',
                 component: DoctorsVisitPageComponent,
+                canActivate: [AuthGuard],
+                data: {requriedRole: Roles.Doctor}
+            },
+            {
+                path: 'visits/:id',
+                component: VisitCoursePageComponent,
                 canActivate: [AuthGuard],
                 data: {requriedRole: Roles.Doctor}
             },

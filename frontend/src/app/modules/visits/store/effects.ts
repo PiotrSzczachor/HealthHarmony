@@ -91,6 +91,20 @@ export class VisitsEffects {
         )
     );
 
+    getVisitById$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(VisitsActions.getVisitById),
+            mergeMap((action) => {
+                return this.visitsService.getVisitById(action.id).pipe(
+                    map(visit => VisitsActions.getVisitByIdSuccess({ visit })),
+                    catchError(error => {
+                        return of(VisitsActions.getVisitByIdFailure({ error: error.message }))
+                    })
+                )
+            })
+        )
+    );
+
     addDoctorSchedule$ = createEffect(() =>
         this.actions$.pipe(
             ofType(VisitsActions.addDoctorSchedule),

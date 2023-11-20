@@ -20,6 +20,13 @@ namespace HealthHarmony.WebApi.Controllers
         }
 
         [Authorize(Roles = Roles.Doctor)]
+        [HttpGet("{id}")]
+        public async Task<Visit> GetVisitById(Guid id)
+        {
+            return await _visitsService.GetById(id);
+        }
+
+        [Authorize(Roles = Roles.Doctor)]
         [HttpPost("schedule")]
         public async Task AddSchedule([FromBody] WeeklyWorkSchedule schedule)
         {

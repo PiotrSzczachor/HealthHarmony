@@ -52,6 +52,11 @@ export class VisitsService {
         return this.http.get<VisitCalendarEvent[]>(this.prefix + 'taken');
     }
 
+    getVisitById(id: string): Observable<Visit> {
+        return this.http.get<Visit>(this.prefix + id);
+    }
+
+
     getTakenVisitsAssignedToDoctor(): Observable<VisitCalendarEvent[]> {
         return this.http.get<VisitCalendarEvent[]>(this.prefix + 'assigned');
     }

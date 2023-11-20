@@ -7,6 +7,7 @@ import { AppState } from 'src/app/store/app.state';
 import { VisitsActions, getPatientTakenVisitsSelector, getTakenVisitsAssignedToDoctorSelector } from '../../store';
 import { Observable } from 'rxjs';
 import { VisitCalendarEvent } from 'src/app/models/visits/visit-calendar-event.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-visits-calendar',
@@ -20,6 +21,7 @@ export class VisitsCalendarComponent implements OnInit {
     
     calendarOptions: CalendarOptions = {
         initialView: 'dayGridMonth',
+        eventClick: this.handleDateClick.bind(this),
         plugins: [dayGridPlugin, timeGridPlugin],
         headerToolbar: {
             left: 'prev,next',
@@ -36,7 +38,7 @@ export class VisitsCalendarComponent implements OnInit {
         firstDay: 1
     };
 
-    constructor(private store: Store<AppState>) { 
+    constructor(private store: Store<AppState>, private router: Router) { 
         
     }
 
@@ -55,5 +57,14 @@ export class VisitsCalendarComponent implements OnInit {
 
     selectTakenVisits(): void {
         this.visitsCalendarEvents$ = this.isPatient ? this.store.select(getPatientTakenVisitsSelector) : this.store.select(getTakenVisitsAssignedToDoctorSelector);
+    }
+
+    handleDateClick(arg: any) {
+        
+        if(this.isPatient){
+
+        } else {
+            this.router.navigateByUrl('dashboard/visits/' + arg.event._def.publicId)
+        }
     }
 }
