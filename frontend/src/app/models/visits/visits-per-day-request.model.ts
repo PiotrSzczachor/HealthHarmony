@@ -1,5 +1,5 @@
 export interface VisitsPerDayRequest {
-    startDate: Date,
+    addDays: number,
     specializationId: string,
     clinicId?: string | null,
     isRemote: boolean

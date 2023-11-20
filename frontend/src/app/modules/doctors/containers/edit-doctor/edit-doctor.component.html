@@ -69,7 +69,8 @@
                 <mat-form-field appearance="outline">
                     <mat-select appearance="outline" formControlName="clinicsIds" multiple>
                         <mat-option [value]="clinic.id"
-                            *ngFor="let clinic of clinics$ | async">{{clinic.name}}</mat-option>
+                            *ngFor="let clinic of clinics$ | async">{{clinic.name}}
+                        </mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>

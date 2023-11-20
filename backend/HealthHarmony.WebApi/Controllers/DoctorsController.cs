@@ -1,4 +1,5 @@
-﻿using HealthHarmony.Common.Models.Pagination;
+﻿using HealthHarmony.Common.Constants;
+using HealthHarmony.Common.Models.Pagination;
 using HealthHarmony.Doctors.Interfaces;
 using HealthHarmony.Models.Clinics.Entities;
 using HealthHarmony.Models.Clinics.Filters;
@@ -79,6 +80,18 @@ namespace HealthHarmony.WebApi.Controllers
         public async Task<List<Specialization>> GetAllSpecializations()
         {
             return await _doctorsService.GetAllSpecializations();
+        }
+
+        [Authorize(Roles = Roles.Doctor)]
+        [HttpGet("clinics")]
+        public async Task<List<Clinic>> GetDoctorClinics()
+        {
+            var userId = User.Claims.FirstOrDefault(x => x.Type == TokenClaims.UserId)?.Value;
+            if (userId == null)
+            {
+                throw new ApplicationException("There is no user Id in token");
+            }
+            return await _doctorsService.GetDoctorClinics(userId);
         }
     }
 }

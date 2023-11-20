@@ -7,6 +7,7 @@ import { DoctorsFilters } from '../models/doctors/doctors-filters.model';
 import { PagedList } from '../models/shared/paged-list.model';
 import { DoctorDto } from '../models/doctors/doctor-dto.model';
 import { Specialization } from '../models/doctors/specialization.model';
+import { Clinic } from '../models/clinics/clinic.model';
 
 @Injectable({
     providedIn: 'root'
@@ -55,6 +56,10 @@ export class DoctorsService {
 
     getAllSpecializations(): Observable<Specialization[]> {
         return this.http.get<Specialization[]>(this.prefix + "specializations");
+    }
+
+    getDoctorClinics(): Observable<Clinic[]> {
+        return this.http.get<Clinic[]>(this.prefix + "clinics");
     }
 
 }

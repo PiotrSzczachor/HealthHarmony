@@ -166,6 +166,8 @@ namespace HealthHarmony.Doctors.Services
         {
             Password passwordGenerator = new Password();
             var password = passwordGenerator.Next();
+            //Remove line below on production/when sending password in email will be implemented
+            password = "Qw12qw12!";
             User user = new User
             {
                 FirstName = doctor.FirstName,
@@ -185,5 +187,10 @@ namespace HealthHarmony.Doctors.Services
             }
         }
 
+        public async Task<List<Clinic>> GetDoctorClinics(string userId)
+        {
+            var doctor = await _repository.GetAll<Doctor>(x => x.Clinics).FirstOrDefaultAsync(x => x.UserId == userId);
+            return doctor.Clinics.ToList();
+        }
     }
 }

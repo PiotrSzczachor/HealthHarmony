@@ -12,8 +12,8 @@ namespace HealthHarmony.Models.Visits.Entities
         public Guid DoctorId { get; set; }
         public virtual Patient? Patient { get; set; }
         public Guid? PatientId { get; set; }
-        public virtual Clinic Clinic { get; set; }
-        public Guid ClinicId { get; set; }
+        public virtual Clinic? Clinic { get; set; }
+        public Guid? ClinicId { get; set; }
         public VisitStatusEnum VisitStatus { get; set; }
         public TimeOnly StartHour { get; set; }
         public TimeOnly EndHour { get; set; }

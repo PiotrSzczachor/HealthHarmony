@@ -1,11 +1,11 @@
 import { WeekdayWorkingHours } from "./weekday-working-hours.model"
 
 export interface WeeklyWorkSchedule {
-    Monday: WeekdayWorkingHours
-    Tuesday: WeekdayWorkingHours
-    Wednesday: WeekdayWorkingHours
-    Thursday: WeekdayWorkingHours
-    Friday: WeekdayWorkingHours
-    Saturday: WeekdayWorkingHours
-    Sunday: WeekdayWorkingHours
+    monday: WeekdayWorkingHours
+    tuesday: WeekdayWorkingHours
+    wednesday: WeekdayWorkingHours
+    thursday: WeekdayWorkingHours
+    friday: WeekdayWorkingHours
+    saturday: WeekdayWorkingHours
+    sunday: WeekdayWorkingHours
 }

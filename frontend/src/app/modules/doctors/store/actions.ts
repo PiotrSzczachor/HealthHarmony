@@ -1,4 +1,5 @@
 import { createAction, props } from "@ngrx/store";
+import { Clinic } from "src/app/models/clinics/clinic.model";
 import { DoctorDto } from "src/app/models/doctors/doctor-dto.model";
 import { Doctor } from "src/app/models/doctors/doctor.model";
 import { DoctorsFilters } from "src/app/models/doctors/doctors-filters.model";
@@ -118,5 +119,19 @@ export const getAllSpecializationsSuccess = createAction(
 
 export const getAllSpecializationsFailure = createAction(
     `${prefix} Get All Specializations Failure`,
+    props<{error: string}>()
+);
+
+export const getDoctorClinics = createAction(
+    `${prefix} Get Doctor Clinics`,
+);
+
+export const getDoctorClinicsSuccess = createAction(
+    `${prefix} Get Doctor Clinics Success`,
+    props<{clinics: Clinic[]}>()
+);
+
+export const getDoctorClinicsFailure = createAction(
+    `${prefix} Get Doctor Clinics Failure`,
     props<{error: string}>()
 );

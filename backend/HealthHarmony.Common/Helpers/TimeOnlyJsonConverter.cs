@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using System.Text.Json;
+using System.Globalization;
 
 namespace HealthHarmony.Common.Helpers
 {
@@ -7,15 +8,16 @@ namespace HealthHarmony.Common.Helpers
     {
         public override TimeOnly Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            using (var jsonDoc = JsonDocument.ParseValue(ref reader))
+            var timeString = reader.GetString(); // Assuming the input is a JSON string representing time in "HH:MM" format
+
+            if (TimeOnly.TryParseExact(timeString, "HH:mm", out var timeOnly))
             {
-                var value = jsonDoc.RootElement;
-                var hour = value.GetProperty("hour").GetInt32();
-                var minute = value.GetProperty("minute").GetInt32();
-                var second = value.GetProperty("second").GetInt32();
-
-                return new TimeOnly(hour, minute, second);
-
+                return timeOnly;
+            }
+            else
+            {
+                // Handle the case where the string is not in the expected format
+                throw new JsonException($"Invalid time format. Expected format: HH:mm. Actual value: {timeString}");
             }
         }
 

@@ -13,8 +13,8 @@ namespace HealthHarmony.Models.Visits.Entities
         public bool Remote { get; set; }
         public bool DayOff { get; set; }
         public WeekdaysEnum Weekday { get; set; }
-        public virtual Clinic Clinic { get; set; }
-        public Guid ClinicId { get; set; }
+        public virtual Clinic? Clinic { get; set; }
+        public Guid? ClinicId { get; set; }
         public virtual Doctor Doctor { get; set; }
         public Guid DoctorId { get; set; }
     }

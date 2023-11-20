@@ -19,6 +19,7 @@ namespace HealthHarmony.WebApi.Controllers
             _visitsService = visitsService;
         }
 
+        [Authorize(Roles = Roles.Doctor)]
         [HttpPost("schedule")]
         public async Task AddSchedule([FromBody] WeeklyWorkSchedule schedule)
         {
@@ -30,8 +31,9 @@ namespace HealthHarmony.WebApi.Controllers
             await _visitsService.AddDoctorSchedule(schedule, userId);
         }
 
+        [Authorize(Roles = Roles.Doctor)]
         [HttpGet("schedule")]
-        public async Task<WeeklyWorkSchedule> GetSchedule()
+        public async Task<WeeklyWorkSchedule?> GetSchedule()
         {
             var userId = User.Claims.FirstOrDefault(x => x.Type == TokenClaims.UserId)?.Value;
             if (userId == null)
@@ -41,10 +43,22 @@ namespace HealthHarmony.WebApi.Controllers
             return await _visitsService.GetDoctorSchedule(userId);
         }
 
+        [Authorize(Roles = Roles.Doctor)]
+        [HttpPut("schedule")]
+        public async Task UpdateSchedule([FromBody] WeeklyWorkSchedule schedule)
+        {
+            var userId = User.Claims.FirstOrDefault(x => x.Type == TokenClaims.UserId)?.Value;
+            if (userId == null)
+            {
+                throw new ApplicationException("There is no user Id in token");
+            }
+            await _visitsService.UpdateDoctorSchedule(userId, schedule);
+        }
+
         [HttpGet("per-day")]
         public async Task<List<VisitsPerDay>> GetNumberOfAvaliableVisitsByDateRange([FromQuery] VisitsPerDayRequest request)
         {
-            return await _visitsService.GetNumberOfAvaliableVisitsByDateRange(request.SpecializationId, request.ClinicId, request.StartDate, request.IsRemote, 6);
+            return await _visitsService.GetNumberOfAvaliableVisitsByDateRange(request.SpecializationId, request.ClinicId, request.AddDays, request.IsRemote, 6);
         }
 
         [HttpGet("avaliable")]

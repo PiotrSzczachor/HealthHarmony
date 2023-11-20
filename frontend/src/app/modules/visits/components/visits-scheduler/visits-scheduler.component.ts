@@ -16,6 +16,7 @@ import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/
 export class VisitsSchedulerComponent implements OnInit {
     
     firstDay: Date = new Date();
+    addDays: number = 0;
     week: Date[] = [];
     visitsPerDay$!: Observable<VisitsPerDay[]> 
     showDatesWithVisits: boolean = false;
@@ -49,13 +50,15 @@ export class VisitsSchedulerComponent implements OnInit {
 
     showNextWeek(): void {
         this.firstDay = this.getSameDayInNextWeek(this.firstDay);
-        this.store.dispatch(VisitsActions.applyDateFilters({startDate: this.firstDay}))
+        this.addDays += 7
+        this.store.dispatch(VisitsActions.applyDateFilters({addDays: this.addDays}))
         this.generateWeekArray();
     }
 
     showPreviousWeek(): void {
         this.firstDay = this.getSameDayInPreviousWeek(this.firstDay)
-        this.store.dispatch(VisitsActions.applyDateFilters({startDate: this.firstDay}))
+        this.addDays -= 7
+        this.store.dispatch(VisitsActions.applyDateFilters({addDays: this.addDays}))
         this.generateWeekArray();
     }
 

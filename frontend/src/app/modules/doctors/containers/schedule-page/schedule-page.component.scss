@@ -1,0 +1,67 @@
+@use "../../../../shared/styles/edit-form.scss";
+@use "../../../../../variables";
+
+.edit-form-container {
+    margin-top: 30px;
+    width: calc(100% - 60px);
+
+    .heading {
+        margin-bottom: 30px;
+    }
+
+    .weekday-title {
+        font-size: 14pt;
+        margin-bottom: 5px;
+    }
+
+    .weekday-field {
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+    }
+
+    .weekday-field > * {
+        flex: 1;
+    }
+
+    .checkbox-container {
+        display: flex;
+        justify-content: space-around;
+    }
+
+}
+
+::ng-deep .timepicker__header {
+    background-color: variables.$basic-blue-color !important;
+}
+
+::ng-deep span.active {
+    background-color: variables.$basic-blue-color !important;
+}
+
+::ng-deep .clock-face__clock-hand {
+    background-color: variables.$basic-blue-color !important;
+}
+
+::ng-deep .clock-hand {
+    background-color: variables.$basic-blue-color !important;
+}
+
+::ng-deep .timepicker-button {
+    height: 35px!important;
+    min-width: 100px!important;
+    background-color: variables.$basic-blue-color!important;
+    border-radius: 5px!important;
+    color: variables.$white-color!important;
+    margin-left: 10px;
+}
+
+::ng-deep .mdc-label {
+    color: variables.$basic-blue-color!important;
+    font-family: variables.$font-family!important;
+    font-size: 14pt;
+}
+
+::ng-deep .mdc-checkbox__background {
+    border-color: variables.$basic-blue-color!important;
+}

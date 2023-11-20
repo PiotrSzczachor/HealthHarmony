@@ -11,11 +11,12 @@ export const initialState: VisitsState = {
         pageSize: 10,
         orderBy: null,
         orderDescending: false,
-        startDate: new Date(),
+        addDays: 0,
     },
     avaliableVisits: [],
     takenVisitsCalendarEvents: [],
-    doctorVisitsCalendarEvents: []
+    doctorVisitsCalendarEvents: [],
+    doctorSchedule: null
 }
 
 export const reducers = createReducer(
@@ -43,14 +44,14 @@ export const reducers = createReducer(
         ...state,
         filters: {
             ...state.filters,
-            startDate: action.startDate
+            addDays: action.addDays
         }
     })),
     on(VisitsActions.clearFilters, (state) => ({
         ...state,
         filters: {
             ...state.filters,
-            startDate: new Date(),
+            addDays: 0,
             specializationId: null,
             clinicId: null,
             isRemote: false,
@@ -88,5 +89,13 @@ export const reducers = createReducer(
     on(VisitsActions.getTakenVisitsAssignedToDoctorSuccess, (state, action) => ({
         ...state,
         doctorVisitsCalendarEvents: action.visits
+    })),
+    on(VisitsActions.getDoctorSchedule, (state) => ({
+        ...state,
+        doctorSchedule: null
+    })),
+    on(VisitsActions.getDoctorScheduleSuccess, (state, action) => ({
+        ...state,
+        doctorSchedule: action.doctorSchedule
     })),
 )

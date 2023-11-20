@@ -16,6 +16,7 @@ import { ClinicsPageComponent } from './modules/clinics/containers/clinics-page/
 import { BookVisitPageComponent } from './modules/visits/containers/book-visit-page/book-visit-page.component';
 import { Roles } from './enums/roles.enum';
 import { DoctorsVisitPageComponent } from './modules/visits/containers/doctors-visit-page/doctors-visit-page.component';
+import { SchedulePageComponent } from './modules/doctors/containers/schedule-page/schedule-page.component';
 
 const routes: Routes = [
     {
@@ -71,6 +72,12 @@ const routes: Routes = [
                 component: BookVisitPageComponent,
                 canActivate: [AuthGuard],
                 data: {requiredRole: Roles.Patient}
+            },
+            {
+                path: 'schedule',
+                component: SchedulePageComponent,
+                canActivate: [AuthGuard],
+                data: {requiredRole: Roles.Doctor}
             },
             {
                 path: 'documents',
