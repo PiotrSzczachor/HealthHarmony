@@ -3,7 +3,7 @@ export const MedicalRecomendationTemplate: string = `
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap" rel="stylesheet">
 <div class="medical-recomendation-container"
-    style="width: 100%; height: 100vh; font-family: 'Arial, sans-serif'; color: black">
+    style="width: 100%; height: 100%; font-family: 'Arial, sans-serif'; color: black">
     <div class="heading"
         style="width: 100%; display: flex; align-items: center; flex-direction: column; margin-bottom: 20px;">
         <img src="../../../../../assets/logo.png" alt="" style="width: 100px; height: 100px;">
@@ -42,7 +42,7 @@ export const MedicalRecomendationTemplate: string = `
         {{MEDICINES_LIST}}
     </div>
     <div class="footer"
-        style="width: 100%; display: flex; align-items: flex-end; flex-direction: column; position: absolute; bottom: 0px;">
+        style="width: 100%; display: flex; align-items: flex-end; flex-direction: column;">
         <div style="display: flex; flex-direction: column; align-items: center;">
             <h2 style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">{{DOCTOR_NAME}}</h2>
             <p>.........................................................</p>

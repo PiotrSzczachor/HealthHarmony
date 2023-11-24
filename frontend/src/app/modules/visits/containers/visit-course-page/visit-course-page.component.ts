@@ -23,6 +23,7 @@ export class VisitCoursePageComponent implements OnInit {
 
     fg: FormGroup = this.fb.group({
         description: ['', Validators.required],
+        symptoms: [{value: '', disabled: true}],
         medicines: this.fb.array([])
     });
 
@@ -58,6 +59,9 @@ export class VisitCoursePageComponent implements OnInit {
         this.visit$ = this.store.select(getVisitSelector);
         this.visit$.subscribe(visit => {
             this.visit = visit
+            this.fg.patchValue({
+                symptoms: visit?.symptoms
+            });
         });
     }
 
@@ -113,22 +117,44 @@ export class VisitCoursePageComponent implements OnInit {
 
     printPDF(): void {
         const pdfInstance = this.generatePDF();
-        pdfInstance.outputPdf().then((pdfBlob: Blob | MediaSource) => {
-            console.log("PRINT BEFORE");
 
-            // Explicitly cast pdfBlob to Blob
-            const blob = pdfBlob as Blob;
+    if (!pdfInstance) {
+        console.error('PDF instance is not available.');
+        return;
+    }
 
-            const dataUrl = URL.createObjectURL(blob);
-            const printWindow = window.open(dataUrl, '_blank');
-            if (printWindow) {
-                console.log("PRINT");
+    pdfInstance.output().then((pdfData: string | undefined) => {
+        if (!pdfData) {
+            console.error('PDF data is undefined.');
+            return;
+        }
+
+        const byteArray = new Uint8Array(pdfData.length);
+        for (let i = 0; i < pdfData.length; i++) {
+            byteArray[i] = pdfData.charCodeAt(i) & 0xff;
+        }
+
+        const blob = new Blob([byteArray], { type: 'application/pdf' });
+
+        const dataUrl = URL.createObjectURL(blob);
+        const printWindow = window.open(dataUrl, '_blank');
+
+        if (printWindow) {
+            printWindow.onload = () => {
                 printWindow.print();
-            } else {
-                console.error('Failed to open print window.');
-            }
-        }).catch((error: any) => {
-            console.error('Error during PDF generation or printing:', error);
-        });
+                URL.revokeObjectURL(dataUrl);
+            };
+        } else {
+            console.error('Failed to open print window.');
+            URL.revokeObjectURL(dataUrl);
+        }
+    }).catch((error: any) => {
+        console.error('Error during PDF generation or printing:', error);
+    });
+    }
+    
+
+    completeVisit(): void {
+        
     }
 }

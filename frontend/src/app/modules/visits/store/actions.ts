@@ -5,6 +5,7 @@ import { PaginatorEvent } from "src/app/models/shared/paginator-event.model";
 import { VisitsFilters } from "src/app/models/visits/visits-filters.model";
 import { Visit } from "src/app/models/visits/visit.model";
 import { VisitCalendarEvent } from "src/app/models/visits/visit-calendar-event.model";
+import { BookVisitRequest } from "src/app/models/visits/book-visit-request.model";
 
 const prefix = '[Visits]'
 
@@ -100,7 +101,7 @@ export const getAvaliableVisitsForSpecificDateFailure = createAction(
 
 export const bookVisit = createAction(
     `${prefix} Book Visit`,
-    props<{visitId: string}>()
+    props<{request: BookVisitRequest}>()
 );
 
 export const bookVisitSuccess = createAction(

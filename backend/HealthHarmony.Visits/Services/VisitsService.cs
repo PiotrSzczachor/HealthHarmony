@@ -279,10 +279,14 @@ namespace HealthHarmony.Visits.Services
             return results;
         }
 
-        public async Task<Visit> BookVisit(Guid visitId, string userId)
+        public async Task<Visit> BookVisit(BookVisitRequest request, string userId)
         {
             var patient = await _repository.Get<Patient>(x => x.UserId == userId);
-            var visit = await _repository.Get<Visit>(visitId);
+            var visit = await _repository.Get<Visit>(request.VisitId);
+            if(!string.IsNullOrEmpty(request.Symptoms))
+            {
+                visit.Symptoms = request.Symptoms;
+            }
             visit.VisitStatus = VisitStatusEnum.Taken;
             visit.Patient = patient;
             visit.PatientId = patient.Id;

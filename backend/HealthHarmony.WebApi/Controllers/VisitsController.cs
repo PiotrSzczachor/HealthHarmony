@@ -74,15 +74,15 @@ namespace HealthHarmony.WebApi.Controllers
             return await _visitsService.GetAvaliableVisitsForSpecificDate(request);
         }
 
-        [HttpPatch("{visitId:Guid}/book")]
-        public async Task<Visit> AssignVisitToPatient(Guid visitId)
+        [HttpPatch("book")]
+        public async Task<Visit> AssignVisitToPatient([FromBody] BookVisitRequest request)
         {
             var userId = User.Claims.FirstOrDefault(x => x.Type == TokenClaims.UserId)?.Value;
             if (userId == null)
             {
                 throw new ApplicationException("There is no user Id in token");
             }
-            return await _visitsService.BookVisit(visitId, userId);
+            return await _visitsService.BookVisit(request, userId);
         }
 
         [Authorize(Roles = Roles.Patient)]

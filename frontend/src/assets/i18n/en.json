@@ -87,7 +87,8 @@
         "remotely": "Remotely",
         "startHour": "Start hour",
         "endHour": "End hour",
-        "duration": "Duration"
+        "duration": "Duration",
+        "visitCourse": "Visit course"
     },
     "bookVisit": {
         "title": "Book Visit",

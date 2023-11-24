@@ -1,0 +1,17 @@
+<div class="confirmation-dialog-container">
+    <div class="dialog-header">
+        <p class="title">{{data.title}}</p>
+    </div>
+    <div class="fg-container" [formGroup]="fg">
+        <p class="patient-title">Symptoms:</p>
+        <mat-form-field appearance="outline">
+            <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="7"
+                cdkAutosizeMaxRows="7" formControlName="symptoms"></textarea>
+        </mat-form-field>
+    </div>
+    <p class="message">{{data.message}}</p>
+    <div class="buttons-container">
+        <button (click)="confirm()">{{ "common.yes" | translate }}</button>
+        <button (click)="cancel()">{{ "common.no" | translate }}</button>
+    </div>
+</div>

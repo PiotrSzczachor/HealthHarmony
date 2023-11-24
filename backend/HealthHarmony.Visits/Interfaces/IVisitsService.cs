@@ -13,7 +13,7 @@ namespace HealthHarmony.Visits.Interfaces
         Task AddDoctorSchedule(WeeklyWorkSchedule schedule, string userId);
         Task<WeeklyWorkSchedule?> GetDoctorSchedule(string userId);
         Task UpdateDoctorSchedule(string userId, WeeklyWorkSchedule schedule);
-        Task<Visit> BookVisit(Guid visitId, string userId);
+        Task<Visit> BookVisit(BookVisitRequest request, string userId);
         Task<List<VisitCalendarEvent>> GetPatientTakenVisits(string userId);
         Task<List<VisitCalendarEvent>> GetTakenVisitsAssignedToDoctor(string userId);
     }

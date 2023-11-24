@@ -12,6 +12,7 @@ import { BookVisitFiltersComponent } from './components/book-visit-filters/book-
 import { VisitsCalendarComponent } from './components/visits-calendar/visits-calendar.component';
 import { DoctorsVisitPageComponent } from './containers/doctors-visit-page/doctors-visit-page.component';
 import { VisitCoursePageComponent } from './containers/visit-course-page/visit-course-page.component';
+import { BookVisitDialogComponent } from './components/book-visit-dialog/book-visit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { VisitCoursePageComponent } from './containers/visit-course-page/visit-c
     VisitsCalendarComponent,
     DoctorsVisitPageComponent,
     VisitCoursePageComponent,
+    BookVisitDialogComponent,
   ],
   imports: [
     CommonModule,

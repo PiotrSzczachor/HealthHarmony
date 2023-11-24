@@ -64,34 +64,54 @@
 </div> -->
 <form [formGroup]="fg" class="edit-form-container">
     <div class="heading">
-        <p class="title">{{ ('doctors.workSchedule' | translate) }}</p>
+        <p class="title">{{ ('visits.visitCourse' | translate) }}</p>
+    </div>
+    <div class="patient-section-container">
+        <div class="patient-info-container">
+            <p class="patient-title">{{ 'Patient' }}</p>
+            <p class="patient-info">{{ (visit$ | async)?.patient?.firstName + ' ' + (visit$ | async)?.patient?.lastName}}</p>
+            <p class="patient-info">{{ 'Pesel: ' + (visit$ | async)?.patient?.pesel }}</p>
+            <p class="patient-info">{{ 'Birth date: ' + (visit$ | async)?.patient?.birthDate?.slice(0, 10) }}</p>
+            <p class="patient-info">{{ 'Email: ' + (visit$ | async)?.patient?.email }}</p>
+            <p class="patient-info">{{ 'Phone number: ' + (visit$ | async)?.patient?.phoneNumber }}</p>
+        </div>
+        <div class="symptoms-container">
+            <p class="patient-title">Symptoms:</p>
+            <mat-form-field appearance="outline">
+                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="7"
+                    cdkAutosizeMaxRows="7" formControlName="symptoms"></textarea>
+            </mat-form-field>
+        </div>
     </div>
     <div class="fields-container">
         <div class="field">
-            <p class="field-title">Decription:</p>
+            <p class="patient-title">Visit decription:</p>
             <mat-form-field appearance="outline">
-                <input matInput formControlName="description">
+                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="10"
+                    cdkAutosizeMaxRows="10" formControlName="description"></textarea>
             </mat-form-field>
         </div>
-        <div formArrayName="medicines">
+        <div class="medicines-container" formArrayName="medicines">
+            <p class="patient-title">Medicines:</p>
             <div *ngFor="let medicine of medicines.controls; let i = index">
                 <div [formGroupName]="i">
                     <div class="double-field">
                         <div class="field">
-                            <p class="field-title">Medicine name:</p>
+                            <p class="field-title double">Name:</p>
                             <mat-form-field appearance="outline">
                                 <input matInput formControlName="name">
                             </mat-form-field>
                         </div>
 
                         <div class="field">
-                            <p class="field-title">Dosage:</p>
+                            <p class="field-title double">Dosage:</p>
                             <mat-form-field appearance="outline">
                                 <input matInput formControlName="dosage">
                             </mat-form-field>
                         </div>
+
+                        <button class="btn remove-btn" (click)="removeMedicine(i)"><mat-icon>delete</mat-icon></button>
                     </div>
-                    <button class="btn remove-btn" (click)="removeMedicine(i)"><mat-icon>delete</mat-icon></button>
                 </div>
             </div>
         </div>
@@ -100,5 +120,6 @@
     <div class="document-buttons-container">
         <button class="btn add-btn" (click)="downloadPDF()"><mat-icon>cloud_download</mat-icon></button>
         <button class="btn add-btn" (click)="printPDF()"><mat-icon>print</mat-icon></button>
+        <button class="btn complete-visit-btn" (click)="completeVisit()">Complete</button>
     </div>
 </form>

@@ -53,7 +53,7 @@ export class VisitsEffects {
         this.actions$.pipe(
             ofType(VisitsActions.bookVisit),
             mergeMap(action => {
-                return this.visitsService.bookVisit(action.visitId).pipe(
+                return this.visitsService.bookVisit(action.request).pipe(
                     map(visit => VisitsActions.bookVisitSuccess({ visit })),
                     catchError(error => {
                         return of(VisitsActions.bookVisitFailure({ error: error.message }))
