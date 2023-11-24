@@ -1,0 +1,52 @@
+@use '../../../../shared/styles/edit-form.scss';
+@use '../../../../../variables';
+
+.edit-form-container {
+    margin-top: 30px;
+    width: calc(100% - 60px);
+
+    .heading {
+        margin-bottom: 30px;
+    }
+
+    .weekday-title {
+        font-size: 14pt;
+        margin-bottom: 5px;
+    }
+
+    .weekday-field {
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+    }
+
+    .weekday-field > * {
+        flex: 1;
+    }
+
+    .checkbox-container {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .btn {
+        width: 50px;
+        height: 50px;
+        border: none;
+        border-radius: 5px;
+        color: variables.$white-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .remove-btn {
+        background-color: variables.$red-color;
+    }
+
+    .add-btn {
+        background-color: variables.$basic-blue-color;
+    }
+
+}

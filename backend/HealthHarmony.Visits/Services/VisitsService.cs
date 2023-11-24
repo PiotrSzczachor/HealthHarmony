@@ -45,7 +45,10 @@ namespace HealthHarmony.Visits.Services
 
         public async Task<Visit> GetById(Guid Id)
         {
-            return await _repository.Get<Visit>(Id, x => x.Patient, x => x.Doctor, x => x.Clinic);
+            var visit = await _repository.Get<Visit>(Id, x => x.Patient, x => x.Clinic);
+            var doctorWithSpecialization = await _repository.Get<Doctor>(visit.DoctorId, x => x.Specializations);
+            visit.Doctor = doctorWithSpecialization;
+            return visit;
         }
 
         public async Task<Visit> GetByIdWithoutIncludes(Guid Id)

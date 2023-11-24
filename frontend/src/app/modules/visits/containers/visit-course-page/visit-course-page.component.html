@@ -1,1 +1,104 @@
-<p>visit-course-page works!</p>
+<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap" rel="stylesheet">
+<div class="medical-recomendation-container"
+    style="width: 100%; height: 100%; font-family: 'Arial, sans-serif'; color: black">
+    <div class="heading"
+        style="width: 100%; display: flex; align-items: center; flex-direction: column; margin-bottom: 20px;">
+        <img src="../../../../../assets/logo.png" alt="" style="width: 100px; height: 100px;">
+        <h1 style="font-weight: bold; font-family: 'Poppins', sans-serif; color: #0066ff;">Health Harmony</h1>
+        <p style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">Cracow Clinic</p>
+        <p style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">cracow&#64;hh.com</p>
+        <p style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">+48 325 894 281</p>
+    </div>
+    <div class="patient-and-doctor-data"
+        style="display: flex; width: 100%; margin-bottom: 20px; justify-content: space-between;">
+        <div class="patient-container" style="flex: 1">
+            <h2 style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">Patient</h2>
+            <p style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">Adam Smith</p>
+            <p style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">Pesel: 82942385923</p>
+            <p style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">Birth date: 21.04.1942</p>
+            <p style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">adam.smith&#64;gmail.com</p>
+            <p style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">+48 325 894 281</p>
+        </div>
+        <div class="doctor-container" style="flex: 1; display: flex; justify-content: flex-end;">
+            <div>
+                <h2 style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">Doctor</h2>
+                <p style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">Dr. John Doe</p>
+                <p style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">Neurologist, Cardiologist, Ortopedist
+                </p>
+                <p style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">adam.smith&#64;gmail.com</p>
+            </div>
+        </div>
+    </div>
+    <div class="description" style="margin-bottom: 20px;">
+        <h2 style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">Visit description</h2>
+        <p style="text-align: justify;">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis
+            exercitationem numquam reprehenderit adipisci expedita cum sit sequi eaque tenetur, voluptatibus aperiam
+            iste incidunt nesciunt dolor
+            placeat eius mollitia facilis ipsum. Fugiat quis id minus omnis corrupti ducimus repudiandae laborum itaque
+            voluptas error voluptatem reiciendis quasi inventore dolore ipsum, iste nesciunt aliquam sunt explicabo
+            consequatur fuga impedit modi exercitationem! Fugiat pariatur quidem autem voluptates reiciendis facilis
+            doloremque, reprehenderit, optio quod praesentium voluptatem at totam tempora blanditiis saepe rerum quo hic
+            obcaecati doloribus ullam architecto iusto quis sequi excepturi. Illum omnis, facere autem, harum incidunt
+            in
+            temporibus est, perspiciatis libero voluptates cupiditate.
+        </p>
+    </div>
+    <div class="medical-list">
+        <h2 style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">Medical recomendation</h2>
+        <h4 style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">Rutinoscrobin</h4>
+        <p style="font-family: 'Arial, sans-serif';">1 pill 3 times a day for one week</p>
+        <br>
+        <h4 style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">Apap</h4>
+        <p style="font-family: 'Arial, sans-serif';">1 pill 2 times a day when temperature higher than 37</p>
+    </div>
+    <div class="footer"
+        style="width: 100%; display: flex; align-items: flex-end; flex-direction: column; position: relative; bottom: 0px;">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <h2 style="font-family: 'Arial, sans-serif'; margin-bottom: 5px;">Dr. John Doe</h2>
+            <p>.........................................................</p>
+        </div>
+    </div>
+</div> -->
+<form [formGroup]="fg" class="edit-form-container">
+    <div class="heading">
+        <p class="title">{{ ('doctors.workSchedule' | translate) }}</p>
+    </div>
+    <div class="fields-container">
+        <div class="field">
+            <p class="field-title">Decription:</p>
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="description">
+            </mat-form-field>
+        </div>
+        <div formArrayName="medicines">
+            <div *ngFor="let medicine of medicines.controls; let i = index">
+                <div [formGroupName]="i">
+                    <div class="double-field">
+                        <div class="field">
+                            <p class="field-title">Medicine name:</p>
+                            <mat-form-field appearance="outline">
+                                <input matInput formControlName="name">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="field">
+                            <p class="field-title">Dosage:</p>
+                            <mat-form-field appearance="outline">
+                                <input matInput formControlName="dosage">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <button class="btn remove-btn" (click)="removeMedicine(i)"><mat-icon>delete</mat-icon></button>
+                </div>
+            </div>
+        </div>
+        <button class="btn add-btn" (click)="addMedicine()"><mat-icon>add</mat-icon></button>
+    </div>
+    <div class="document-buttons-container">
+        <button class="btn add-btn" (click)="downloadPDF()"><mat-icon>cloud_download</mat-icon></button>
+        <button class="btn add-btn" (click)="printPDF()"><mat-icon>print</mat-icon></button>
+    </div>
+</form>
