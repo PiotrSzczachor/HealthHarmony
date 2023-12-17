@@ -7,6 +7,8 @@ import { VisitsPerDay } from 'src/app/models/visits/visits-per-day.model';
 import { Visit } from 'src/app/models/visits/visit.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
+import { BookVisitRequest } from 'src/app/models/visits/book-visit-request.model';
+import { BookVisitDialogComponent } from '../book-visit-dialog/book-visit-dialog.component';
 
 @Component({
   selector: 'app-visits-scheduler',
@@ -92,12 +94,17 @@ export class VisitsSchedulerComponent implements OnInit {
     }
 
     openConfirmationDialog(visitId: string | undefined): void {
-        this.dialog.open(ConfirmationDialogComponent, {data: {
+        this.dialog.open(BookVisitDialogComponent, {data: {
             title: "VISIT CONFIRMATION",
             message: "Are you sure you want to book this visit?"
         }}).afterClosed().subscribe(result => {
-            if(result && visitId)
-                this.store.dispatch(VisitsActions.bookVisit({visitId}));
+            if(result && visitId){
+                const request: BookVisitRequest = {
+                    visitId: visitId,
+                    symptoms: result.symptoms
+                }
+                this.store.dispatch(VisitsActions.bookVisit({request}));
+            }
         })
     }
 }

@@ -20,6 +20,8 @@ import { HourPipe } from '../pipes/hour.pipe';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
 
 const DIRECTIVES = [
     IsLoggedInDirective, IsNotLoggedInDirective
@@ -31,7 +33,7 @@ const PIPES = [
 ]
 
 const COMPONENTS = [
-    PaginatorComponent, ConfirmationDialogComponent
+    PaginatorComponent, ConfirmationDialogComponent, PdfViewerComponent
 ]
 
 @NgModule({
@@ -52,7 +54,8 @@ const COMPONENTS = [
     MatDatepickerModule,
     MatNativeDateModule,
     FullCalendarModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    NgxExtendedPdfViewerModule
   ],
   exports: [
     MatIconModule,
@@ -70,6 +73,7 @@ const COMPONENTS = [
     MatNativeDateModule,
     FullCalendarModule,
     NgxMaterialTimepickerModule,
+    NgxExtendedPdfViewerModule,
     DIRECTIVES,
     PIPES,
     COMPONENTS

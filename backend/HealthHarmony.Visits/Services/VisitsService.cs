@@ -2,6 +2,7 @@
 using HealthHarmony.Common.Extensions;
 using HealthHarmony.Common.Models.Pagination;
 using HealthHarmony.Models.Doctors.Entities;
+using HealthHarmony.Models.Documents.Entities;
 using HealthHarmony.Models.Patients.Entities;
 using HealthHarmony.Models.Visits.Dto;
 using HealthHarmony.Models.Visits.Entities;
@@ -45,7 +46,10 @@ namespace HealthHarmony.Visits.Services
 
         public async Task<Visit> GetById(Guid Id)
         {
-            return await _repository.Get<Visit>(Id, x => x.Patient, x => x.Doctor, x => x.Clinic);
+            var visit = await _repository.Get<Visit>(Id, x => x.Patient, x => x.Clinic);
+            var doctorWithSpecialization = await _repository.Get<Doctor>(visit.DoctorId, x => x.Specializations);
+            visit.Doctor = doctorWithSpecialization;
+            return visit;
         }
 
         public async Task<Visit> GetByIdWithoutIncludes(Guid Id)
@@ -276,10 +280,14 @@ namespace HealthHarmony.Visits.Services
             return results;
         }
 
-        public async Task<Visit> BookVisit(Guid visitId, string userId)
+        public async Task<Visit> BookVisit(BookVisitRequest request, string userId)
         {
             var patient = await _repository.Get<Patient>(x => x.UserId == userId);
-            var visit = await _repository.Get<Visit>(visitId);
+            var visit = await _repository.Get<Visit>(request.VisitId);
+            if(!string.IsNullOrEmpty(request.Symptoms))
+            {
+                visit.Symptoms = request.Symptoms;
+            }
             visit.VisitStatus = VisitStatusEnum.Taken;
             visit.Patient = patient;
             visit.PatientId = patient.Id;
@@ -333,6 +341,22 @@ namespace HealthHarmony.Visits.Services
                 await _repository.Delete<DailySchedule>(oldScheduleIds);
                 await AddDoctorSchedule(schedule, userId);
             }
+        }
+
+        public async Task CompleteVisit(CompleteVisitRequest request)
+        {
+            var document = new Document
+            {
+                Name = request.Document.Name,
+                Content = request.Document.Content,
+                Extension = request.Document.Extension,
+                PatientId = request.Document.PatientId,
+                DoctorId = request.Document.DoctorId
+            };
+            await _repository.Add(document);
+            var visit = await _repository.Get<Visit>(request.VisitId);
+            visit.VisitStatus = VisitStatusEnum.Completed;
+            await _repository.Update(visit);
         }
     }
 }

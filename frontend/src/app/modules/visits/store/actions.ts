@@ -5,6 +5,8 @@ import { PaginatorEvent } from "src/app/models/shared/paginator-event.model";
 import { VisitsFilters } from "src/app/models/visits/visits-filters.model";
 import { Visit } from "src/app/models/visits/visit.model";
 import { VisitCalendarEvent } from "src/app/models/visits/visit-calendar-event.model";
+import { BookVisitRequest } from "src/app/models/visits/book-visit-request.model";
+import { CompleteVisitRequest } from "src/app/models/visits/complete-visit-request.model";
 
 const prefix = '[Visits]'
 
@@ -100,7 +102,7 @@ export const getAvaliableVisitsForSpecificDateFailure = createAction(
 
 export const bookVisit = createAction(
     `${prefix} Book Visit`,
-    props<{visitId: string}>()
+    props<{request: BookVisitRequest}>()
 );
 
 export const bookVisitSuccess = createAction(
@@ -138,5 +140,34 @@ export const getTakenVisitsAssignedToDoctorSuccess = createAction(
 
 export const getTakenVisitsAssignedToDoctorFailure = createAction(
     `${prefix} Get Taken Visits Assigned To Doctor Failure`,
+    props<{error: string}>()
+);
+
+export const getVisitById = createAction(
+    `${prefix} Get Visit By Id`,
+    props<{id: string}>()
+);
+
+export const getVisitByIdSuccess = createAction(
+    `${prefix} Get Visit By Id Success`,
+    props<{visit: Visit}>()
+);
+
+export const getVisitByIdFailure = createAction(
+    `${prefix} Get Visit By Id Failure`,
+    props<{error: string}>()
+);
+
+export const completeVisit = createAction(
+    `${prefix} Complete Visit`,
+    props<{completeVisitRequest: CompleteVisitRequest}>()
+);
+
+export const completeVisitSuccess = createAction(
+    `${prefix} Complete Visit Success`
+);
+
+export const completeVisitFailure = createAction(
+    `${prefix} Complete Visit Failure`,
     props<{error: string}>()
 );

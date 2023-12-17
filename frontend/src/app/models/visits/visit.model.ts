@@ -15,5 +15,6 @@ export interface Visit {
     startHour: string,
     endHour: string,
     visitDate: Date,
-    isRemote: boolean
+    isRemote: boolean,
+    symptoms?: string
 }

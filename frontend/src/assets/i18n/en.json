@@ -68,6 +68,9 @@
         },
         "workSchedule": "Work schedule"
     },
+    "documents": {
+        "title": "Documents"
+    },
     "visits": {
         "title": "Visits",
         "filters": {
@@ -87,7 +90,8 @@
         "remotely": "Remotely",
         "startHour": "Start hour",
         "endHour": "End hour",
-        "duration": "Duration"
+        "duration": "Duration",
+        "visitCourse": "Visit course"
     },
     "bookVisit": {
         "title": "Book Visit",

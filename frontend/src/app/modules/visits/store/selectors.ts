@@ -32,3 +32,8 @@ export const getDoctorScheduleSelector = createSelector(
     selectFeature,
     (state) => state.doctorSchedule
 );
+
+export const getVisitSelector = createSelector(
+    selectFeature,
+    (state) => state.visit
+);

@@ -9,6 +9,8 @@ import { NonNullAssert } from '@angular/compiler';
 import { Visit } from '../models/visits/visit.model';
 import { GetAvaliableVisitsForSpecificDayRequest } from '../models/visits/get-avaliable-visits-for-specific-day-request.model';
 import { VisitCalendarEvent } from '../models/visits/visit-calendar-event.model';
+import { BookVisitRequest } from '../models/visits/book-visit-request.model';
+import { CompleteVisitRequest } from '../models/visits/complete-visit-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -52,13 +54,20 @@ export class VisitsService {
         return this.http.get<VisitCalendarEvent[]>(this.prefix + 'taken');
     }
 
+    getVisitById(id: string): Observable<Visit> {
+        return this.http.get<Visit>(this.prefix + id);
+    }
+
     getTakenVisitsAssignedToDoctor(): Observable<VisitCalendarEvent[]> {
         return this.http.get<VisitCalendarEvent[]>(this.prefix + 'assigned');
     }
 
+    bookVisit(request: BookVisitRequest): Observable<any> {
+        return this.http.patch(this.prefix + 'book', request);
+    }
 
-    bookVisit(visitId: string): Observable<any> {
-        return this.http.patch(this.prefix + visitId + '/book', {});
+    completeVisit(request: CompleteVisitRequest): Observable<any> {
+        return this.http.patch<any>(this.prefix + 'complete', request);
     }
 
     addDoctorSchedule(schedule: WeeklyWorkSchedule): Observable<any> {

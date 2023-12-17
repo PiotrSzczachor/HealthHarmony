@@ -20,14 +20,17 @@ namespace HealthHarmony.WebApi.Controllers
         }
 
         [Authorize(Roles = Roles.Doctor)]
+        [HttpGet("{id}")]
+        public async Task<Visit> GetVisitById(Guid id)
+        {
+            return await _visitsService.GetById(id);
+        }
+
+        [Authorize(Roles = Roles.Doctor)]
         [HttpPost("schedule")]
         public async Task AddSchedule([FromBody] WeeklyWorkSchedule schedule)
         {
-            var userId = User.Claims.FirstOrDefault(x => x.Type == TokenClaims.UserId)?.Value;
-            if (userId == null)
-            {
-                throw new ApplicationException("There is no user Id in token");
-            }
+            var userId = GetUserId();
             await _visitsService.AddDoctorSchedule(schedule, userId);
         }
 
@@ -35,11 +38,7 @@ namespace HealthHarmony.WebApi.Controllers
         [HttpGet("schedule")]
         public async Task<WeeklyWorkSchedule?> GetSchedule()
         {
-            var userId = User.Claims.FirstOrDefault(x => x.Type == TokenClaims.UserId)?.Value;
-            if (userId == null)
-            {
-                throw new ApplicationException("There is no user Id in token");
-            }
+            var userId = GetUserId();
             return await _visitsService.GetDoctorSchedule(userId);
         }
 
@@ -47,11 +46,7 @@ namespace HealthHarmony.WebApi.Controllers
         [HttpPut("schedule")]
         public async Task UpdateSchedule([FromBody] WeeklyWorkSchedule schedule)
         {
-            var userId = User.Claims.FirstOrDefault(x => x.Type == TokenClaims.UserId)?.Value;
-            if (userId == null)
-            {
-                throw new ApplicationException("There is no user Id in token");
-            }
+            var userId = GetUserId();
             await _visitsService.UpdateDoctorSchedule(userId, schedule);
         }
 
@@ -67,26 +62,18 @@ namespace HealthHarmony.WebApi.Controllers
             return await _visitsService.GetAvaliableVisitsForSpecificDate(request);
         }
 
-        [HttpPatch("{visitId:Guid}/book")]
-        public async Task<Visit> AssignVisitToPatient(Guid visitId)
+        [HttpPatch("book")]
+        public async Task<Visit> AssignVisitToPatient([FromBody] BookVisitRequest request)
         {
-            var userId = User.Claims.FirstOrDefault(x => x.Type == TokenClaims.UserId)?.Value;
-            if (userId == null)
-            {
-                throw new ApplicationException("There is no user Id in token");
-            }
-            return await _visitsService.BookVisit(visitId, userId);
+            var userId = GetUserId();
+            return await _visitsService.BookVisit(request, userId);
         }
 
         [Authorize(Roles = Roles.Patient)]
         [HttpGet("taken")]
         public async Task<List<VisitCalendarEvent>> GetPatientTakenVisits()
         {
-            var userId = User.Claims.FirstOrDefault(x => x.Type == TokenClaims.UserId)?.Value;
-            if (userId == null)
-            {
-                throw new ApplicationException("There is no user Id in token");
-            }
+            var userId = GetUserId();
             return await _visitsService.GetPatientTakenVisits(userId);
         }
 
@@ -94,12 +81,26 @@ namespace HealthHarmony.WebApi.Controllers
         [HttpGet("assigned")]
         public async Task<List<VisitCalendarEvent>> GetTakenVisitsAssignedToDoctor()
         {
+            var userId = GetUserId();
+            return await _visitsService.GetTakenVisitsAssignedToDoctor(userId);
+        }
+
+        [Authorize(Roles = Roles.Doctor)]
+        [HttpPatch("complete")]
+        public async Task CompleteVisit([FromBody] CompleteVisitRequest request)
+        {
+            var userId = GetUserId();
+            await _visitsService.CompleteVisit(request);
+        }
+
+        private string GetUserId()
+        {
             var userId = User.Claims.FirstOrDefault(x => x.Type == TokenClaims.UserId)?.Value;
             if (userId == null)
             {
                 throw new ApplicationException("There is no user Id in token");
             }
-            return await _visitsService.GetTakenVisitsAssignedToDoctor(userId);
+            return userId;
         }
 
     }

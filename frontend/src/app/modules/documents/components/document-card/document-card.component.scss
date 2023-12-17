@@ -1,0 +1,42 @@
+@use '../../../../../variables';
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.document-card-container {
+    background-color: variables.$basic-blue-color;
+    width: 250px;
+    height: 370px;
+    margin-bottom: 20px;
+
+    .tile-container {
+        width: 100%;
+        height: 150px;
+        background-color: variables.$gray-color;
+    }
+
+    .data-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .heading-container {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        border-bottom: 1px solid variables.$white-color;
+        cursor: pointer;
+
+        .title {
+            margin: 0;
+            font-size: 16pt;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-align: center;
+            font-family: variables.$font-family;
+        }
+    }
+
+}

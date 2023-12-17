@@ -29,6 +29,16 @@ namespace HealthHarmony.SQLRepository.Implementation
             await _context.SaveChangesAsync();
         }
 
+        public async Task BeginTransaction()
+        {
+            await _context.Database.BeginTransactionAsync();
+        }
+
+        public async Task CommitTransaction()
+        {
+            await _context.Database.CommitTransactionAsync();
+        }
+
         public async Task Delete<T>(Guid id) where T : BaseModel
         {
             var entity = await Get<T>(id);

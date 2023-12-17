@@ -1,0 +1,20 @@
+<div class="filters-wrapper">
+    <div class="title-container">
+        <p class="module-title">{{ 'documents.title' | translate }}</p>
+    </div>
+    <form [formGroup]="fg">
+        <div class="filters-container">
+        <div class="field-container">
+            <p class="filter-name">{{ 'common.name' | translate }}</p>
+            <input class="input" formControlName="name">
+            <mat-icon class="search-icon">search</mat-icon>
+        </div>
+        <div class="field-container">
+            <button class="btn">{{ 'common.apply' | translate }}</button>
+            <button class="btn">{{ 'common.clear' | translate}}</button>
+            <button class="add-btn">+</button>
+        </div>
+    </div>
+    </form>
+    
+</div>

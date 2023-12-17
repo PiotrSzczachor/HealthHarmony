@@ -16,7 +16,8 @@ export const initialState: VisitsState = {
     avaliableVisits: [],
     takenVisitsCalendarEvents: [],
     doctorVisitsCalendarEvents: [],
-    doctorSchedule: null
+    doctorSchedule: undefined,
+    visit: undefined
 }
 
 export const reducers = createReducer(
@@ -92,10 +93,18 @@ export const reducers = createReducer(
     })),
     on(VisitsActions.getDoctorSchedule, (state) => ({
         ...state,
-        doctorSchedule: null
+        doctorSchedule: undefined
     })),
     on(VisitsActions.getDoctorScheduleSuccess, (state, action) => ({
         ...state,
         doctorSchedule: action.doctorSchedule
+    })),
+    on(VisitsActions.getVisitById, (state) => ({
+        ...state,
+        visit: undefined
+    })),
+    on(VisitsActions.getVisitByIdSuccess, (state, action) => ({
+        ...state,
+        visit: action.visit
     })),
 )

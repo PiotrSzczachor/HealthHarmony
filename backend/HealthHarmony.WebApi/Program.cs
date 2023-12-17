@@ -23,6 +23,8 @@ using HealthHarmony.Visits.Services;
 using HealthHarmony.Common.Helpers;
 using HealthHarmony.Common.Services;
 using System.Security.Claims;
+using HealthHarmony.Documents.Services;
+using HealthHarmony.Documents.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -77,6 +79,7 @@ builder.Services.AddScoped<IAddressesService, AddressesService>();
 builder.Services.AddScoped<IClinicsService, ClinicsService>();
 builder.Services.AddScoped<IDoctorsService, DoctrosService>();
 builder.Services.AddScoped<IVisitsService, VisitsService>();
+builder.Services.AddScoped<IDocumentsService, DocumentsService>();
 builder.Services.AddScoped<SeedService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

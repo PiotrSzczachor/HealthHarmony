@@ -2,7 +2,6 @@ import { VisitCalendarEvent } from "src/app/models/visits/visit-calendar-event.m
 import { Visit } from "src/app/models/visits/visit.model";
 import { VisitsFilters } from "src/app/models/visits/visits-filters.model";
 import { VisitsPerDay } from "src/app/models/visits/visits-per-day.model";
-import { WeekdayWorkingHours } from "src/app/models/visits/weekday-working-hours.model";
 import { WeeklyWorkSchedule } from "src/app/models/visits/weekly-work-schedule.model";
 
 export interface VisitsState {
@@ -10,6 +9,7 @@ export interface VisitsState {
     avaliableVisits: Visit[],
     filters: VisitsFilters,
     takenVisitsCalendarEvents: VisitCalendarEvent[],
-    doctorVisitsCalendarEvents: VisitCalendarEvent[]
-    doctorSchedule: WeeklyWorkSchedule | null
+    doctorVisitsCalendarEvents: VisitCalendarEvent[],
+    doctorSchedule: WeeklyWorkSchedule | undefined,
+    visit: Visit | undefined
 }

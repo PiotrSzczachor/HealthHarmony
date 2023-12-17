@@ -19,6 +19,6 @@ namespace HealthHarmony.Models.Visits.Entities
         public TimeOnly EndHour { get; set; }
         public DateTime VisitDate { get; set; }
         public bool IsRemote { get; set; }
-
+        public string? Symptoms { get; set; }
     }
 }

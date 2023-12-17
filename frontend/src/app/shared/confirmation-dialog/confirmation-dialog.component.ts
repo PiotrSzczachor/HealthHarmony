@@ -9,7 +9,7 @@ import { EditClinicComponent } from 'src/app/modules/clinics/containers/edit-cli
 })
 export class ConfirmationDialogComponent {
     constructor(@Inject(MAT_DIALOG_DATA) public data: {title: boolean, message: string}, 
-    private matDialogRef: MatDialogRef<EditClinicComponent>) { }
+    private matDialogRef: MatDialogRef<ConfirmationDialogComponent>) { }
 
     confirm(): void {
         this.matDialogRef.close(true);

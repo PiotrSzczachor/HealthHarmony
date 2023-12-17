@@ -1,0 +1,101 @@
+@use '../../../../shared/styles/edit-form.scss';
+@use '../../../../../variables';
+
+.edit-form-container {
+    margin-top: 30px;
+    width: calc(100% - 60px);
+    height: calc(100% - 120px)!important;
+
+    .heading {
+        margin-bottom: 30px;
+    }
+
+    .weekday-title {
+        font-size: 14pt;
+        margin-bottom: 5px;
+    }
+
+    .weekday-field {
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+    }
+
+    .weekday-field > * {
+        flex: 1;
+    }
+
+    .checkbox-container {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .btn {
+        width: 56px;
+        height: 56px;
+        border: none;
+        border-radius: 5px;
+        color: variables.$white-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .double-field {
+        align-items: center;
+
+        .double {
+            margin-bottom: 1px;
+        }
+    }
+
+    .complete-visit-btn {
+        background-color: variables.$basic-green-color;
+        width: 100px;
+        font-family: variables.$font-family;
+    }
+
+    .remove-btn {
+        background-color: variables.$red-color;
+    }
+
+    .add-btn {
+        background-color: variables.$basic-blue-color;
+    }
+
+    .document-buttons-container {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .patient-title {
+        font-family: variables.$font-family;
+        font-weight: variables.$big-font-weight;
+        font-size: 20pt;
+        margin-top: 40px;
+    }
+
+    .patient-section-container {
+        display: flex;
+        .patient-info-container {
+            flex: 1;
+
+            .patient-info {
+                font-size: 12pt;
+            }
+        }
+
+        .symptoms-container {
+            flex: 1;
+            mat-form-field {
+                width: 100%;
+            }
+        }
+    }
+
+    
+
+}
