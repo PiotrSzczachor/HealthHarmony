@@ -14,4 +14,8 @@
     <ProjectReference Include="..\HealthHarmony.Common\HealthHarmony.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\Pagination\" />
+  </ItemGroup>
+
 </Project>

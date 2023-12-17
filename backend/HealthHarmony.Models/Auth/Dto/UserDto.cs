@@ -1,4 +1,4 @@
-﻿namespace HealthHarmony.Models.Auth
+﻿namespace HealthHarmony.Models.Auth.Dto
 {
     public class UserDto
     {
