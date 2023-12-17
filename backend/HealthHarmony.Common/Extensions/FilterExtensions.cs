@@ -1,4 +1,4 @@
-﻿using HealthHarmony.Common.Models.Pagination;
+﻿using HealthHarmony.Models.Common.Pagination;
 using System.Linq.Expressions;
 using System.Reflection;
 

@@ -1,6 +1,6 @@
 ﻿using HealthHarmony.Common.Extensions;
-using HealthHarmony.Common.Models.Base;
-using HealthHarmony.Common.Models.Pagination;
+using HealthHarmony.Models.Common.Base;
+using HealthHarmony.Models.Common.Pagination;
 using HealthHarmony.SQL;
 using HealthHarmony.SQLRepository.Interfaces;
 using Microsoft.EntityFrameworkCore;

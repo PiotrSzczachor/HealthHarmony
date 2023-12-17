@@ -1,4 +1,4 @@
-﻿namespace HealthHarmony.Common.Models.Pagination
+﻿namespace HealthHarmony.Models.Common.Pagination
 {
     public class BasePaginationFilters
     {

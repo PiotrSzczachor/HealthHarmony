@@ -1,4 +1,4 @@
-﻿using HealthHarmony.Common.Models.Base;
+﻿using HealthHarmony.Models.Common.Base;
 using HealthHarmony.Models.Doctors.Entities;
 using HealthHarmony.Models.Patients.Entities;
 

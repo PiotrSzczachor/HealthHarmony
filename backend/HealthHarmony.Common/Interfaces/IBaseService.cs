@@ -1,5 +1,5 @@
-﻿using HealthHarmony.Common.Models.Base;
-using HealthHarmony.Common.Models.Pagination;
+﻿using HealthHarmony.Models.Common.Base;
+using HealthHarmony.Models.Common.Pagination;
 
 namespace HealthHarmony.Common.Interfaces
 {

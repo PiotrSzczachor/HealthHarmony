@@ -1,4 +1,4 @@
-﻿using HealthHarmony.Common.Models.Pagination;
+﻿using HealthHarmony.Models.Common.Pagination;
 
 namespace HealthHarmony.Models.Documents.Filters
 {

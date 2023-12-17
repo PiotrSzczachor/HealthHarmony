@@ -1,5 +1,4 @@
 ﻿using HealthHarmony.Common.Interfaces;
-using HealthHarmony.Common.Models.Pagination;
 using HealthHarmony.Models.Clinics.Dto;
 using HealthHarmony.Models.Clinics.Entities;
 using HealthHarmony.Models.Clinics.Filters;

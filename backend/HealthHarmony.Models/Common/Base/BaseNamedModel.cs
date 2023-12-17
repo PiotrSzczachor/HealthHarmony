@@ -1,4 +1,4 @@
-﻿namespace HealthHarmony.Common.Models.Base
+﻿namespace HealthHarmony.Models.Common.Base
 { 
     public class BaseNamedModel : BaseModel
     {

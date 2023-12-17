@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using HealthHarmony.Addresses.Interfaces;
 using HealthHarmony.Clinics.Interfaces;
-using HealthHarmony.Common.Models.Pagination;
 using HealthHarmony.Models.Addresses;
 using HealthHarmony.Models.Clinics.Dto;
 using HealthHarmony.Models.Clinics.Entities;
 using HealthHarmony.Models.Clinics.Filters;
 using HealthHarmony.Models.Common.Entities;
+using HealthHarmony.Models.Common.Pagination;
 using HealthHarmony.SQLRepository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
