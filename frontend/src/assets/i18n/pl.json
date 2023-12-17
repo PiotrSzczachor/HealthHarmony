@@ -10,7 +10,13 @@
         "save": "Zapisz",
         "delete": "Usuń",
         "yes": "Tak",
-        "no": "Nie"
+        "no": "Nie",
+        "changeLanguage": "Zmień język",
+        "languages": {
+            "title": "Języki",
+            "english": "Angielski",
+            "polish": "Polski"
+        }
     },
     "header": {
         "home": "Strona główna",

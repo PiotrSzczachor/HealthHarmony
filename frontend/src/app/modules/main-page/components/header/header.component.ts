@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ChangeLanguageComponent } from 'src/app/shared/change-language/change-language.component';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +13,7 @@ export class HeaderComponent implements OnInit {
     isMenuOpen = false;
     url: string | undefined;
 
-    constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) {}
+    constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private dialog: MatDialog) {}
 
     ngOnInit(): void {
         this.url = this.route.snapshot.routeConfig?.path;
@@ -31,5 +33,9 @@ export class HeaderComponent implements OnInit {
 
     logout(): void {
         this.authService.logout();
+    }
+
+    openChangeLanguageDialog(): void {
+        this.dialog.open(ChangeLanguageComponent);
     }
 }

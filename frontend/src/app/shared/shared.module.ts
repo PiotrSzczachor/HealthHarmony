@@ -22,6 +22,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
+import { ChangeLanguageComponent } from './change-language/change-language.component';
 
 const DIRECTIVES = [
     IsLoggedInDirective, IsNotLoggedInDirective
@@ -37,7 +38,7 @@ const COMPONENTS = [
 ]
 
 @NgModule({
-  declarations: [DIRECTIVES, PIPES, COMPONENTS],
+  declarations: [DIRECTIVES, PIPES, COMPONENTS, ChangeLanguageComponent],
   imports: [
     CommonModule,
     MatIconModule,
