@@ -1,0 +1,18 @@
+<div class="confirmation-dialog-container">
+    <div class="dialog-header">
+        <p class="title">{{'common.changeLanguage' | translate}}</p>
+    </div>
+    <div class="select-container">
+        <p class="message">{{'common.languages.title' | translate}}</p>
+        <mat-form-field appearance="outline" [formGroup]="fg">
+            <mat-select appearance="outline" formControlName="language">
+                <mat-option [value]="'en'">{{'common.languages.english' | translate}}</mat-option>
+                <mat-option [value]="'pl'">{{'common.languages.polish' | translate}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="buttons-container">
+        <button (click)="confirm()">{{ "common.submit" | translate }}</button>
+        <button (click)="cancel()">{{ "common.cancel" | translate }}</button>
+    </div>
+</div>

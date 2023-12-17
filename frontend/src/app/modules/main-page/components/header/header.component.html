@@ -17,6 +17,7 @@
                 <button class="register-button" appIsNotLoggedIn (click)="navigate('login')">{{'header.login' | translate}}</button>
                 <button class="register-button" appIsNotLoggedIn (click)="navigate('register')">{{'header.register' | translate}}</button>
                 <button class="register-button" appIsLoggedIn (click)="logout()">{{'header.logout' | translate}}</button>
+                <mat-icon class="settings-btn" (click)="openChangeLanguageDialog()">settings</mat-icon>
             </div>
         </li>
     </ul>

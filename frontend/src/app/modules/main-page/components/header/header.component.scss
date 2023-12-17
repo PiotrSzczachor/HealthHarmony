@@ -120,6 +120,7 @@ $menuBreakpoint: 768px;
 
         .button-container {
             display: flex;
+            align-items: center;
 
             @media (max-width: $menuBreakpoint) {
                 width: 100vw;
@@ -148,6 +149,12 @@ $menuBreakpoint: 768px;
                     background-position: right center;
                     color: #fff;
                 }
+            }
+
+            .settings-btn {
+                color: variables.$basic-blue-color;
+                cursor: pointer;
+                margin-left: 10px;
             }
         }
     }
