@@ -274,6 +274,39 @@ namespace HealthHarmony.SQL.Migrations
                     b.ToTable("Specializations");
                 });
 
+            modelBuilder.Entity("HealthHarmony.Models.Documents.Entities.Document", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<byte[]>("Content")
+                        .IsRequired()
+                        .HasColumnType("bytea");
+
+                    b.Property<Guid?>("DoctorId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Extension")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("PatientId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("Documents");
+                });
+
             modelBuilder.Entity("HealthHarmony.Models.Patients.Entities.Patient", b =>
                 {
                     b.Property<Guid>("Id")
@@ -598,6 +631,24 @@ namespace HealthHarmony.SQL.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("HealthHarmony.Models.Documents.Entities.Document", b =>
+                {
+                    b.HasOne("HealthHarmony.Models.Doctors.Entities.Doctor", "Doctor")
+                        .WithMany("Documents")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("HealthHarmony.Models.Patients.Entities.Patient", "Patient")
+                        .WithMany("Documents")
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Patient");
+                });
+
             modelBuilder.Entity("HealthHarmony.Models.Patients.Entities.Patient", b =>
                 {
                     b.HasOne("HealthHarmony.Models.Auth.Entities.User", "User")
@@ -716,11 +767,15 @@ namespace HealthHarmony.SQL.Migrations
                 {
                     b.Navigation("DailySchedules");
 
+                    b.Navigation("Documents");
+
                     b.Navigation("Visits");
                 });
 
             modelBuilder.Entity("HealthHarmony.Models.Patients.Entities.Patient", b =>
                 {
+                    b.Navigation("Documents");
+
                     b.Navigation("Visits");
                 });
 #pragma warning restore 612, 618

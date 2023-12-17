@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using HealthHarmony.Models.Patients.Entities;
 using HealthHarmony.Models.Visits.Entities;
+using HealthHarmony.Models.Documents.Entities;
 
 namespace HealthHarmony.SQL
 {
@@ -25,6 +26,7 @@ namespace HealthHarmony.SQL
             modelBuilder.ApplyConfiguration(new SpecializationConfiguration());
             modelBuilder.ApplyConfiguration(new VisitConfiguration());
             modelBuilder.ApplyConfiguration(new DailyScheduleConfiguration());
+            modelBuilder.ApplyConfiguration(new DocumentConfiguration());
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Address> Addresses { get; set; }
@@ -35,5 +37,6 @@ namespace HealthHarmony.SQL
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Visit> Visits { get; set; }
         public DbSet<DailySchedule> DailySchedules { get; set; }
+        public DbSet<Document> Documents { get; set; }
     }
 }

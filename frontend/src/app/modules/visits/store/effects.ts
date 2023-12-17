@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, NgZone } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { ToastrService } from "ngx-toastr";
 import { VisitsService } from "src/app/services/visits.service";
@@ -8,6 +8,7 @@ import { Store, select } from "@ngrx/store";
 import { AppState } from "src/app/store/app.state";
 import { VisitsPerDayRequest } from "src/app/models/visits/visits-per-day-request.model";
 import { GetAvaliableVisitsForSpecificDayRequest } from "src/app/models/visits/get-avaliable-visits-for-specific-day-request.model";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class VisitsEffects {
@@ -15,7 +16,9 @@ export class VisitsEffects {
     constructor(private actions$: Actions,
         private visitsService: VisitsService,
         private toast: ToastrService,
-        private store: Store<AppState>) { };
+        private store: Store<AppState>,
+        private router: Router,
+        private ngZone: NgZone) { };
 
     getNumberOfAvaliableVisitsPerDay$ = createEffect(() =>
         this.actions$.pipe(
@@ -57,6 +60,20 @@ export class VisitsEffects {
                     map(visit => VisitsActions.bookVisitSuccess({ visit })),
                     catchError(error => {
                         return of(VisitsActions.bookVisitFailure({ error: error.message }))
+                    })
+                )
+            })
+        )
+    );
+
+    completeVisit$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(VisitsActions.completeVisit),
+            mergeMap(action => {
+                return this.visitsService.completeVisit(action.completeVisitRequest).pipe(
+                    map(() => VisitsActions.completeVisitSuccess()),
+                    catchError(error => {
+                        return of(VisitsActions.completeVisitFailure({ error: error.message }))
                     })
                 )
             })
@@ -166,5 +183,18 @@ export class VisitsEffects {
             )
         ), { dispatch: false }
     )
+
+    onCompleteVisitSuccess$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(VisitsActions.completeVisitSuccess),
+            tap(() => {
+                    this.toast.success("Visit completed successfully");
+                    this.ngZone.run(() => {
+                        this.router.navigateByUrl('dashboard/doctors-visits')
+                    })
+                }
+            )
+        ), { dispatch: false }
+)
 
 }

@@ -68,6 +68,9 @@
         },
         "workSchedule": "Work schedule"
     },
+    "documents": {
+        "title": "Documents"
+    },
     "visits": {
         "title": "Visits",
         "filters": {

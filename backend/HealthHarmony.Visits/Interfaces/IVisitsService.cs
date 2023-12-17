@@ -16,5 +16,6 @@ namespace HealthHarmony.Visits.Interfaces
         Task<Visit> BookVisit(BookVisitRequest request, string userId);
         Task<List<VisitCalendarEvent>> GetPatientTakenVisits(string userId);
         Task<List<VisitCalendarEvent>> GetTakenVisitsAssignedToDoctor(string userId);
+        Task CompleteVisit(CompleteVisitRequest request);
     }
 }

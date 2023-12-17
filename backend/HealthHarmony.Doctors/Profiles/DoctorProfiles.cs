@@ -4,7 +4,7 @@ using HealthHarmony.Models.Doctors.Entities;
 
 namespace HealthHarmony.Doctors.Profiles
 {
-    class DoctorProfiles : Profile
+    public class DoctorProfiles : Profile
     {
         public DoctorProfiles()
         {

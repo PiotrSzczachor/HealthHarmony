@@ -2,6 +2,7 @@
 using HealthHarmony.Common.Extensions;
 using HealthHarmony.Common.Models.Pagination;
 using HealthHarmony.Models.Doctors.Entities;
+using HealthHarmony.Models.Documents.Entities;
 using HealthHarmony.Models.Patients.Entities;
 using HealthHarmony.Models.Visits.Dto;
 using HealthHarmony.Models.Visits.Entities;
@@ -340,6 +341,22 @@ namespace HealthHarmony.Visits.Services
                 await _repository.Delete<DailySchedule>(oldScheduleIds);
                 await AddDoctorSchedule(schedule, userId);
             }
+        }
+
+        public async Task CompleteVisit(CompleteVisitRequest request)
+        {
+            var document = new Document
+            {
+                Name = request.Document.Name,
+                Content = request.Document.Content,
+                Extension = request.Document.Extension,
+                PatientId = request.Document.PatientId,
+                DoctorId = request.Document.DoctorId
+            };
+            await _repository.Add(document);
+            var visit = await _repository.Get<Visit>(request.VisitId);
+            visit.VisitStatus = VisitStatusEnum.Completed;
+            await _repository.Update(visit);
         }
     }
 }

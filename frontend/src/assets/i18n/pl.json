@@ -1,26 +1,103 @@
 {
+    "common": {
+        "sortBy": "Sortuj według",
+        "apply": "Zastosuj",
+        "clear": "Wyczyść",
+        "name": "Imię",
+        "submit": "Zatwierdź",
+        "add": "Dodaj",
+        "cancel": "Anuluj",
+        "save": "Zapisz",
+        "delete": "Usuń",
+        "yes": "Tak",
+        "no": "Nie"
+    },
     "header": {
-        "home": "Home",
+        "home": "Strona główna",
         "contact": "Kontakt",
         "faq": "FAQ",
-        "login": "Login",
-        "register": "Rejestracja"
+        "login": "Zaloguj się",
+        "register": "Zarejestruj się",
+        "logout": "Wyloguj się"
     },
     "mainPage": {
         "tiles": {
             "support": {
                 "title": "Wsparcie 24/7",
-                "content": "W naszej klinice jesteśmy do twojej dyspozycji 24h na dobę przez 7 dni w tygodniu"
+                "content": "W naszej klinice możesz być z nami w kontakcie 24 godziny na dobę, 7 dni w tygodniu"
             },
-            "healthCare": {
-                "title": "Profesjonalna opieka",
-                "content": "Najlepsi specjaliści w kraju zadbają o twoje zdrowie"
+            "healthcare": {
+                "title": "Profesjonalna opieka zdrowotna",
+                "content": "Najlepsi specjaliści w kraju będą dbać o Twoje zdrowie"
             },
             "documentation": {
                 "title": "Dokumentacja medyczna",
-                "content": "Nie musisz martwić się o swoją dokumentację medyczną - wszystko znajdziesz tutaj!"
+                "content": "Nie musisz przechowywać swoich dokumentów medycznych - wszystko jest tutaj!"
             }
         }
-        
+    },
+    "dashboard": {
+        "menu": {
+            "doctors": "Lekarze",
+            "clinics": "Kliniki",
+            "visits": "Wizyty",
+            "bookVisit": "Zarezerwuj Wizytę",
+            "schedule": "Grafik",
+            "documents": "Dokumenty",
+            "results": "Wyniki",
+            "contact": "Kontakt",
+            "home": "Strona główna",
+            "settings": "Ustawienia",
+            "logout": "Wyloguj się"
+        }
+    },
+    "clinics": {
+        "title": "Kliniki",
+        "filters": {
+            "name": "Nazwa"
+        },
+        "singular": "Klinika"
+    },
+    "doctors": {
+        "title": "Lekarze",
+        "acceptsRemotely":"Akceptuje zdalnie",
+        "filters": {
+            "firstName": "Imię",
+            "lastName": "Nazwisko",
+            "acceptsRemotely": "Akceptuje zdalnie"
+        },
+        "workSchedule": "Harmonogram pracy"
+    },
+    "documents": {
+        "title": "Dokumenty"
+    },
+    "visits": {
+        "title": "Wizyty",
+        "filters": {
+            "specialization": "Specjalizacja",
+            "clinic": "Klinika"
+        },
+        "weekdays": {
+            "monday": "Poniedziałek",
+            "tuesday": "Wtorek",
+            "wednesday": "Środa",
+            "thursday": "Czwartek",
+            "friday": "Piątek",
+            "saturday": "Sobota",
+            "sunday": "Niedziela"
+        },
+        "dayoff": "Dzień wolny",
+        "remotely": "Zdalnie",
+        "startHour": "Godzina rozpoczęcia",
+        "endHour": "Godzina zakończenia",
+        "duration": "Czas trwania",
+        "visitCourse": "Kurs wizyt"
+    },
+    "bookVisit": {
+        "title": "Zarezerwuj Wizytę",
+        "filters": {
+            "specialization": "Specjalizacja",
+            "clinic": "Klinika"
+        }
     }
 }

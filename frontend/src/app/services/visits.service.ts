@@ -10,6 +10,7 @@ import { Visit } from '../models/visits/visit.model';
 import { GetAvaliableVisitsForSpecificDayRequest } from '../models/visits/get-avaliable-visits-for-specific-day-request.model';
 import { VisitCalendarEvent } from '../models/visits/visit-calendar-event.model';
 import { BookVisitRequest } from '../models/visits/book-visit-request.model';
+import { CompleteVisitRequest } from '../models/visits/complete-visit-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -63,6 +64,10 @@ export class VisitsService {
 
     bookVisit(request: BookVisitRequest): Observable<any> {
         return this.http.patch(this.prefix + 'book', request);
+    }
+
+    completeVisit(request: CompleteVisitRequest): Observable<any> {
+        return this.http.patch<any>(this.prefix + 'complete', request);
     }
 
     addDoctorSchedule(schedule: WeeklyWorkSchedule): Observable<any> {

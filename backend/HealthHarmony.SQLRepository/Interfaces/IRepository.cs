@@ -18,5 +18,7 @@ namespace HealthHarmony.SQLRepository.Interfaces
         Task Update<T>(List<T> entities) where T : BaseModel;
         Task Delete<T>(Guid id) where T : BaseModel;
         Task Delete<T>(List<Guid> ids) where T : BaseModel;
+        Task BeginTransaction();
+        Task CommitTransaction();
     }
 }

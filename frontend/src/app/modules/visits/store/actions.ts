@@ -6,6 +6,7 @@ import { VisitsFilters } from "src/app/models/visits/visits-filters.model";
 import { Visit } from "src/app/models/visits/visit.model";
 import { VisitCalendarEvent } from "src/app/models/visits/visit-calendar-event.model";
 import { BookVisitRequest } from "src/app/models/visits/book-visit-request.model";
+import { CompleteVisitRequest } from "src/app/models/visits/complete-visit-request.model";
 
 const prefix = '[Visits]'
 
@@ -154,5 +155,19 @@ export const getVisitByIdSuccess = createAction(
 
 export const getVisitByIdFailure = createAction(
     `${prefix} Get Visit By Id Failure`,
+    props<{error: string}>()
+);
+
+export const completeVisit = createAction(
+    `${prefix} Complete Visit`,
+    props<{completeVisitRequest: CompleteVisitRequest}>()
+);
+
+export const completeVisitSuccess = createAction(
+    `${prefix} Complete Visit Success`
+);
+
+export const completeVisitFailure = createAction(
+    `${prefix} Complete Visit Failure`,
     props<{error: string}>()
 );

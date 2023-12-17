@@ -1,5 +1,6 @@
 ﻿using HealthHarmony.Common.Models.Base;
 using HealthHarmony.Models.Auth.Entities;
+using HealthHarmony.Models.Documents.Entities;
 using HealthHarmony.Models.Visits.Entities;
 
 namespace HealthHarmony.Models.Patients.Entities
@@ -15,5 +16,6 @@ namespace HealthHarmony.Models.Patients.Entities
         public string UserId { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<Visit>? Visits { get; set; }
+        public virtual ICollection<Document>? Documents { get; set; }
     }
 }

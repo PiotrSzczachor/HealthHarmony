@@ -1,1 +1,7 @@
-<p>documents-page works!</p>
+<app-documents-filters></app-documents-filters>
+<div class="cards-page-container">
+    <app-document-card *ngFor="let document of documents$ | async" [document]="document"></app-document-card>
+</div>
+<div class="paginator-wrapper">
+    <app-paginator></app-paginator>
+</div>

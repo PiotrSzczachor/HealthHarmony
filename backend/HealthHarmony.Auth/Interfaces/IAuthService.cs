@@ -6,11 +6,11 @@ namespace HealthHarmony.Auth.Interfaces
 {
     public interface IAuthService
     {
-        public string GenerateToken(List<Claim> claims);
-        public Task<string?> Register(UserRegisterDto dto);
-        public Task<string?> CreateUser(UserRegisterDto dto);
-        public Task<string?> Login(UserLoginDto dto);
-        public Task<UserDto?> GetUser(Guid id);
+        string GenerateToken(List<Claim> claims);
+        Task<string?> Register(UserRegisterDto dto);
+        Task<string?> CreateUser(UserRegisterDto dto);
+        Task<string?> Login(UserLoginDto dto);
+        Task<UserDto?> GetUser(Guid id);
         Task DeleteUser(string userId);
         Task DeleteUserByEmail(string email);
     }

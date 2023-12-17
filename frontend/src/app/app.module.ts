@@ -19,6 +19,7 @@ import { FaqModule } from './modules/faq/faq.module';
 import { ClinicsModule } from './modules/clinics/clinics.module';
 import { DoctorsModule } from './modules/doctors/doctors.module';
 import { VisitsModule } from './modules/visits/visits.module';
+import { DocumentsModule } from './modules/documents/documents.module';
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import { VisitsModule } from './modules/visits/visits.module';
         ClinicsModule,
         DoctorsModule,
         DashboardModule,
+        DocumentsModule,
         MainPageModule,
         VisitsModule,
         BrowserModule,
@@ -47,7 +49,7 @@ import { VisitsModule } from './modules/visits/visits.module';
             }
         }),
         FaqModule,
-        VisitsModule
+        VisitsModule,
     ],
     providers: [
         { 
