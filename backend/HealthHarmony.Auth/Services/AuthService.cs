@@ -14,6 +14,7 @@ using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using HealthHarmony.Models.Auth.Dto;
 using HealthHarmony.Common.Constants;
+using HealthHarmony.Models.Doctors.Entities;
 
 namespace HealthHarmony.Auth.Services
 {
@@ -108,6 +109,15 @@ namespace HealthHarmony.Auth.Services
         {
             var user = _userManager.Users.FirstOrDefault(x => x.Id == id.ToString());
             var userDto = _mapper.Map<UserDto>(user);
+            if (user != null)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                if (roles.Contains(Roles.Doctor))
+                {
+                    var doctor = await _repository.GetAll<Doctor>(x => x.Image).Where(x => x.User.Id == user.Id).FirstOrDefaultAsync();
+                    userDto.Image = doctor?.Image;
+                }
+            }
             return userDto;
         }
 

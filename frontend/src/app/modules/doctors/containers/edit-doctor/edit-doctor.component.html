@@ -1,6 +1,6 @@
 <div class="edit-form-container" [formGroup]="fg">
     <div class="heading">
-        <p class="title">{{ ('common.add' | translate) + " Doctor"}}</p>
+        <p class="title">{{ (!isEdit ? ('common.add' | translate) : ('common.edit' | translate)) + " Doctor"}}</p>
     </div>
 
     <div class="profile-photo-container">
@@ -90,7 +90,7 @@
         </div>
     </div>
     <div class="disclaimer">
-        <p>* Changing email will also generate new user for this doctor and remove previous one</p>
+        <p *ngIf="isEdit">* Changing email will also generate new user for this doctor and remove previous one</p>
     </div>
     <div class="buttons-container">
         <button class="btn" (click)="handleSubmit()">{{ (isEdit ? 'common.save' : 'common.add') | translate }}</button>

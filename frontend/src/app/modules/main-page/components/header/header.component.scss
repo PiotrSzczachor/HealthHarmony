@@ -7,7 +7,7 @@ $menuBreakpoint: 768px;
 .menu-container {
     display: flex;
     justify-content: center;
-    background: #fff;
+    background: variables.$lightgray-background-color;
 
     ul {
         margin: 0;
@@ -84,7 +84,7 @@ $menuBreakpoint: 768px;
                 position: absolute;
                 top: $menuHeight;
                 left: 0;
-                background: #fff;
+                background: variables.$lightgray-background-color;
                 width: 100%;
                 opacity: 1;
                 border-top: 1px solid gray;

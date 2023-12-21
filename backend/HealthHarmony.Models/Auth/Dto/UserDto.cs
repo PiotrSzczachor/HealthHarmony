@@ -1,4 +1,6 @@
-﻿namespace HealthHarmony.Models.Auth.Dto
+﻿using HealthHarmony.Models.Common.Entities;
+
+namespace HealthHarmony.Models.Auth.Dto
 {
     public class UserDto
     {
@@ -6,5 +8,6 @@
         public string LastName { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
+        public Image? Image { get; set; }
     }
 }

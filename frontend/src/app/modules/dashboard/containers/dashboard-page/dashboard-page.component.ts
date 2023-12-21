@@ -67,6 +67,7 @@ export class DashboardPageComponent implements OnInit, AfterContentInit {
 
     selectUser(): void {
         this.user$ = this.store.select(getUserSelector);
+        this.user$.subscribe(x => console.log(x));
     }
 
     hasRequiredRole(role: Roles | null): boolean {
