@@ -29,13 +29,13 @@ export const MenuItems: MenuItem[] = [
     {
         name: "dashboard.menu.visits",
         route: "visits",
-        icon: "../../../assets/icons/side-nav/visits.png",
+        icon: "../../../assets/icons/side-nav/visits-schedule.png",
         requiredRole: Roles.Patient
     },
     {
         name: "dashboard.menu.visits",
         route: "doctors-visits",
-        icon: "../../../assets/icons/side-nav/visits.png",
+        icon: "../../../assets/icons/side-nav/visits-schedule.png",
         requiredRole: Roles.Doctor
     },
     {
@@ -48,12 +48,6 @@ export const MenuItems: MenuItem[] = [
         name: "dashboard.menu.documents",
         route: "documents",
         icon: "../../../assets/icons/side-nav/documents.png",
-        requiredRole: null
-    },
-    {
-        name: "dashboard.menu.results",
-        route: "results",
-        icon: "../../../assets/icons/side-nav/results.png",
         requiredRole: null
     },
     {

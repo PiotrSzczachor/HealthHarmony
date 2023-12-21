@@ -6,6 +6,7 @@
         "name": "Name",
         "submit": "Submit",
         "add": "Add",
+        "edit": "Edit",
         "cancel": "Cancel",
         "save": "Save",
         "delete": "Delete",

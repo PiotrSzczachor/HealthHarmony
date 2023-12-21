@@ -3,7 +3,7 @@
         <div class="menu-container">
             <div class="user-info-container">
                 <div class="image-container">
-
+                    <img [src]="(user$ | async)?.image ? ((user$ | async)?.image | decode) : '../../../../../assets/sample-photo\.jpg'" alt="">
                 </div>
                 <p class="username">{{(user$ | async)?.firstName + " " + (user$ | async)?.lastName}}</p>
                 <div class="online"></div>

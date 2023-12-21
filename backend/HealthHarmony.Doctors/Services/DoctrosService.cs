@@ -66,7 +66,7 @@ namespace HealthHarmony.Doctors.Services
 
         public PagedList<Doctor> GetPagedList(DoctorsFilters filters)
         {
-            return _repository.GetPagedList<Doctor>(filters, x => x.Clinics, x => x.Image, x => x.User, x => x.Specializations);
+            return _repository.GetPagedList<Doctor>(filters, x => x.Image, x => x.Specializations);
         }
 
         public PagedList<Doctor> GetPagedListWithoutIncludes(DoctorsFilters filters)
