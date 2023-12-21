@@ -1,4 +1,4 @@
-﻿namespace HealthHarmony.Auth.DTOs.User
+﻿namespace HealthHarmony.Models.Auth.Dto
 {
     public class UserRegisterDto
     {

@@ -1,5 +1,5 @@
-﻿using HealthHarmony.Common.Models.Pagination;
-using HealthHarmony.Documents.Interfaces;
+﻿using HealthHarmony.Documents.Interfaces;
+using HealthHarmony.Models.Common.Pagination;
 using HealthHarmony.Models.Doctors.Entities;
 using HealthHarmony.Models.Documents.Entities;
 using HealthHarmony.Models.Documents.Filters;

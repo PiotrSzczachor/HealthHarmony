@@ -1,6 +1,6 @@
-﻿using HealthHarmony.Common.Models.Base;
-using HealthHarmony.Models.Clinics.Dto;
+﻿using HealthHarmony.Models.Clinics.Dto;
 using HealthHarmony.Models.Clinics.Entities;
+using HealthHarmony.Models.Common.Base;
 using HealthHarmony.Models.Common.Entities;
 
 namespace HealthHarmony.Models.Doctors.Dto

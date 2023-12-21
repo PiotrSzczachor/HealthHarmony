@@ -1,5 +1,5 @@
-﻿using HealthHarmony.Common.Models.Pagination;
-using HealthHarmony.Models.Addresses.Entities;
+﻿using HealthHarmony.Models.Addresses.Entities;
+using HealthHarmony.Models.Common.Pagination;
 
 namespace HealthHarmony.Models.Clinics.Filters
 {

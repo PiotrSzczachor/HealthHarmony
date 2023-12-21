@@ -1,5 +1,5 @@
-﻿using HealthHarmony.Common.Models.Base;
-using HealthHarmony.Models.Auth.Entities;
+﻿using HealthHarmony.Models.Auth.Entities;
+using HealthHarmony.Models.Common.Base;
 using HealthHarmony.Models.Documents.Entities;
 using HealthHarmony.Models.Visits.Entities;
 

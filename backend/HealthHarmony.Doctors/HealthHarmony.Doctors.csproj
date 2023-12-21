@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HealthHarmony.Common\HealthHarmony.Common.csproj" />
     <ProjectReference Include="..\HealthHarmony.SQLRepository\HealthHarmony.SQLRepository.csproj" />
   </ItemGroup>
 

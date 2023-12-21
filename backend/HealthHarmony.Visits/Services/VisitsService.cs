@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using HealthHarmony.Common.Extensions;
-using HealthHarmony.Common.Models.Pagination;
+using HealthHarmony.Models.Common.Pagination;
 using HealthHarmony.Models.Doctors.Entities;
 using HealthHarmony.Models.Documents.Entities;
 using HealthHarmony.Models.Patients.Entities;

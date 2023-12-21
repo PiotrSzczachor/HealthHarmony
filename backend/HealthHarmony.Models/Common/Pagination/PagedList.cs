@@ -1,6 +1,6 @@
-﻿using HealthHarmony.Common.Models.Base;
+﻿using HealthHarmony.Models.Common.Base;
 
-namespace HealthHarmony.Common.Models.Pagination
+namespace HealthHarmony.Models.Common.Pagination
 {
     public class PagedList<T> where T : BaseModel
     {

@@ -1,5 +1,4 @@
-﻿using HealthHarmony.Auth.DTOs.User;
-using HealthHarmony.Models.Auth;
+﻿using HealthHarmony.Models.Auth.Dto;
 using System.Security.Claims;
 
 namespace HealthHarmony.Auth.Interfaces

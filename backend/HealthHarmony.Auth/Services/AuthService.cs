@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using HealthHarmony.Auth.DTOs.User;
 using HealthHarmony.Auth.Interfaces;
 using HealthHarmony.Models.Auth.Entities;
-using HealthHarmony.Models.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -12,9 +10,10 @@ using System.Security.Claims;
 using System.Text;
 using HealthHarmony.SQLRepository.Interfaces;
 using HealthHarmony.Models.Patients.Entities;
-using HealthHarmony.Common.Constants;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
+using HealthHarmony.Models.Auth.Dto;
+using HealthHarmony.Common.Constants;
 
 namespace HealthHarmony.Auth.Services
 {

@@ -1,6 +1,5 @@
-﻿using HealthHarmony.Auth.DTOs.User;
-using HealthHarmony.Auth.Interfaces;
-using HealthHarmony.Models.Auth;
+﻿using HealthHarmony.Auth.Interfaces;
+using HealthHarmony.Models.Auth.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

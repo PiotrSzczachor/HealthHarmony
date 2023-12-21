@@ -1,8 +1,8 @@
 ﻿using HealthHarmony.Clinics.Interfaces;
-using HealthHarmony.Common.Models.Pagination;
 using HealthHarmony.Models.Clinics.Dto;
 using HealthHarmony.Models.Clinics.Entities;
 using HealthHarmony.Models.Clinics.Filters;
+using HealthHarmony.Models.Common.Pagination;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

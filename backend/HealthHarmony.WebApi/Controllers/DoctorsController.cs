@@ -1,8 +1,8 @@
 ﻿using HealthHarmony.Common.Constants;
-using HealthHarmony.Common.Models.Pagination;
 using HealthHarmony.Doctors.Interfaces;
 using HealthHarmony.Models.Clinics.Entities;
 using HealthHarmony.Models.Clinics.Filters;
+using HealthHarmony.Models.Common.Pagination;
 using HealthHarmony.Models.Doctors.Dto;
 using HealthHarmony.Models.Doctors.Entities;
 using HealthHarmony.Models.Doctors.Filters;
