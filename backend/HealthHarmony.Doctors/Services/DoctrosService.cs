@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HealthHarmony.Common.Constants;
+using HealthHarmony.Common.Helpers;
 using HealthHarmony.Doctors.Interfaces;
 using HealthHarmony.Models.Auth.Entities;
 using HealthHarmony.Models.Clinics.Entities;
@@ -179,6 +180,8 @@ namespace HealthHarmony.Doctors.Services
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, Roles.Doctor);
+                var message = "<p>Hello your password to access HealthHarmony is: <b>" + password + "</b></p>";
+                EmailSender.Send(doctor.FirstName + " " + doctor.LastName, doctor.Email, message);
                 return user;
             }
             else

@@ -24,7 +24,7 @@ export class EditDoctorComponent implements OnInit {
         firstName: [null, Validators.required],
         lastName: [null, Validators.required],
         email: [null, Validators.required],
-        acceptsRemotely: [null, Validators.required],
+        acceptsRemotely: [false, Validators.required],
         specializations: [null, Validators.required],
         clinicsIds: [null, Validators.required],
         image: [null]
