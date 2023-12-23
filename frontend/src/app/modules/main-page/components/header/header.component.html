@@ -11,7 +11,6 @@
         </li>
         <li class="menu" [class.is-open]="isMenuOpen">
             <a href="#" class="menu-item" [ngClass]="isSelected('') ? 'selected' : null">{{'header.home' | translate}}</a>
-            <a href="#" class="menu-item">{{'header.contact' | translate}}</a>
             <a href="faq" class="menu-item" [ngClass]="isSelected('faq') ? 'selected' : null">{{'header.faq' | translate}}</a>
             <div class="button-container">
                 <button class="register-button" appIsNotLoggedIn (click)="navigate('login')">{{'header.login' | translate}}</button>
