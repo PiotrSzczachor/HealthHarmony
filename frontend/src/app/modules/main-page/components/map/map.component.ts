@@ -50,7 +50,6 @@ export class MapComponent implements OnInit, AfterViewInit {
                         icon: icon({
                             iconSize: [41, 41],
                             iconUrl: '../../../../../assets/icons/map-marker.png',
-                            shadowUrl: 'leaflet/marker-shadow.png'
                         })
                     }
                 ).bindPopup(

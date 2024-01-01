@@ -22,7 +22,7 @@
             </div>
         </div>
     </mat-sidenav>
-    <mat-sidenav-content class="content">
+    <mat-sidenav-content [ngClass]="(isItemSelected('home-panel') | async) || (isItemSelected('faq-panel') | async) ? 'home-page' : null">
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

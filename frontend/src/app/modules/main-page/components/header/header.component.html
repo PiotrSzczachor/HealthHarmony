@@ -10,8 +10,8 @@
             <i class="material-icons">{{ isMenuOpen ? "close" : "menu" }}</i>
         </li>
         <li class="menu" [class.is-open]="isMenuOpen">
-            <a href="#" class="menu-item" [ngClass]="isSelected('') ? 'selected' : null">{{'header.home' | translate}}</a>
-            <a href="faq" class="menu-item" [ngClass]="isSelected('faq') ? 'selected' : null">{{'header.faq' | translate}}</a>
+            <a (click)="navigate('')" class="menu-item" [ngClass]="isSelected(['', 'home-panel']) ? 'selected' : null">{{'header.home' | translate}}</a>
+            <a (click)="navigate('faq')" class="menu-item" [ngClass]="isSelected(['faq', 'faq-panel']) ? 'selected' : null">{{'header.faq' | translate}}</a>
             <div class="button-container">
                 <button class="register-button" appIsNotLoggedIn (click)="navigate('login')">{{'header.login' | translate}}</button>
                 <button class="register-button" appIsNotLoggedIn (click)="navigate('register')">{{'header.register' | translate}}</button>

@@ -112,7 +112,8 @@
 
         .slide-content {
             font-size: 3vw;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Poppins', sans-serif!important;
+            font-weight: variables.$big-font-weight;
             width: 40%;
             height: 100%;
             color: variables.$lightgray-background-color;

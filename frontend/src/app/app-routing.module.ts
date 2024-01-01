@@ -42,8 +42,13 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         children: [
             {
-                path: 'home',
-                component: HomePageComponent,
+                path: 'home-panel',
+                component: MainPageComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'faq-panel',
+                component: FaqPageComponent,
                 canActivate: [AuthGuard],
             },
             {
@@ -89,21 +94,6 @@ const routes: Routes = [
             {
                 path: 'documents',
                 component: DocumentsPageComponent,
-                canActivate: [AuthGuard],
-            },
-            {
-                path: 'results',
-                component: ResultsPageComponent,
-                canActivate: [AuthGuard],
-            },
-            {
-                path: 'results',
-                component: ResultsPageComponent,
-                canActivate: [AuthGuard],
-            },
-            {
-                path: 'settings',
-                component: SettingsPageComponent,
                 canActivate: [AuthGuard],
             },
         ]

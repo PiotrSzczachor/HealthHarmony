@@ -72,6 +72,9 @@ $menuBreakpoint: 768px;
     .menu {
         display: flex;
         align-items: center;
+        a:hover {
+            cursor: pointer;
+        }
 
         @media (max-width: $menuBreakpoint) {
             display: none;
