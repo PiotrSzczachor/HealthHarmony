@@ -23,12 +23,26 @@ export class HeaderComponent implements OnInit {
       this.isMenuOpen = !this.isMenuOpen;
     }
 
-    isSelected(section: string): boolean {
-        return section == this.url
+    isSelected(sections: string[]): boolean {
+        for(let i=0; i < sections.length; i++){
+            if(sections[i] == this.url){
+                return true;
+            }
+        }
+        return false;
     }
 
     navigate(path: string): void {
-        this.router.navigateByUrl(path);
+        if(this.url?.includes('panel')){
+            if(path == ''){
+                this.router.navigate(['dashboard/home-panel']);
+            } else {
+                this.router.navigate(['dashboard/faq-panel']);
+            }
+            
+        } else {
+            this.router.navigateByUrl(path);
+        }
     }
 
     logout(): void {

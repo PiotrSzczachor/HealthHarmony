@@ -4,7 +4,7 @@ import { MenuItem } from "src/app/models/dashboard/menu-item.model";
 export const MenuItems: MenuItem[] = [
     {
         name: "dashboard.menu.home",
-        route: "home",
+        route: "home-panel",
         icon: "../../../assets/icons/side-nav/home.png",
         requiredRole: null
     },

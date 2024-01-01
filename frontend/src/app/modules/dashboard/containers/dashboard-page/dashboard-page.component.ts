@@ -11,6 +11,8 @@ import { AppState } from 'src/app/store/app.state';
 import { AuthActions, getUserSelector } from 'src/app/modules/auth/store';
 import { User } from 'src/app/models/auth/user.model';
 import { Roles } from 'src/app/enums/roles.enum';
+import { MatDialog } from '@angular/material/dialog';
+import { ChangeLanguageComponent } from 'src/app/shared/change-language/change-language.component';
 
 @Component({
     selector: 'app-dashboard-page',
@@ -27,7 +29,7 @@ export class DashboardPageComponent implements OnInit, AfterContentInit {
     opened: boolean = true;
     url!: string;
 
-    constructor(private observer: BreakpointObserver, private route: ActivatedRoute, private router: Router, private authService: AuthService, private store: Store<AppState>) {
+    constructor(private observer: BreakpointObserver, private route: ActivatedRoute, private router: Router, private authService: AuthService, private store: Store<AppState>, private dialog: MatDialog) {
         this.selectUser()
     }
 
@@ -51,6 +53,9 @@ export class DashboardPageComponent implements OnInit, AfterContentInit {
     }
 
     routeToChildren(route: string): void {
+        if(route == 'settings') {
+            this.dialog.open(ChangeLanguageComponent)
+        } else
         this.router.navigate(['dashboard/' + route]);
     }
 
