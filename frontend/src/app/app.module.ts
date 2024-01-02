@@ -20,6 +20,7 @@ import { ClinicsModule } from './modules/clinics/clinics.module';
 import { DoctorsModule } from './modules/doctors/doctors.module';
 import { VisitsModule } from './modules/visits/visits.module';
 import { DocumentsModule } from './modules/documents/documents.module';
+import { ContactModule } from './modules/contact/contact.module';
 
 @NgModule({
     declarations: [
@@ -31,6 +32,7 @@ import { DocumentsModule } from './modules/documents/documents.module';
         DoctorsModule,
         DashboardModule,
         DocumentsModule,
+        ContactModule,
         MainPageModule,
         VisitsModule,
         BrowserModule,

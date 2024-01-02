@@ -1,0 +1,44 @@
+@use "../../../../../variables";
+@use '../../../../shared/styles/edit-form.scss';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    color: variables.$basic-blue-color;
+
+    .title {
+        margin-top: 20px;
+        margin-bottom: 50px!important;
+        font-size: 40px!important;
+    }
+
+    .section-row {
+        font-family: variables.$font-family;
+        font-weight: variables.$big-font-weight;
+        display: flex;
+        align-items: center;
+        font-size: 25px;
+        line-height: 25px;
+        margin-bottom: 30px;
+        
+        p {
+            margin: 0
+        }
+
+        mat-icon {
+            font-size: 60px;
+            height: 60px;
+            width: 60px;
+        }
+    }
+}
+
+.edit-form-container {
+    margin-top: 30px;
+    width: calc(100% - 60px);
+
+    .heading {
+        margin-bottom: 30px;
+    }
+}

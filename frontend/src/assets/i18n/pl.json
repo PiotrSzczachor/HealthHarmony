@@ -105,5 +105,8 @@
             "specialization": "Specjalizacja",
             "clinic": "Klinika"
         }
+    },
+    "contact": {
+        "title": "Kontakt"
     }
 }

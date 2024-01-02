@@ -18,6 +18,7 @@ import { Roles } from './enums/roles.enum';
 import { DoctorsVisitPageComponent } from './modules/visits/containers/doctors-visit-page/doctors-visit-page.component';
 import { SchedulePageComponent } from './modules/doctors/containers/schedule-page/schedule-page.component';
 import { VisitCoursePageComponent } from './modules/visits/containers/visit-course-page/visit-course-page.component';
+import { ContactPageComponent } from './modules/contact/containers/contact-page/contact-page.component';
 
 const routes: Routes = [
     {
@@ -94,6 +95,11 @@ const routes: Routes = [
             {
                 path: 'documents',
                 component: DocumentsPageComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'contact',
+                component: ContactPageComponent,
                 canActivate: [AuthGuard],
             },
         ]
