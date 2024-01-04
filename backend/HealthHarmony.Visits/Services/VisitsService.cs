@@ -68,7 +68,8 @@ namespace HealthHarmony.Visits.Services
 
         public async Task Update(VisitDto item)
         {
-            throw new NotImplementedException();
+            var visit = _mapper.Map<Visit>(item);
+            await _repository.Update(visit);
         }
         public async Task<List<VisitsPerDay>> GetNumberOfAvaliableVisitsByDateRange(Guid specializationId, Guid? clinicId, int addDays, bool isRemote, int numberOfDays = 7)
         {
