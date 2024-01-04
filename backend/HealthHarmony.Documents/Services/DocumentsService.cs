@@ -1,4 +1,5 @@
-﻿using HealthHarmony.Documents.Interfaces;
+﻿using HealthHarmony.Common.Extensions;
+using HealthHarmony.Documents.Interfaces;
 using HealthHarmony.Models.Common.Pagination;
 using HealthHarmony.Models.Doctors.Entities;
 using HealthHarmony.Models.Documents.Entities;
@@ -16,34 +17,34 @@ namespace HealthHarmony.Documents.Services
         {
             _repository = repository;
         }
-        public Task Add(Document item)
+        public async Task Add(Document item)
         {
-            throw new NotImplementedException();
+            await _repository.Add(item);
         }
 
-        public Task Delete(Guid Id)
+        public async Task Delete(Guid Id)
         {
-            throw new NotImplementedException();
+            await _repository.Delete<Document>(Id);
         }
 
-        public Task<List<Document>> GetAll()
+        public async Task<List<Document>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _repository.GetAll<Document>(x => x.Patient, x => x.Doctor).ToListAsync();
         }
 
-        public Task<List<Document>> GetAllWithoutIncludes()
+        public async Task<List<Document>> GetAllWithoutIncludes()
         {
-            throw new NotImplementedException();
+            return await _repository.GetAll<Document>().ToListAsync();
         }
 
-        public Task<Document> GetById(Guid Id)
+        public async Task<Document> GetById(Guid Id)
         {
-            throw new NotImplementedException();
+            return await _repository.Get<Document>(Id, x => x.Patient, x => x.Doctor);
         }
 
-        public Task<Document> GetByIdWithoutIncludes(Guid Id)
+        public async Task<Document> GetByIdWithoutIncludes(Guid Id)
         {
-            throw new NotImplementedException();
+            return await _repository.Get<Document>(Id);
         }
 
         public async Task<List<Document>> GetDocumentsPrescribedByDoctor(string userId)
@@ -58,12 +59,12 @@ namespace HealthHarmony.Documents.Services
 
         public PagedList<Document> GetPagedList(DocumentsFilters filters)
         {
-            throw new NotImplementedException();
+            return _repository.GetAll<Document>(x => x.Doctor, x => x.Patient).ToPagedList(filters);
         }
 
         public PagedList<Document> GetPagedListWithoutIncludes(DocumentsFilters filters)
         {
-            throw new NotImplementedException();
+            return _repository.GetAll<Document>().ToPagedList(filters);
         }
 
         public async Task<List<Document>> GetPatientDocuments(string userId)
@@ -76,9 +77,9 @@ namespace HealthHarmony.Documents.Services
             return patient.Documents.ToList();
         }
 
-        public Task Update(Document item)
+        public async Task Update(Document item)
         {
-            throw new NotImplementedException();
+            await _repository.Update(item);
         }
     }
 }
